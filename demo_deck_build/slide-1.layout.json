@@ -1,0 +1,397 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/uivce2",
+    "id": "uivce2",
+    "slide": 1,
+    "layoutId": "72ad0935-5028-42ec-a607-bad412369766",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "71fc73bb-83f9-48cf-b87e-1910dd34472e",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#FFFFFF",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "Arial"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "72ad0935-5028-42ec-a607-bad412369766",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "71fc73bb-83f9-48cf-b87e-1910dd34472e",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "71fc73bb-83f9-48cf-b87e-1910dd34472e",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/07y18ri5",
+      "id": "1",
+      "bbox": [
+        54,
+        42,
+        520,
+        28
+      ],
+      "geometry": "rect",
+      "text": "HOST-BASED DETECTION",
+      "textPreview": "HOST-BASED DETECTION",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 16,
+        "typeface": "Arial",
+        "color": "#3D8DFF",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "HOST-BASED DETECTION"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "HOST-BASED DETECTION",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "typeface": "Arial",
+            "color": "#3D8DFF",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "HOST-BASED DETECTION",
+              "fontSize": 16,
+              "typeface": "Arial",
+              "color": "#3D8DFF",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/f6p0zm1k",
+      "id": "2",
+      "name": "cover-title",
+      "bbox": [
+        54,
+        126,
+        545,
+        196
+      ],
+      "geometry": "rect",
+      "text": "Detecting External\nCS2 Cheats",
+      "textPreview": "Detecting External | CS2 Cheats",
+      "resolvedFontSize": 66,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 66,
+        "typeface": "Arial",
+        "color": "#101820",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Detecting"
+          },
+          {
+            "index": 2,
+            "text": "External"
+          },
+          {
+            "index": 3,
+            "text": "CS2 Cheats"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Detecting External",
+          "resolvedTextStyle": {
+            "fontSize": 66,
+            "typeface": "Arial",
+            "color": "#101820",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Detecting External",
+              "fontSize": 66,
+              "typeface": "Arial",
+              "color": "#101820",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "CS2 Cheats",
+          "resolvedTextStyle": {
+            "fontSize": 66,
+            "typeface": "Arial",
+            "color": "#101820",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "CS2 Cheats",
+              "fontSize": 66,
+              "typeface": "Arial",
+              "color": "#101820",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/elgj6h0z",
+      "id": "3",
+      "bbox": [
+        54,
+        370,
+        520,
+        92
+      ],
+      "geometry": "rect",
+      "text": "A Windows process-handle monitoring prototype with risk-based classification",
+      "textPreview": "A Windows process-handle monitoring prototype with risk-based classification",
+      "resolvedFontSize": 25,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 25,
+        "typeface": "Arial",
+        "color": "#56616F",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "A Windows process-handle monitoring"
+          },
+          {
+            "index": 2,
+            "text": "prototype with risk-based classification"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "A Windows process-handle monitoring prototype with risk-based classification",
+          "resolvedTextStyle": {
+            "fontSize": 25,
+            "typeface": "Arial",
+            "color": "#56616F",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "A Windows process-handle monitoring prototype with risk-based classification",
+              "fontSize": 25,
+              "typeface": "Arial",
+              "color": "#56616F",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/pc725wjm",
+      "id": "4",
+      "bbox": [
+        54,
+        596,
+        450,
+        30
+      ],
+      "geometry": "rect",
+      "text": "MSc Project Demonstration",
+      "textPreview": "MSc Project Demonstration",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 20,
+        "typeface": "Arial",
+        "color": "#101820",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "MSc Project Demonstration"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "MSc Project Demonstration",
+          "resolvedTextStyle": {
+            "fontSize": 20,
+            "typeface": "Arial",
+            "color": "#101820",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "MSc Project Demonstration",
+              "fontSize": 20,
+              "typeface": "Arial",
+              "color": "#101820",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 5,
+      "kind": "image",
+      "scope": "slide",
+      "aid": "im/x4ve1s7e",
+      "id": "5",
+      "bbox": [
+        654,
+        42,
+        572,
+        584
+      ],
+      "geometry": "roundRect",
+      "alt": "Controlled CS2 test showing an external overlay",
+      "contentType": "image/png",
+      "imageFit": "cover",
+      "imageMask": {
+        "geometry": "roundRect",
+        "adjustmentList": [
+          {
+            "name": "adj",
+            "formula": "val 2098"
+          }
+        ]
+      },
+      "asset": {
+        "assetId": "35e26b85-b0f0-4586-bc4d-d0ec3dfd8204",
+        "contentType": "image/png",
+        "byteLength": 2365158
+      }
+    }
+  ],
+  "composeRuns": []
+}

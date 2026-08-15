@@ -1,0 +1,18 @@
+{
+  "RunId": "baseline_dust2_01_20260804_121854",
+  "Experiment": "baseline_dust2_01",
+  "CheatEnabled": false,
+  "Map": "de_dust2",
+  "Mode": "competitive",
+  "BotCount": 9,
+  "Notes": "",
+  "ProcessId": 4824,
+  "ProcessName": "cs2",
+  "StartedUtc": "2026-08-04T12:19:17.1783128Z",
+  "SampleIntervalMs": 100,
+  "ModuleSnapshotSeconds": 10,
+  "DurationSeconds": 600,
+  "MachineName": "\u5168",
+  "OperatingSystem": "Microsoft Windows NT 10.0.26200.0",
+  "LogicalProcessorCount": 32
+}

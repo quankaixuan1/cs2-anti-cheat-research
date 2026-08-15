@@ -1,0 +1,169 @@
+{"kind":"deck","id":"pr/83yu3e","name":"Deck"}
+{"kind":"layout","layoutId":"71fc73bb-83f9-48cf-b87e-1910dd34472e","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"72ad0935-5028-42ec-a607-bad412369766","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/uivce2","slide":1,"title":"HOST-BASED DETECTION","textShapes":4}
+{"kind":"textbox","id":"sh/07y18ri5","slide":1,"text":"HOST-BASED DETECTION","textPreview":"HOST-BASED DETECTION","textChars":20,"textLines":1,"bbox":[54,42,520,28]}
+{"kind":"textbox","id":"sh/f6p0zm1k","slide":1,"name":"cover-title","text":"Detecting External\nCS2 Cheats","textPreview":"Detecting External | CS2 Cheats","textChars":29,"textLines":2,"bbox":[54,126,545,196]}
+{"kind":"textbox","id":"sh/elgj6h0z","slide":1,"text":"A Windows process-handle monitoring prototype with risk-based classification","textPreview":"A Windows process-handle monitoring prototype with risk-based classification","textChars":76,"textLines":1,"bbox":[54,370,520,92]}
+{"kind":"textbox","id":"sh/pc725wjm","slide":1,"text":"MSc Project Demonstration","textPreview":"MSc Project Demonstration","textChars":25,"textLines":1,"bbox":[54,596,450,30]}
+{"kind":"image","id":"im/x4ve1s7e","slide":1,"name":"","geometry":"roundRect","alt":"Controlled CS2 test showing an external overlay","bbox":[654,42,572,584]}
+{"kind":"notes","id":"nt/uivce2","slide":1,"text":"Good afternoon. My project investigates how a host-based anti-cheat can detect an external CS2 program without relying on DLL injection evidence. I focus on a durable operating-system signal: another process holding powerful handles to the game. The prototype enumerates those handles, enriches the source identity, scores the risk, and records evidence for later review.\n\n[Sources]\n- D:/Software/FullyExternalCS2-main/assets/photo.png — local test-program screenshot.\n- D:/code/UoB/Anti_cheating/README.md — project scope."}
+{"kind":"slide","id":"sl/zz5dma","slide":2,"title":"CS2 ANTI-CHEAT RESEARCH","textShapes":12}
+{"kind":"textbox","id":"sh/vmxo3y9k","slide":2,"text":"CS2 ANTI-CHEAT RESEARCH","textPreview":"CS2 ANTI-CHEAT RESEARCH","textChars":23,"textLines":1,"bbox":[54,34,620,28]}
+{"kind":"textbox","id":"sh/wn6pw3q5","slide":2,"name":"slide-2-title","text":"External cheats leave no injected module to find","textPreview":"External cheats leave no injected module to find","textChars":48,"textLines":1,"bbox":[54,72,1130,58]}
+{"kind":"textbox","id":"sh/xof658rq","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1180,674,48,22]}
+{"kind":"textbox","id":"sh/mxo7qt83","slide":2,"text":"The detection gap","textPreview":"The detection gap","textChars":17,"textLines":1,"bbox":[54,176,420,34]}
+{"kind":"textbox","id":"sh/nyxozy98","slide":2,"text":"An external program runs in its own process. It can read game state and draw a transparent overlay while the game’s module list remains unchanged.","textPreview":"An external program runs in its own process. It can read game state and draw a transparent overlay while the game’s module list remains u...","textChars":146,"textLines":1,"bbox":[54,224,470,180]}
+{"kind":"shape","id":"sh/8z6ps3qt","slide":2,"bbox":[600,172,270,150]}
+{"kind":"textbox","id":"sh/90f618re","slide":2,"text":"cs2.exe","textPreview":"cs2.exe","textChars":7,"textLines":1,"bbox":[630,204,210,38]}
+{"kind":"textbox","id":"sh/6t872x87","slide":2,"text":"game memory","textPreview":"game memory","textChars":11,"textLines":1,"bbox":[630,256,210,30]}
+{"kind":"shape","id":"sh/7uh8bi9s","slide":2,"bbox":[930,172,270,150]}
+{"kind":"textbox","id":"sh/vupc32h8","slide":2,"text":"external process","textPreview":"external process","textChars":16,"textLines":1,"bbox":[960,204,210,38]}
+{"kind":"textbox","id":"sh/utgbux0n","slide":2,"text":"overlay + input","textPreview":"overlay + input","textChars":15,"textLines":1,"bbox":[960,282,210,26]}
+{"kind":"shape","id":"sh/hwru5czy","slide":2,"bbox":[870,220,54,48]}
+{"kind":"textbox","id":"sh/wvitw7it","slide":2,"text":"process handle","textPreview":"process handle","textChars":14,"textLines":1,"bbox":[792,286,220,28]}
+{"kind":"shape","id":"sh/jy9c72h4","slide":2,"bbox":[600,388,600,202]}
+{"kind":"textbox","id":"sh/ix0byh0j","slide":2,"text":"Research question","textPreview":"Research question","textChars":17,"textLines":1,"bbox":[632,420,250,30]}
+{"kind":"textbox","id":"sh/50ru9cza","slide":2,"text":"Can handle access distinguish a memory-reading test program from legitimate observers?","textPreview":"Can handle access distinguish a memory-reading test program from legitimate observers?","textChars":86,"textLines":1,"bbox":[632,466,520,108]}
+{"kind":"notes","id":"nt/zz5dma","slide":2,"text":"The central problem is that an external cheat is not loaded into the CS2 process. A module scanner can therefore miss it. However, to read game memory it still needs a process handle with suitable access rights. That creates a host-visible relationship between the source process and cs2.exe, which becomes my primary detection surface.\n\n[Sources]\n- D:/code/UoB/Anti_cheating/docs/FullyExternalCS2-static-analysis.md — static behaviour analysis."}
+{"kind":"slide","id":"sl/99co7k","slide":3,"title":"CS2 ANTI-CHEAT RESEARCH","textShapes":16}
+{"kind":"textbox","id":"sh/kjehcb2p","slide":3,"text":"CS2 ANTI-CHEAT RESEARCH","textPreview":"CS2 ANTI-CHEAT RESEARCH","textChars":23,"textLines":1,"bbox":[54,34,620,28]}
+{"kind":"textbox","id":"sh/ji50j6l4","slide":3,"name":"slide-3-title","text":"Four host-visible signals","textPreview":"Four host-visible signals","textChars":25,"textLines":1,"bbox":[54,72,1130,58]}
+{"kind":"textbox","id":"sh/yhwza1kj","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1180,674,48,22]}
+{"kind":"shape","id":"sh/xgnyhw3y","slide":3,"bbox":[54,166,550,178]}
+{"kind":"textbox","id":"sh/wfeh8r2d","slide":3,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[78,188,58,34]}
+{"kind":"textbox","id":"sh/belgfmls","slide":3,"text":"Memory access","textPreview":"Memory access","textChars":13,"textLines":1,"bbox":[148,186,410,38]}
+{"kind":"textbox","id":"sh/adcz6hkn","slide":3,"text":"ReadProcessMemory is used repeatedly against cs2.exe.","textPreview":"ReadProcessMemory is used repeatedly against cs2.exe.","textChars":53,"textLines":1,"bbox":[148,238,410,72]}
+{"kind":"shape","id":"sh/hc7it0j2","slide":3,"bbox":[648,166,550,178]}
+{"kind":"textbox","id":"sh/gbyhkv2x","slide":3,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[672,188,58,34]}
+{"kind":"textbox","id":"sh/6pori1sb","slide":3,"text":"Process rights","textPreview":"Process rights","textChars":14,"textLines":1,"bbox":[742,186,410,38]}
+{"kind":"textbox","id":"sh/rqxsb69w","slide":3,"text":"The source holds VM_READ and other powerful rights.","textPreview":"The source holds VM_READ and other powerful rights.","textChars":51,"textLines":1,"bbox":[742,238,410,72]}
+{"kind":"shape","id":"sh/sr6tkbah","slide":3,"bbox":[54,386,550,178]}
+{"kind":"textbox","id":"sh/tszadgr2","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[78,408,58,34]}
+{"kind":"textbox","id":"sh/i1ore1sf","slide":3,"text":"Overlay window","textPreview":"Overlay window","textChars":14,"textLines":1,"bbox":[148,406,410,38]}
+{"kind":"textbox","id":"sh/jmxs769k","slide":3,"text":"A transparent external window renders ESP information.","textPreview":"A transparent external window renders ESP information.","textChars":54,"textLines":1,"bbox":[148,458,410,72]}
+{"kind":"shape","id":"sh/4n69gba5","slide":3,"bbox":[648,386,550,178]}
+{"kind":"textbox","id":"sh/5ofa9grq","slide":3,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[672,408,58,34]}
+{"kind":"textbox","id":"sh/2h8bqlsj","slide":3,"text":"Synthetic input","textPreview":"Synthetic input","textChars":15,"textLines":1,"bbox":[742,406,410,38]}
+{"kind":"textbox","id":"sh/3ihsjq94","slide":3,"text":"SendInput generates mouse movement and clicks.","textPreview":"SendInput generates mouse movement and clicks.","textChars":46,"textLines":1,"bbox":[742,458,410,72]}
+{"kind":"textbox","id":"sh/z2tobipg","slide":3,"text":"Prototype scope: implement and validate the process-handle signal first.","textPreview":"Prototype scope: implement and validate the process-handle signal first.","textChars":72,"textLines":1,"bbox":[54,622,980,32]}
+{"kind":"notes","id":"nt/99co7k","slide":3,"text":"I first performed static analysis of the controlled test program. Four signals were visible from the host: cross-process memory reading, high process access rights, an overlay, and synthetic mouse input. I deliberately scoped the implemented prototype to handle monitoring because it is directly observable using Windows APIs and can be tested without modifying the game process.\n\n[Sources]\n- D:/Software/FullyExternalCS2-main/Core/Kernel32.cs and Utils/Utility.cs — memory-read implementation.\n- D:/Software/FullyExternalCS2-main/Graphics/OverlayRenderer.cs — overlay behaviour.\n- D:/Software/FullyExternalCS2-main/Core/User32.cs — synthetic input API.\n- D:/code/UoB/Anti_cheating/docs/FullyExternalCS2-static-analysis.md — analysis summary."}
+{"kind":"slide","id":"sl/ldoh95","slide":4,"title":"CS2 ANTI-CHEAT RESEARCH","textShapes":20}
+{"kind":"textbox","id":"sh/tk7q18vi","slide":4,"text":"CS2 ANTI-CHEAT RESEARCH","textPreview":"CS2 ANTI-CHEAT RESEARCH","textChars":23,"textLines":1,"bbox":[54,34,620,28]}
+{"kind":"textbox","id":"sh/6hg76tw7","slide":4,"name":"slide-4-title","text":"System handles become auditable evidence","textPreview":"System handles become auditable evidence","textChars":40,"textLines":1,"bbox":[54,72,1130,58]}
+{"kind":"textbox","id":"sh/7ip8zydc","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1180,674,48,22]}
+{"kind":"shape","id":"sh/g7ipc3e9","slide":4,"bbox":[234,300,76,42]}
+{"kind":"shape","id":"sh/h8rq58vu","slide":4,"bbox":[474,300,76,42]}
+{"kind":"shape","id":"sh/ul07adw3","slide":4,"bbox":[714,300,76,42]}
+{"kind":"shape","id":"sh/f6983ido","slide":4,"bbox":[954,300,76,42]}
+{"kind":"shape","id":"sh/4bi9gne5","slide":4,"bbox":[54,222,186,204]}
+{"kind":"textbox","id":"sh/pcbq9svq","slide":4,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[74,244,40,34]}
+{"kind":"textbox","id":"sh/1gre1cvu","slide":4,"text":"Enumerate","textPreview":"Enumerate","textChars":9,"textLines":1,"bbox":[74,292,146,36]}
+{"kind":"textbox","id":"sh/gfid87u9","slide":4,"text":"NtQuerySystemInformation","textPreview":"NtQuerySystemInformation","textChars":24,"textLines":1,"bbox":[74,344,146,54]}
+{"kind":"shape","id":"sh/fe9wz2do","slide":4,"bbox":[294,222,186,204]}
+{"kind":"textbox","id":"sh/ed0v6xc3","slide":4,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[314,244,40,34]}
+{"kind":"textbox","id":"sh/pkbe5wvq","slide":4,"text":"Duplicate","textPreview":"Duplicate","textChars":9,"textLines":1,"bbox":[314,292,146,36]}
+{"kind":"textbox","id":"sh/oj2xcru5","slide":4,"text":"inspect target PID","textPreview":"inspect target PID","textChars":18,"textLines":1,"bbox":[314,344,146,54]}
+{"kind":"shape","id":"sh/3itw3md0","slide":4,"bbox":[534,222,186,204]}
+{"kind":"textbox","id":"sh/2hkvahcf","slide":4,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[554,244,40,34]}
+{"kind":"textbox","id":"sh/5o7etsvm","slide":4,"text":"Enrich","textPreview":"Enrich","textChars":6,"textLines":1,"bbox":[554,292,146,36]}
+{"kind":"textbox","id":"sh/4nyd0nu1","slide":4,"text":"path, parent, hash, signature","textPreview":"path, parent, hash, signature","textChars":29,"textLines":1,"bbox":[554,344,146,54]}
+{"kind":"shape","id":"sh/wr2dgn2x","slide":4,"bbox":[774,222,186,204]}
+{"kind":"textbox","id":"sh/xsbeps3i","slide":4,"text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[794,244,40,34]}
+{"kind":"textbox","id":"sh/a5kvexkr","slide":4,"text":"Score","textPreview":"Score","textChars":5,"textLines":1,"bbox":[794,292,146,36]}
+{"kind":"textbox","id":"sh/v6twn2lc","slide":4,"text":"rights + exceptions","textPreview":"rights + exceptions","textChars":19,"textLines":1,"bbox":[794,344,146,54]}
+{"kind":"shape","id":"sh/kvmxk72t","slide":4,"bbox":[1014,222,186,204]}
+{"kind":"textbox","id":"sh/5wvetc3e","slide":4,"text":"5","textPreview":"5","textChars":1,"textLines":1,"bbox":[1034,244,40,34]}
+{"kind":"textbox","id":"sh/itkfixk3","slide":4,"text":"Record","textPreview":"Record","textChars":6,"textLines":1,"bbox":[1034,292,146,36]}
+{"kind":"textbox","id":"sh/judwr2lo","slide":4,"text":"snapshots, events, detections","textPreview":"snapshots, events, detections","textChars":29,"textLines":1,"bbox":[1034,344,146,54]}
+{"kind":"textbox","id":"sh/szmxo725","slide":4,"text":"Read-only design","textPreview":"Read-only design","textChars":16,"textLines":1,"bbox":[54,500,250,32]}
+{"kind":"textbox","id":"sh/t0vexc3q","slide":4,"text":"The monitor duplicates handles for identification; it does not close handles or alter cs2.exe.","textPreview":"The monitor duplicates handles for identification; it does not close handles or alter cs2.exe.","textChars":94,"textLines":1,"bbox":[54,546,1040,48]}
+{"kind":"notes","id":"nt/ldoh95","slide":4,"text":"The implementation has five stages. It enumerates the extended system handle table, opens each source process, duplicates candidate handles, checks whether they resolve to the target CS2 PID, and enriches the source with identity data. The detection engine then scores the access mask and applies narrow contextual exceptions. Finally, CSV outputs preserve snapshots, lifecycle events, scan completeness, and detections. Importantly, this is a read-only monitor.\n\n[Sources]\n- D:/code/UoB/Anti_cheating/CS2HandleMonitor/SystemHandleScanner.cs — enumeration and duplication.\n- D:/code/UoB/Anti_cheating/CS2HandleMonitor/ProcessIdentityInspector.cs — identity enrichment.\n- D:/code/UoB/Anti_cheating/CS2HandleMonitor/Program.cs — logging pipeline."}
+{"kind":"slide","id":"sl/o5z9vm","slide":5,"title":"CS2 ANTI-CHEAT RESEARCH","textShapes":19}
+{"kind":"textbox","id":"sh/adg3qxcf","slide":5,"text":"CS2 ANTI-CHEAT RESEARCH","textPreview":"CS2 ANTI-CHEAT RESEARCH","textChars":23,"textLines":1,"bbox":[54,34,620,28]}
+{"kind":"textbox","id":"sh/xgr21sv6","slide":5,"name":"slide-5-title","text":"Capabilities drive risk; context reduces noise","textPreview":"Capabilities drive risk; context reduces noise","textChars":46,"textLines":1,"bbox":[54,72,1130,58]}
+{"kind":"textbox","id":"sh/wfilsnul","slide":5,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1180,674,48,22]}
+{"kind":"textbox","id":"sh/napkvid4","slide":5,"text":"Access-right score","textPreview":"Access-right score","textChars":18,"textLines":1,"bbox":[54,166,470,34]}
+{"kind":"textbox","id":"sh/m9gjmdcj","slide":5,"text":"VM_READ","textPreview":"VM_READ","textChars":7,"textLines":1,"bbox":[66,220,300,30]}
+{"kind":"textbox","id":"sh/9c72xsvu","slide":5,"text":"+40","textPreview":"+40","textChars":3,"textLines":1,"bbox":[390,220,110,30]}
+{"kind":"shape","id":"sh/obylonu9","slide":5,"bbox":[66,260,434,2]}
+{"kind":"textbox","id":"sh/76tk72d8","slide":5,"text":"VM_WRITE","textPreview":"VM_WRITE","textChars":8,"textLines":1,"bbox":[66,285,300,30]}
+{"kind":"textbox","id":"sh/65k3yhcn","slide":5,"text":"+25","textPreview":"+25","textChars":3,"textLines":1,"bbox":[390,285,110,30]}
+{"kind":"shape","id":"sh/or6d4fa1","slide":5,"bbox":[66,325,434,2]}
+{"kind":"textbox","id":"sh/pszuxkbm","slide":5,"text":"VM_OPERATION","textPreview":"VM_OPERATION","textChars":12,"textLines":1,"bbox":[66,350,300,30]}
+{"kind":"textbox","id":"sh/25ov25sv","slide":5,"text":"+20","textPreview":"+20","textChars":3,"textLines":1,"bbox":[390,350,110,30]}
+{"kind":"shape","id":"sh/nqxcvatg","slide":5,"bbox":[66,390,434,2]}
+{"kind":"textbox","id":"sh/036d0va5","slide":5,"text":"CREATE_THREAD","textPreview":"CREATE_THREAD","textChars":13,"textLines":1,"bbox":[66,415,300,30]}
+{"kind":"textbox","id":"sh/14fut0ba","slide":5,"text":"+20","textPreview":"+20","textChars":3,"textLines":1,"bbox":[390,415,110,30]}
+{"kind":"shape","id":"sh/e1ovy5sz","slide":5,"bbox":[66,455,434,2]}
+{"kind":"textbox","id":"sh/f2xcratk","slide":5,"text":"Query-only access","textPreview":"Query-only access","textChars":17,"textLines":1,"bbox":[66,480,300,30]}
+{"kind":"textbox","id":"sh/szmtwvat","slide":5,"text":"5 total","textPreview":"5 total","textChars":7,"textLines":1,"bbox":[390,480,110,30]}
+{"kind":"shape","id":"sh/d0fup0be","slide":5,"bbox":[66,520,434,2]}
+{"kind":"shape","id":"sh/9kn2dszq","slide":5,"bbox":[610,166,590,230]}
+{"kind":"textbox","id":"sh/8je14nyl","slide":5,"text":"Default alert threshold","textPreview":"Default alert threshold","textChars":23,"textLines":1,"bbox":[646,200,500,30]}
+{"kind":"textbox","id":"sh/7ilkbih0","slide":5,"text":"60","textPreview":"60","textChars":2,"textLines":1,"bbox":[646,246,180,82]}
+{"kind":"textbox","id":"sh/mhcj2dgf","slide":5,"text":"A full-access handle scores 100;\na query-only Steam handle scores 5.","textPreview":"A full-access handle scores 100; | a query-only Steam handle scores 5.","textChars":68,"textLines":2,"bbox":[820,250,330,72]}
+{"kind":"textbox","id":"sh/lg3i98zu","slide":5,"text":"Contextual exception","textPreview":"Contextual exception","textChars":20,"textLines":1,"bbox":[610,430,400,32]}
+{"kind":"textbox","id":"sh/kfu10ny9","slide":5,"text":"A dedicated-server conhost is reduced to risk 5 only when its parent PID and system path match the expected relationship.","textPreview":"A dedicated-server conhost is reduced to risk 5 only when its parent PID and system path match the expected relationship.","textChars":121,"textLines":1,"bbox":[610,478,570,100]}
+{"kind":"notes","id":"nt/o5z9vm","slide":5,"text":"The first scoring model is intentionally interpretable. VM_READ contributes forty points, while write, operation, and thread-creation rights increase severity. A threshold of sixty separates the full-access test program from query-only observers. I also added a narrow exception for a dedicated-server console host, but only when both its parent relationship and trusted system path match. This shows why context matters alongside raw access rights.\n\n[Sources]\n- D:/code/UoB/Anti_cheating/CS2HandleMonitor/ProcessAccessRights.cs — scoring weights.\n- D:/code/UoB/Anti_cheating/CS2HandleMonitor/DetectionEngine.cs — thresholding and contextual exception."}
+{"kind":"slide","id":"sl/6k24f1","slide":6,"title":"CS2 ANTI-CHEAT RESEARCH","textShapes":14}
+{"kind":"textbox","id":"sh/qhkzq1on","slide":6,"text":"CS2 ANTI-CHEAT RESEARCH","textPreview":"CS2 ANTI-CHEAT RESEARCH","textChars":23,"textLines":1,"bbox":[54,34,620,28]}
+{"kind":"textbox","id":"sh/dkbylg7e","slide":6,"name":"slide-6-title","text":"Controlled tests clarify what I built","textPreview":"Controlled tests clarify what I built","textChars":37,"textLines":1,"bbox":[54,72,1130,58]}
+{"kind":"textbox","id":"sh/cj2hsb6t","slide":6,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1180,674,48,22]}
+{"kind":"shape","id":"sh/zmdgnqp4","slide":6,"bbox":[54,166,548,388]}
+{"kind":"textbox","id":"sh/el4zuloz","slide":6,"text":"Experiment","textPreview":"Experiment","textChars":10,"textLines":1,"bbox":[84,196,240,34]}
+{"kind":"shape","id":"sh/1ovip07a","slide":6,"bbox":[84,261,10,10]}
+{"kind":"textbox","id":"sh/0nmhwv6p","slide":6,"text":"CS2 on de_dust2 with fixed test conditions","textPreview":"CS2 on de_dust2 with fixed test conditions","textChars":42,"textLines":1,"bbox":[108,252,446,52]}
+{"kind":"shape","id":"sh/nqd0rqpg","slide":6,"bbox":[84,331,10,10]}
+{"kind":"textbox","id":"sh/mp4zylov","slide":6,"text":"2-second handle scans for about 10 minutes","textPreview":"2-second handle scans for about 10 minutes","textChars":42,"textLines":1,"bbox":[108,322,446,52]}
+{"kind":"shape","id":"sh/krixgreh","slide":6,"bbox":[84,401,10,10]}
+{"kind":"textbox","id":"sh/lsbe9wf2","slide":6,"text":"Compare CS2Cheat with Steam and console-host handles","textPreview":"Compare CS2Cheat with Steam and console-host handles","textChars":52,"textLines":1,"bbox":[108,392,446,52]}
+{"kind":"shape","id":"sh/yp0fehwb","slide":6,"bbox":[84,471,10,10]}
+{"kind":"textbox","id":"sh/zq9w7mxw","slide":6,"text":"Preserve scan summaries and handle lifecycle events","textPreview":"Preserve scan summaries and handle lifecycle events","textChars":51,"textLines":1,"bbox":[108,462,446,52]}
+{"kind":"shape","id":"sh/8v2xkred","slide":6,"bbox":[650,166,550,388]}
+{"kind":"textbox","id":"sh/9wbydwfy","slide":6,"text":"Contribution boundary","textPreview":"Contribution boundary","textChars":21,"textLines":1,"bbox":[682,196,380,34]}
+{"kind":"textbox","id":"sh/mtkfi1w7","slide":6,"text":"Third-party test artefact","textPreview":"Third-party test artefact","textChars":25,"textLines":1,"bbox":[682,258,420,28]}
+{"kind":"textbox","id":"sh/7utgb6xs","slide":6,"text":"FullyExternalCS2 provides controlled external-cheat behaviour.","textPreview":"FullyExternalCS2 provides controlled external-cheat behaviour.","textChars":62,"textLines":1,"bbox":[682,296,450,58]}
+{"kind":"textbox","id":"sh/wjmxobep","slide":6,"text":"Project implementation","textPreview":"Project implementation","textChars":22,"textLines":1,"bbox":[682,384,420,28]}
+{"kind":"textbox","id":"sh/hkvyhgvu","slide":6,"text":"Static analysis, baseline logger, handle scanner, identity enrichment, scoring and experiment logs.","textPreview":"Static analysis, baseline logger, handle scanner, identity enrichment, scoring and experiment logs.","textChars":99,"textLines":1,"bbox":[682,422,450,88]}
+{"kind":"textbox","id":"sh/5gre1gne","slide":6,"text":"All claims in the demo are tied to source files or captured CSV data.","textPreview":"All claims in the demo are tied to source files or captured CSV data.","textChars":69,"textLines":1,"bbox":[54,612,1080,34]}
+{"kind":"notes","id":"nt/6k24f1","slide":6,"text":"For evaluation, I used FullyExternalCS2 as a third-party controlled test artefact; it is not presented as my implementation. My project work is the analysis, data collection, system-handle scanner, identity enrichment, detection logic, and experiment logging. The main comparison used approximately ten minutes of scans at two-second intervals, with Steam serving as a legitimate low-risk observer.\n\n[Sources]\n- D:/Software/FullyExternalCS2-main/README.md — third-party test artefact attribution.\n- D:/code/UoB/Anti_cheating/CS2BaselineLogger/Program.cs — baseline logger.\n- D:/code/UoB/Anti_cheating/data/handle_monitor_20260808_222539 — controlled run data."}
+{"kind":"slide","id":"sl/emyw3d","slide":7,"title":"CS2 ANTI-CHEAT RESEARCH","textShapes":10}
+{"kind":"textbox","id":"sh/xkn2lc3i","slide":7,"text":"CS2 ANTI-CHEAT RESEARCH","textPreview":"CS2 ANTI-CHEAT RESEARCH","textChars":23,"textLines":1,"bbox":[54,34,620,28]}
+{"kind":"textbox","id":"sh/ahcjax4r","slide":7,"name":"slide-7-title","text":"High-risk in every scan","textPreview":"High-risk in every scan","textChars":23,"textLines":1,"bbox":[54,72,1130,58]}
+{"kind":"textbox","id":"sh/bilkj25c","slide":7,"text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1180,674,48,22]}
+{"kind":"shape","id":"sh/9g32hsnm","slide":7,"bbox":[818,174,382,116]}
+{"kind":"textbox","id":"sh/mtcj6x4v","slide":7,"text":"301 / 301","textPreview":"301 / 301","textChars":9,"textLines":1,"bbox":[846,196,326,44]}
+{"kind":"textbox","id":"sh/nulkf25g","slide":7,"text":"scans contained the high-risk handle","textPreview":"scans contained the high-risk handle","textChars":36,"textLines":1,"bbox":[846,246,326,28]}
+{"kind":"shape","id":"sh/0ra14nmp","slide":7,"bbox":[818,316,382,116]}
+{"kind":"textbox","id":"sh/1sj2dsna","slide":7,"text":"100 vs 5","textPreview":"100 vs 5","textChars":8,"textLines":1,"bbox":[846,338,326,44]}
+{"kind":"textbox","id":"sh/lwnadkra","slide":7,"text":"test program vs query-only Steam","textPreview":"test program vs query-only Steam","textChars":32,"textLines":1,"bbox":[846,388,326,28]}
+{"kind":"shape","id":"sh/kbet4fqp","slide":7,"bbox":[818,458,382,142]}
+{"kind":"textbox","id":"sh/zalsba9k","slide":7,"text":"Interpretation","textPreview":"Interpretation","textChars":14,"textLines":1,"bbox":[846,480,300,28]}
+{"kind":"textbox","id":"sh/y9cb258z","slide":7,"text":"Access capability separated these two observed processes in this run.","textPreview":"Access capability separated these two observed processes in this run.","textChars":69,"textLines":1,"bbox":[846,520,310,68]}
+{"kind":"textbox","id":"sh/x83a90re","slide":7,"text":"Observed risk score (higher means more powerful process access)","textPreview":"Observed risk score (higher means more powerful process access)","textChars":63,"textLines":1,"bbox":[54,610,710,28]}
+{"kind":"chart","id":"ch/4f61g3mh","slide":7,"name":"","chartType":"bar","bbox":[54,174,710,410]}
+{"kind":"notes","id":"nt/emyw3d","slide":7,"text":"In the controlled run, the test program and Steam were both visible in every one of the 301 scans. The test program held a full-access handle and scored one hundred. Steam held only query and synchronisation rights and scored five. At the threshold of sixty, the test program was consistently high-risk while Steam remained low-risk. This supports feasibility, but it is not yet a population-level false-positive result.\n\n[Sources]\n- D:/code/UoB/Anti_cheating/data/handle_monitor_20260808_222539/scan_summary.csv — 301 scans and one high-risk handle per scan.\n- D:/code/UoB/Anti_cheating/data/handle_monitor_20260808_222539/handles.csv — observed access rights and risk scores."}
+{"kind":"slide","id":"sl/n1ib1g","slide":8,"title":"CS2 ANTI-CHEAT RESEARCH","textShapes":17}
+{"kind":"textbox","id":"sh/gzqx47y5","slide":8,"text":"CS2 ANTI-CHEAT RESEARCH","textPreview":"CS2 ANTI-CHEAT RESEARCH","textChars":23,"textLines":1,"bbox":[54,34,620,28]}
+{"kind":"textbox","id":"sh/fyhwv2h0","slide":8,"name":"slide-8-title","text":"Handle monitoring is a signal—not a verdict","textPreview":"Handle monitoring is a signal—not a verdict","textChars":43,"textLines":1,"bbox":[54,72,1130,58]}
+{"kind":"textbox","id":"sh/ux8f2xgf","slide":8,"text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[1180,674,48,22]}
+{"kind":"textbox","id":"sh/p4je1wz2","slide":8,"text":"What the prototype demonstrates","textPreview":"What the prototype demonstrates","textChars":31,"textLines":1,"bbox":[54,166,500,34]}
+{"kind":"shape","id":"sh/43qx8ryh","slide":8,"bbox":[54,233,10,10]}
+{"kind":"textbox","id":"sh/32hwzmhw","slide":8,"text":"External memory readers remain visible through OS handle relationships.","textPreview":"External memory readers remain visible through OS handle relationships.","textChars":71,"textLines":1,"bbox":[78,224,496,52]}
+{"kind":"shape","id":"sh/218f6hgb","slide":8,"bbox":[54,313,10,10]}
+{"kind":"textbox","id":"sh/dsje5wzy","slide":8,"text":"Interpretable scoring separates full access from query-only access in the test run.","textPreview":"Interpretable scoring separates full access from query-only access in the test run.","textChars":83,"textLines":1,"bbox":[78,304,496,52]}
+{"kind":"shape","id":"sh/craxcryd","slide":8,"bbox":[54,393,10,10]}
+{"kind":"textbox","id":"sh/ypk3i14j","slide":8,"text":"Identity and lifecycle logs make alerts auditable.","textPreview":"Identity and lifecycle logs make alerts auditable.","textChars":50,"textLines":1,"bbox":[78,384,496,52]}
+{"kind":"shape","id":"sh/zqt4b654","slide":8,"bbox":[650,166,550,388]}
+{"kind":"textbox","id":"sh/kr25kbmp","slide":8,"text":"Next steps","textPreview":"Next steps","textChars":10,"textLines":1,"bbox":[682,198,300,34]}
+{"kind":"textbox","id":"sh/lsbmdgnu","slide":8,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[682,258,44,28]}
+{"kind":"textbox","id":"sh/mt4nml4f","slide":8,"text":"Validate against overlays, capture tools and accessibility software","textPreview":"Validate against overlays, capture tools and accessibility software","textChars":67,"textLines":1,"bbox":[744,256,404,48]}
+{"kind":"textbox","id":"sh/7ud4fq50","slide":8,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[682,324,44,28]}
+{"kind":"textbox","id":"sh/8vm5obml","slide":8,"text":"Add window, input and network telemetry","textPreview":"Add window, input and network telemetry","textChars":39,"textLines":1,"bbox":[744,322,404,48]}
+{"kind":"textbox","id":"sh/9gvmhgn6","slide":8,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[682,390,44,28]}
+{"kind":"textbox","id":"sh/2x03ah4b","slide":8,"text":"Calibrate thresholds with larger labelled datasets","textPreview":"Calibrate thresholds with larger labelled datasets","textChars":50,"textLines":1,"bbox":[744,388,404,48]}
+{"kind":"textbox","id":"sh/3y943m5w","slide":8,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[682,456,44,28]}
+{"kind":"textbox","id":"sh/7q5svyhc","slide":8,"text":"Investigate kernel-level visibility and handle evasion","textPreview":"Investigate kernel-level visibility and handle evasion","textChars":54,"textLines":1,"bbox":[744,454,404,48]}
+{"kind":"textbox","id":"sh/6pwrmtgr","slide":8,"text":"Conclusion: combine multiple signals before enforcement.","textPreview":"Conclusion: combine multiple signals before enforcement.","textChars":56,"textLines":1,"bbox":[54,612,1040,34]}
+{"kind":"notes","id":"nt/n1ib1g","slide":8,"text":"To conclude, process-handle monitoring provides a strong, explainable signal for this class of external cheat. The prototype consistently separated the controlled memory reader from a query-only Steam handle and preserved evidence for review. However, a handle is a risk signal rather than proof of cheating. The next stage is broader benign-software testing, multi-signal correlation, and stronger visibility against evasion. Therefore, enforcement should be based on combined evidence rather than this score alone.\n\n[Sources]\n- D:/code/UoB/Anti_cheating/README.md — documented limitations and proposed signal combination.\n- D:/code/UoB/Anti_cheating/docs/FullyExternalCS2-static-analysis.md — limitations and recommended extensions."}

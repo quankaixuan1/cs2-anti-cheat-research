@@ -1,0 +1,18 @@
+{
+  "RunId": "timing_test_cs2_01_20260804_215748",
+  "Experiment": "timing_test_cs2_01",
+  "CheatEnabled": false,
+  "Map": "de_dust2",
+  "Mode": "competitive",
+  "BotCount": 9,
+  "Notes": "",
+  "ProcessId": 42296,
+  "ProcessName": "cs2",
+  "StartedUtc": "2026-08-04T21:57:54.6119768Z",
+  "SampleIntervalMs": 100,
+  "ModuleSnapshotSeconds": 10,
+  "DurationSeconds": 60,
+  "MachineName": "\u5168",
+  "OperatingSystem": "Microsoft Windows NT 10.0.26200.0",
+  "LogicalProcessorCount": 32
+}

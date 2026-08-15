@@ -1,0 +1,22 @@
+# Visual Studio / .NET
+.vs/
+**/bin/
+**/obj/
+*.user
+*.suo
+
+# Node.js dependencies
+**/node_modules/
+
+# Local/editor files
+.DS_Store
+Thumbs.db
+*.log
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+

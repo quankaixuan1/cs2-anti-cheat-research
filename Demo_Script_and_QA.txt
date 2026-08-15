@@ -1,0 +1,77 @@
+CS2 ANTI-CHEAT DEMO — 5-MINUTE SCRIPT AND Q&A
+
+Before presenting
+- Add your name and student ID if your programme expects them on the title slide.
+- Have the source tree and data/handle_monitor_20260808_222539 folder ready for screen sharing.
+- Practise once with a timer; aim for 4:30–4:50 so there is room for transitions.
+
+SLIDE 1 — 0:00–0:30
+Good afternoon. My project investigates how a host-based anti-cheat can detect an external CS2 program without relying on DLL injection evidence. I focus on a durable operating-system signal: another process holding powerful handles to the game. The prototype enumerates those handles, enriches the source identity, scores the risk, and records evidence for review.
+
+SLIDE 2 — 0:30–1:05
+The problem is that an external cheat is not loaded into the CS2 process. A module scanner can therefore miss it. However, to read game memory it still needs a process handle with suitable access rights. That creates a host-visible relationship between the source process and cs2.exe. My research question is whether this relationship can distinguish a controlled memory-reading program from legitimate observers.
+
+SLIDE 3 — 1:05–1:40
+Static analysis of the controlled test program found four host-visible behaviours: repeated ReadProcessMemory calls, a handle with powerful access rights, a transparent overlay, and synthetic mouse input through SendInput. I scoped the implemented prototype to handle monitoring because it is directly observable with Windows APIs and can be tested without modifying the game process.
+
+SLIDE 4 — 1:40–2:20
+The monitor has five stages. It enumerates the extended system handle table, opens source processes, duplicates candidate handles, checks whether they target CS2, and enriches the source with its path, parent PID, hash, and embedded-signature information. The detection engine scores the access mask and applies narrow contextual exceptions. CSV files preserve snapshots, lifecycle events, scan completeness and alerts. The design is read-only: it does not close handles or modify CS2.
+
+SLIDE 5 — 2:20–3:00
+The first scoring model is intentionally interpretable. VM_READ contributes forty points; write, operation and thread-creation rights add further risk. The default threshold is sixty. A full-access handle scores one hundred, whereas the observed query-only Steam handle scores five. I also added a narrow exception for a dedicated-server console host, but only when its parent relationship and system path match the expected context.
+
+SLIDE 6 — 3:00–3:35
+For evaluation, FullyExternalCS2 is a third-party controlled test artefact; it is not presented as my implementation. My project work covers the static analysis, baseline logger, system-handle scanner, identity enrichment, detection logic and experiment logging. The main comparison used approximately ten minutes of scans at two-second intervals, with Steam acting as a legitimate low-risk observer.
+
+SLIDE 7 — 3:35–4:20
+In the controlled run, the test program and Steam were both visible in all 301 scans. The test program held a full-access handle and scored one hundred. Steam held query and synchronisation rights and scored five. At the threshold of sixty, the test program was consistently high-risk while Steam remained low-risk. This supports feasibility, but it is not yet a population-level false-positive result.
+
+SLIDE 8 — 4:20–5:00
+In conclusion, process-handle monitoring provides a strong and explainable signal for this class of external cheat. The prototype separated the controlled memory reader from a query-only Steam handle and preserved auditable evidence. However, a handle is a risk signal rather than proof of cheating. The next steps are wider benign-software testing, correlation with window, input and network telemetry, threshold calibration, and stronger visibility against handle evasion. Enforcement should use combined evidence rather than this score alone.
+
+LIKELY Q&A
+
+1. Why are process handles useful for detecting an external cheat?
+An external program needs a handle with suitable access rights before it can call ReadProcessMemory on CS2. Even though its code is outside the game and no DLL is injected, the operating system still records that source-to-target relationship in the system handle table.
+
+2. Why not only scan modules loaded into cs2.exe?
+That detects injected code but not a program running in a separate process. The test artefact draws its own overlay and reads memory externally, so the CS2 module list can remain unchanged.
+
+3. How does the scanner work technically?
+It calls NtQuerySystemInformation with SystemExtendedHandleInformation, groups handles by source PID, opens each source with duplication rights, duplicates candidate handles into the monitor, and calls GetProcessId on the duplicate. Matches are then enriched with process identity before scoring.
+
+4. Does your monitor modify the game or interfere with other processes?
+No. It reads the handle table, opens source processes for inspection, and duplicates handles for identification. It does not close the original handle, inject code, or alter CS2 memory.
+
+5. Why is VM_READ worth 40 points?
+It is the core capability needed by the test program, so it is weighted strongly but remains below the threshold on its own. This forces the alert to depend on additional capabilities or context. The exact weights are an initial interpretable model and require calibration on a larger labelled dataset.
+
+6. Why is the threshold 60?
+It cleanly separated the observed full-access test handle, which scored 100, from Steam's query-only handle, which scored 5. It is an experimental starting point, not a production threshold.
+
+7. Could legitimate software also hold VM_READ?
+Yes. Overlays, capture tools, accessibility tools, debuggers and security software may legitimately inspect a process. That is why identity, signature, path, duration and additional behavioural signals are important, and why the prototype does not treat a handle as conclusive proof.
+
+8. What did your contextual conhost exception solve?
+A console host associated with a dedicated server can appear to have powerful access. The exception reduces its score only if the target role is a dedicated server, the source is conhost, its parent PID is the target and its path is the expected Windows system path. This avoids a broad process-name whitelist.
+
+9. What do the experiment results prove?
+They demonstrate feasibility and consistent separation for the two observed source processes in one controlled run. They do not establish a general false-positive or false-negative rate.
+
+10. What are the main limitations?
+The dataset is small; signature presence is not full certificate-chain trust; protected processes may reduce visibility; attackers may close, duplicate or obtain handles through another process; and the current prototype does not yet correlate window, input or network telemetry.
+
+11. How would you evaluate this more rigorously?
+Create a labelled test matrix containing multiple cheat configurations and benign overlays, capture software, GPU tools and accessibility software. Repeat each condition, report precision, recall and confidence intervals, measure scan coverage and overhead, and tune weights only on a training subset before testing on held-out runs.
+
+12. What is your own work, and what came from external or GenAI sources?
+FullyExternalCS2 is a third-party test artefact. The project contribution shown here is the analysis, logger, handle enumeration and matching, process-identity enrichment, scoring and contextual exception, lifecycle logging, and the controlled experiments. Be ready to state honestly which coding, debugging or writing tasks used GenAI, show that you can explain every relevant line, and identify the decisions and verification you performed yourself.
+
+13. Why record SHA-256 and embedded-signature information?
+They help identify and correlate source binaries across scans. An embedded signature is only an identity feature in the current prototype; it does not prove that the certificate chain is trusted.
+
+14. What happens if access to a source process is denied?
+The scan summary records denied sources and duplicate failures. This makes incomplete visibility explicit instead of silently treating an incomplete scan as clean.
+
+15. What would you implement next?
+First, a larger benign-software dataset and quantitative evaluation. Second, window-overlap and synthetic-input telemetry. Third, stronger signature validation and allow-list governance. Finally, kernel-level or protected telemetry to study handle-evasion techniques.

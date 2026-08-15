@@ -1,0 +1,11 @@
+Communication job: By the end, the inspector should understand that the project implements and experimentally validates an interpretable Windows process-handle detector for an external CS2 test program, while recognising its limitations and the student's contribution boundary.
+
+Primary local sources:
+- D:/code/UoB/Anti_cheating/README.md
+- D:/code/UoB/Anti_cheating/docs/FullyExternalCS2-static-analysis.md
+- D:/code/UoB/Anti_cheating/CS2HandleMonitor/*.cs
+- D:/code/UoB/Anti_cheating/CS2BaselineLogger/Program.cs
+- D:/code/UoB/Anti_cheating/data/handle_monitor_20260808_222539/*.csv
+- D:/Software/FullyExternalCS2-main source and assets/photo.png
+
+No internet research or externally downloaded assets were used.
