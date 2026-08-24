@@ -1,14 +1,14 @@
 # CS2 Anti-cheating Research
 
-当前阶段用于建立可重复的 CS2 正常/测试行为基线。`CS2BaselineLogger` 只进行进程观测，不修改目标进程。
+The current phase establishes reproducible baselines for normal and test CS2 behavior. `CS2BaselineLogger` only observes processes and does not modify the target process.
 
-## 构建
+## Build
 
 ```powershell
 dotnet build Anti_cheating.sln
 ```
 
-## 采集一次实验
+## Capture an Experiment
 
 ```powershell
 dotnet run --project CS2BaselineLogger -- `
@@ -20,29 +20,29 @@ dotnet run --project CS2BaselineLogger -- `
   --duration-seconds 600
 ```
 
-如果存在多个 `cs2.exe`，程序会要求选择 PID，也可以通过 `--pid 1234` 直接指定。运行 `--help` 查看全部参数。
+If multiple `cs2.exe` processes exist, the program prompts you to select a PID. You can also specify one directly with `--pid 1234`. Run with `--help` to see all options.
 
-每次运行会创建唯一目录，包含：
+Each run creates a unique directory containing:
 
-- `metadata.json`：实验条件和主机信息；
-- `metrics.csv`：CPU、内存、线程、句柄数、模块数等时间序列；
-- `modules.csv`：定期采集的模块名称、路径、基址、大小和版本。
+- `metadata.json`: experiment conditions and host information;
+- `metrics.csv`: time-series data for CPU, memory, threads, handle count, module count, and other metrics;
+- `modules.csv`: periodically captured module names, paths, base addresses, sizes, and versions.
 
-## 实验规范
+## Experiment Protocol
 
-开始一组对照实验前，应固定：
+Before starting a set of controlled experiments, keep the following fixed:
 
-1. CS2、服务器和测试程序版本；
-2. 地图、模式、Bot 数量与难度；
-3. 分辨率、画质、FPS 上限和后台程序；
-4. 每次实验的预热时间与采集时长；
-5. 每类实验至少重复多次，并为标签保留独立记录。
+1. CS2, server, and test program versions;
+2. map, mode, bot count, and bot difficulty;
+3. resolution, graphics quality, FPS cap, and background programs;
+4. warm-up time and capture duration for each experiment;
+5. multiple repetitions of each experiment type, with separate records retained for each label.
 
-FPS 尚未纳入当前采集器。模块加载和句柄数量也只能作为风险信号，不能单独证明作弊。
+FPS is not yet included in the current collector. Module loads and handle counts are only risk signals and cannot independently prove cheating.
 
-## 外部句柄监控
+## External Handle Monitoring
 
-`CS2HandleMonitor` 枚举指向 CS2 的外部进程句柄，记录源进程、映像路径、`GrantedAccess`、权限解释和初始风险分值。建议在管理员 PowerShell 中运行以提高句柄可见性：
+`CS2HandleMonitor` enumerates external process handles that reference CS2 and records the source process, image path, `GrantedAccess`, interpreted permissions, and an initial risk score. Run it in an administrator PowerShell session to improve handle visibility:
 
 ```powershell
 dotnet run --project CS2HandleMonitor -- `
@@ -51,6 +51,6 @@ dotnet run --project CS2HandleMonitor -- `
   --duration-seconds 600
 ```
 
-省略 `--pid` 时，监控器会在每次扫描中自动发现并监控全部 `cs2.exe`，并根据窗口标题将目标标记为 `Client`、`HeadlessOrServer` 或 `ServerOrOther`。如需固定单个实验目标，可显式传入 `--pid`。
+When `--pid` is omitted, the monitor automatically discovers and monitors every `cs2.exe` process during each scan. It classifies targets as `Client`, `HeadlessOrServer`, or `ServerOrOther` based on their window titles. To monitor one fixed experiment target, pass `--pid` explicitly.
 
-输出位于唯一的 `data/handle_monitor_*` 目录中：`handles.csv` 保存匹配的外部句柄快照，`scan_summary.csv` 保存每次扫描的完整性统计，`handle_events.csv` 保存 `Opened`/`Closed` 生命周期事件和持续时间，`detections.csv` 保存超过检测阈值的新告警。通过 `--threshold 60` 可调整实时检测阈值。源进程身份包含父 PID、启动时间、SHA-256 和嵌入签名证书主题。`HasEmbeddedSignature` 只表示文件包含证书，不代表证书链已经验证可信。目标进程自身的句柄会被排除。该工具只读取和复制句柄用于识别，不会关闭外部句柄或修改目标进程。`VM_READ` 也可能由合法 Overlay、录屏、驱动工具或辅助功能软件使用，必须结合签名、路径、持续时间和其他行为判断。
+Output is written to a unique `data/handle_monitor_*` directory. `handles.csv` stores matching external-handle snapshots, `scan_summary.csv` stores completeness statistics for each scan, `handle_events.csv` stores `Opened`/`Closed` lifecycle events and durations, and `detections.csv` stores new alerts that exceed the detection threshold. Use `--threshold 60` to adjust the real-time detection threshold. Source-process identity includes the parent PID, start time, SHA-256 hash, and embedded signing-certificate subject. `HasEmbeddedSignature` only indicates that the file contains a certificate; it does not mean the certificate chain has been validated as trusted. Handles owned by the target process itself are excluded. The tool only reads and duplicates handles for identification; it does not close external handles or modify the target process. Legitimate overlays, recording software, driver utilities, and accessibility software may also use `VM_READ`, so findings must be evaluated together with signatures, paths, duration, and other behavior.

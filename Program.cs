@@ -43,15 +43,15 @@ internal static class Program
 
         if (process is null)
         {
-            Console.Error.WriteLine("未找到 CS2 进程。");
+            Console.Error.WriteLine("No CS2 process was found.");
             return 1;
         }
 
         Console.WriteLine(
-            $"已连接 CS2：PID={process.Id}");
+            $"Connected to CS2: PID={process.Id}");
 
         Console.WriteLine(
-            "按 Ctrl+C 停止记录。");
+            "Press Ctrl+C to stop recording.");
 
         using CancellationTokenSource cancellationSource = new();
 
@@ -72,19 +72,19 @@ internal static class Program
         }
         catch (OperationCanceledException)
         {
-            // 正常停止。
+            // Normal shutdown.
         }
         catch (Exception exception)
         {
             Console.Error.WriteLine(
-                $"记录失败：{exception.Message}");
+                $"Recording failed: {exception.Message}");
 
             return 1;
         }
 
         Console.WriteLine();
-        Console.WriteLine("记录已结束。");
-        Console.WriteLine($"CSV 文件：{outputPath}");
+        Console.WriteLine("Recording has ended.");
+        Console.WriteLine($"CSV file: {outputPath}");
 
         return 0;
     }
@@ -130,7 +130,7 @@ internal static class Program
         {
             if (process.HasExited)
             {
-                Console.WriteLine("CS2 已退出，停止记录。");
+                Console.WriteLine("CS2 has exited; stopping recording.");
                 break;
             }
 
@@ -215,7 +215,7 @@ internal static class Program
 
             sampleNumber++;
 
-            // 每 10 个样本写入磁盘一次，即约每秒一次。
+            // Flush to disk every 10 samples, approximately once per second.
             if (sampleNumber % 10 == 0)
             {
                 await writer.FlushAsync();
@@ -262,7 +262,7 @@ internal static class Program
         string processName)
     {
         Console.WriteLine(
-            $"正在等待进程 {processName}.exe……");
+            $"Waiting for process {processName}.exe...");
 
         while (true)
         {

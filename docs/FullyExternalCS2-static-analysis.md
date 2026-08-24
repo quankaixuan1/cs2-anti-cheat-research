@@ -1,104 +1,106 @@
-# FullyExternalCS2 静态行为分析
+# FullyExternalCS2 Static Behavior Analysis
 
-分析对象：`D:\Software\FullyExternalCS2-main`  
-分析方式：仅源代码静态检查，未运行目标程序。  
-分析日期：2026-08-04
+Analysis target: `D:\Software\FullyExternalCS2-main`
 
-## 结论摘要
+Method: Static source-code inspection only; the target program was not run.
 
-该项目是一个外部 CS2 辅助程序。它不把 DLL 注入 CS2，也没有在当前源码中写入 CS2 内存；它通过 `System.Diagnostics.Process` 找到 `cs2.exe`，取得进程句柄并高频调用 `ReadProcessMemory`，读取玩家、实体、骨骼、视角、武器、炸弹和投票数据。它通过独立透明 Overlay 显示 ESP，并通过 `SendInput` 生成鼠标移动和点击，实现 Aimbot、RCS 和 TriggerBot。
+Analysis date: 2026-08-04
 
-因此，最强的主机侧检测信号不是 CS2 模块变化，而是：
+## Executive Summary
 
-1. 非受信任进程持有指向 `cs2.exe` 的可读 VM 句柄；
-2. 该进程持续、高频读取 CS2 虚拟内存；
-3. 同一进程创建覆盖 CS2 的透明工具窗口；
-4. 同一进程调用 `SendInput` 生成鼠标移动或点击；
-5. 启动时访问 `raw.githubusercontent.com/a2x/cs2-dumper/...` 获取偏移。
+This project is an external CS2 assistance program. It does not inject a DLL into CS2, and the current source code does not write to CS2 memory. It uses `System.Diagnostics.Process` to find `cs2.exe`, obtains a process handle, and calls `ReadProcessMemory` at high frequency to read player, entity, bone, view-angle, weapon, bomb, and vote data. It displays ESP through a separate transparent overlay and uses `SendInput` to generate mouse movement and clicks for Aimbot, RCS, and TriggerBot.
 
-## 关键证据
+Therefore, the strongest host-side detection signals are not changes to CS2 modules, but instead:
 
-### 进程发现与模块定位
+1. an untrusted process holding a VM-readable handle to `cs2.exe`;
+2. sustained, high-frequency reads of CS2 virtual memory by that process;
+3. the same process creating a transparent tool window over CS2;
+4. the same process calling `SendInput` to generate mouse movement or clicks;
+5. access to `raw.githubusercontent.com/a2x/cs2-dumper/...` at startup to retrieve offsets.
 
-- `Data/Game/GameProcess.cs:82` 使用 `Process.GetProcessesByName("cs2")` 查找游戏。
-- `Data/Game/GameProcess.cs:87` 枚举 `Process.Modules` 并定位 `client.dll`。
-- `Utils/Utility.cs:317` 和 `:324` 读取 `Process.Handle`，该属性会让 .NET 获取目标进程的原生句柄。
-- 源码没有直接声明 `OpenProcess`；因此不能仅靠源代码字符串搜索断言应用程序自己 P/Invoke 了 `OpenProcess`。但后续 `ReadProcessMemory` 必须使用一个对 CS2 有读取权限的进程句柄。
+## Key Evidence
 
-### 外部内存读取
+### Process Discovery and Module Location
 
-- `Core/Kernel32.cs:8` 直接声明 `kernel32!ReadProcessMemory`。
-- `Utils/Utility.cs:328-343` 对任意非托管类型执行读取。
-- `Utils/Utility.cs:348-365` 读取最长 256 字节的字符串。
-- `Data/Game/GameData.cs` 默认使用 `ThreadedServiceBase` 的 1 ms 循环，依次更新本地玩家和 64 个实体。
-- `Data/Entity/EntityBase.cs` 每次更新读取生命状态、生命值、队伍、位置、射击数、武器和速度。
-- `Data/Entity/Entity.cs` 读取实体控制器、Pawn、可见/瞄准/闪光状态、名字以及 17 个骨骼位置。
-- `Data/Entity/Player.cs` 读取视图矩阵、视角、后坐力和玩家标志。
-- `Features/BombTimer.cs`、`VoteTeller.cs` 和 `TriggerBot.cs` 还会在各自线程中读取游戏状态。
+- `Data/Game/GameProcess.cs:82` uses `Process.GetProcessesByName("cs2")` to find the game.
+- `Data/Game/GameProcess.cs:87` enumerates `Process.Modules` and locates `client.dll`.
+- `Utils/Utility.cs:317` and `:324` read `Process.Handle`, which causes .NET to obtain a native handle to the target process.
+- The source code does not directly declare `OpenProcess`; a source-string search alone therefore cannot establish that the application itself invokes `OpenProcess` through P/Invoke. The subsequent `ReadProcessMemory` calls must nevertheless use a process handle with permission to read CS2.
 
-这会形成明显的、持续的跨进程 VM-read 行为。精确读取次数取决于有效实体数量和线程实际调度，不能仅凭静态代码可靠换算为固定 reads/s。
+### External Memory Reads
 
-### 合成输入
+- `Core/Kernel32.cs:8` directly declares `kernel32!ReadProcessMemory`.
+- `Utils/Utility.cs:328-343` reads arbitrary unmanaged types.
+- `Utils/Utility.cs:348-365` reads strings up to 256 bytes long.
+- `Data/Game/GameData.cs` uses the 1 ms loop from `ThreadedServiceBase` by default to update the local player and 64 entities in sequence.
+- `Data/Entity/EntityBase.cs` reads life state, health, team, position, shot count, weapon, and velocity during each update.
+- `Data/Entity/Entity.cs` reads the entity controller, Pawn, visibility/aim/flash state, name, and 17 bone positions.
+- `Data/Entity/Player.cs` reads the view matrix, view angles, recoil, and player flags.
+- `Features/BombTimer.cs`, `VoteTeller.cs`, and `TriggerBot.cs` also read game state from their own threads.
 
-- `Core/User32.cs:45` 声明 `user32!SendInput`。
-- `Utils/Utility.cs:120-138` 生成相对鼠标移动。
-- `Utils/Utility.cs:189-225` 生成鼠标左键按下和释放。
-- `Features/AimBot.cs:194` 调用鼠标移动实现 Aimbot/RCS。
-- `Features/TriggerBot.cs:97-100` 延迟后发送左键点击。
-- 当前 `config.json` 默认启用 AimBot、RCS 和 TriggerBot。
+This creates a conspicuous and sustained pattern of cross-process VM reads. The exact read count depends on the number of valid entities and actual thread scheduling, so a fixed reads-per-second figure cannot be derived reliably from static code alone.
 
-### Overlay 与窗口行为
+### Synthetic Input
 
-- 项目依赖 `ClickableTransparentOverlay 11.1.0` 和 ImGui。
-- `Graphics/OverlayRenderer.cs` 创建独立 Overlay，并将其设置为 `WS_EX_NOACTIVATE | WS_EX_TOOLWINDOW`。
-- Overlay 跟随 CS2 客户区位置与大小，绘制 ESP、骨骼、准星、炸弹计时和菜单。
-- 这是外部窗口覆盖，不是向 CS2 注入模块，因此仅检查 CS2 自身模块列表不会发现该程序。
+- `Core/User32.cs:45` declares `user32!SendInput`.
+- `Utils/Utility.cs:120-138` generates relative mouse movement.
+- `Utils/Utility.cs:189-225` generates left-mouse-button presses and releases.
+- `Features/AimBot.cs:194` invokes mouse movement to implement Aimbot/RCS.
+- `Features/TriggerBot.cs:97-100` sends a left-click after a delay.
+- The current `config.json` enables AimBot, RCS, and TriggerBot by default.
 
-### 网络行为
+### Overlay and Window Behavior
 
-- `Utils/Offsets.cs:78-81` 启动时访问 GitHub Raw 上的 `cs2-dumper`：
+- The project depends on `ClickableTransparentOverlay 11.1.0` and ImGui.
+- `Graphics/OverlayRenderer.cs` creates a separate overlay and configures it with `WS_EX_NOACTIVATE | WS_EX_TOOLWINDOW`.
+- The overlay follows the position and size of the CS2 client area and renders ESP, bones, a crosshair, a bomb timer, and menus.
+- This is an external window overlay rather than a module injected into CS2, so inspecting only CS2's own module list will not reveal the program.
+
+### Network Behavior
+
+- `Utils/Offsets.cs:78-81` accesses `cs2-dumper` on GitHub Raw at startup:
   - `output/offsets.json`
   - `output/client_dll.json`
-- 下载结果用于更新 CS2 地址和字段偏移。
+- The downloaded data updates CS2 addresses and field offsets.
 
-### 未发现的行为
+### Behaviors Not Found
 
-在当前 C# 源码中未发现：
+The current C# source code contains no evidence of:
 
-- `WriteProcessMemory`；
-- `VirtualAllocEx` / `VirtualProtectEx`；
-- `CreateRemoteThread`；
-- DLL 注入或手工映射；
-- 内核驱动交互；
-- 修改 CS2 进程内存。
+- `WriteProcessMemory`;
+- `VirtualAllocEx` / `VirtualProtectEx`;
+- `CreateRemoteThread`;
+- DLL injection or manual mapping;
+- kernel-driver interaction;
+- modification of CS2 process memory.
 
-`GlobalHook.cs` 包含 `SetWindowsHookEx` 封装，但当前项目中没有发现实例化或调用它的代码，应视为未使用代码，而不是已发生的运行时行为。
+`GlobalHook.cs` contains a `SetWindowsHookEx` wrapper, but the current project contains no code that instantiates or calls it. It should be treated as unused code, not as behavior observed at runtime.
 
-## 对 Monitoring Tool 的建议
+## Recommendations for the Monitoring Tool
 
-### 高价值事件
+### High-Value Events
 
-1. 枚举系统句柄，找出所有以 `cs2.exe` 为目标的外部进程句柄，并记录：源 PID、映像路径、签名、GrantedAccess、首次/最后观察时间。
-2. 将含 `PROCESS_VM_READ` 和 `PROCESS_QUERY_INFORMATION` 的句柄作为强信号，但维护 Steam、GPU 驱动、录屏和辅助功能软件白名单。
-3. 记录可疑源进程是否存在覆盖 CS2 客户区的透明/工具窗口。
-4. 记录可疑源进程的 `SendInput` 行为；若无法在用户态可靠归因，应在实验中使用 ETW、API tracing 或受控插桩验证。
-5. 记录到 GitHub Raw `a2x/cs2-dumper` 路径的网络连接，作为辅助信号而非单独封禁依据。
+1. Enumerate system handles, identify every external process handle targeting `cs2.exe`, and record the source PID, image path, signature, `GrantedAccess`, and first/last observation time.
+2. Treat handles containing `PROCESS_VM_READ` and `PROCESS_QUERY_INFORMATION` as strong signals, while maintaining allowlists for Steam, GPU drivers, recording software, and accessibility software.
+3. Record whether a suspicious source process owns a transparent or tool window that covers the CS2 client area.
+4. Record `SendInput` activity from suspicious source processes. If reliable attribution is not possible in user mode, validate it experimentally with ETW, API tracing, or controlled instrumentation.
+5. Record network connections to the GitHub Raw `a2x/cs2-dumper` path as a supporting signal, not as a standalone basis for blocking.
 
-### 初始风险评分草案
+### Initial Risk-Scoring Draft
 
-| 信号 | 建议分值 |
+| Signal | Suggested score |
 |---|---:|
-| 非白名单进程持有 CS2 `VM_READ` 句柄 | +40 |
-| 持续高频跨进程内存读取 | +30 |
-| 同进程创建覆盖 CS2 的透明工具窗口 | +15 |
-| 同进程生成鼠标输入 | +20 |
-| 获取公开 CS2 offsets 数据 | +10 |
-| 在 CS2 内发现未知注入模块 | +50 |
+| Non-allowlisted process holds a CS2 `VM_READ` handle | +40 |
+| Sustained high-frequency cross-process memory reads | +30 |
+| Same process creates a transparent tool window over CS2 | +15 |
+| Same process generates mouse input | +20 |
+| Retrieves public CS2 offset data | +10 |
+| Unknown injected module found inside CS2 | +50 |
 
-建议初始告警阈值为 60 分。该评分只能用于实验和告警排序，必须通过正常软件对照数据校准误报率后才能用于处置。
+An initial alert threshold of 60 is recommended. This score should be used only for experiments and alert prioritization. Before it is used for enforcement, the false-positive rate must be calibrated against control data from legitimate software.
 
-## 限制
+## Limitations
 
-- 这是源代码静态结论，不能证明本地已编译二进制与源码完全一致。
-- 未运行程序，因此没有实测句柄权限、API 调用频率、窗口属性或网络流量。
-- .NET 获取 `Process.Handle` 时的具体访问掩码应在动态实验中记录，而不要依据静态代码猜测。
+- These conclusions are based on static source code and cannot prove that locally compiled binaries exactly match that source.
+- The program was not run, so handle permissions, API-call frequency, window properties, and network traffic were not measured.
+- The exact access mask requested when .NET obtains `Process.Handle` should be recorded during dynamic experiments rather than inferred from static code.

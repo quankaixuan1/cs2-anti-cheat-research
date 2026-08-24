@@ -162,7 +162,7 @@ internal static class SystemHandleScanner
                 ulong countValue = unchecked((ulong)Marshal.ReadInt64(buffer));
                 if (countValue > int.MaxValue)
                 {
-                    throw new InvalidOperationException("系统句柄数量超出支持范围。");
+                    throw new InvalidOperationException("The system handle count exceeds the supported range.");
                 }
 
                 int count = (int)countValue;
@@ -183,7 +183,7 @@ internal static class SystemHandleScanner
             }
         }
 
-        throw new InvalidOperationException("系统句柄缓冲区超过安全上限。");
+        throw new InvalidOperationException("The system handle buffer exceeds the safety limit.");
     }
 
     private static int ToProcessId(UIntPtr value) =>

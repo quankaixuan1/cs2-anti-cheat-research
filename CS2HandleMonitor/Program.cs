@@ -20,7 +20,7 @@ internal static class Program
         TargetIdentity[] initialTargets = DiscoverTargets(parsedOptions);
         if (initialTargets.Length == 0)
         {
-            Console.Error.WriteLine($"未找到目标进程 {parsedOptions.ProcessName}.exe。");
+            Console.Error.WriteLine($"Target process {parsedOptions.ProcessName}.exe was not found.");
             return 1;
         }
 
@@ -34,13 +34,13 @@ internal static class Program
 
         Console.WriteLine("CS2 Handle Monitor");
         Console.WriteLine(parsedOptions.ProcessId is null
-            ? $"模式: 自动监控全部 {parsedOptions.ProcessName}.exe 实例"
-            : $"模式: 仅监控 PID {parsedOptions.ProcessId}");
+            ? $"Mode: automatically monitor all {parsedOptions.ProcessName}.exe instances"
+            : $"Mode: monitor PID {parsedOptions.ProcessId} only");
         foreach (TargetIdentity target in initialTargets) PrintTarget(target);
-        Console.WriteLine($"间隔: {parsedOptions.IntervalSeconds} 秒");
-        Console.WriteLine($"检测阈值: {parsedOptions.DetectionThreshold}");
-        Console.WriteLine($"输出目录: {outputDirectory}");
-        Console.WriteLine("提示：以管理员身份运行可提高句柄可见性。按 Ctrl+C 停止。");
+        Console.WriteLine($"Interval: {parsedOptions.IntervalSeconds} seconds");
+        Console.WriteLine($"Detection threshold: {parsedOptions.DetectionThreshold}");
+        Console.WriteLine($"Output directory: {outputDirectory}");
+        Console.WriteLine("Tip: Run as administrator to improve handle visibility. Press Ctrl+C to stop.");
 
         using CancellationTokenSource stopSource = new();
         Console.CancelKeyPress += (_, eventArgs) =>
@@ -58,15 +58,15 @@ internal static class Program
         catch (OperationCanceledException) { }
         catch (Exception exception)
         {
-            Console.Error.WriteLine($"监控失败：{exception.Message}");
+            Console.Error.WriteLine($"Monitoring failed: {exception.Message}");
             return 1;
         }
 
         Console.WriteLine();
-        Console.WriteLine($"句柄记录：{outputPath}");
-        Console.WriteLine($"扫描摘要：{summaryPath}");
-        Console.WriteLine($"生命周期事件：{eventsPath}");
-        Console.WriteLine($"检测告警：{detectionsPath}");
+        Console.WriteLine($"Handle records: {outputPath}");
+        Console.WriteLine($"Scan summary: {summaryPath}");
+        Console.WriteLine($"Lifecycle events: {eventsPath}");
+        Console.WriteLine($"Detection alerts: {detectionsPath}");
         return 0;
     }
 
@@ -192,7 +192,7 @@ internal static class Program
             await summaryWriter.FlushAsync(cancellationToken);
             await eventsWriter.FlushAsync(cancellationToken);
             await detectionsWriter.FlushAsync(cancellationToken);
-            Console.Write($"\r{timer.Elapsed:mm\\:ss}  目标: {targets.Length}  外部句柄: {totalMatches}  高风险: {totalHighRisk}  无权检查进程: {maximumDenied}   ");
+            Console.Write($"\r{timer.Elapsed:mm\\:ss}  Targets: {targets.Length}  External handles: {totalMatches}  High risk: {totalHighRisk}  Inaccessible processes: {maximumDenied}   ");
         }
         while (await scanTimer.WaitForNextTickAsync(cancellationToken));
     }
@@ -302,7 +302,7 @@ internal static class Program
     }
 
     private static void PrintTarget(TargetIdentity target) =>
-        Console.WriteLine($"目标: PID {target.ProcessId}, 角色 {target.Role}, 窗口 {target.WindowTitle}");
+        Console.WriteLine($"Target: PID {target.ProcessId}, Role {target.Role}, Window {target.WindowTitle}");
 
     private static StreamWriter CreateWriter(string path) => new(
         new FileStream(path, FileMode.CreateNew, FileAccess.Write, FileShare.Read),
@@ -319,14 +319,14 @@ internal static class Program
 
     private static void PrintUsage()
     {
-        Console.WriteLine("用法: dotnet run --project CS2HandleMonitor -- [参数]");
-        Console.WriteLine("  --pid <PID>                 只监控指定 PID；省略时监控全部同名进程");
-        Console.WriteLine("  --process <名称>            目标进程名称，默认 cs2");
-        Console.WriteLine("  --interval-seconds <秒>     扫描间隔，默认 2");
-        Console.WriteLine("  --duration-seconds <秒>     自动停止时长，可选");
-        Console.WriteLine("  --threshold <0-100>         实时检测阈值，默认 60");
-        Console.WriteLine("  --output <目录>             输出根目录，默认 ./data");
-        Console.WriteLine("  --help                      显示帮助");
+        Console.WriteLine("Usage: dotnet run --project CS2HandleMonitor -- [options]");
+        Console.WriteLine("  --pid <PID>                 Monitor only this PID; omit to monitor all processes with the same name");
+        Console.WriteLine("  --process <name>            Target process name; default: cs2");
+        Console.WriteLine("  --interval-seconds <seconds>  Scan interval; default: 2");
+        Console.WriteLine("  --duration-seconds <seconds>  Automatic stop duration (optional)");
+        Console.WriteLine("  --threshold <0-100>         Real-time detection threshold; default: 60");
+        Console.WriteLine("  --output <directory>        Output root directory; default: ./data");
+        Console.WriteLine("  --help                      Show help");
     }
 }
 
@@ -369,7 +369,7 @@ internal sealed record MonitorOptions(
         {
             if (!args[index].StartsWith("--", StringComparison.Ordinal) || index + 1 >= args.Length)
             {
-                error = $"参数格式错误：{args[index]}";
+                error = $"Invalid argument format: {args[index]}";
                 return false;
             }
             values[args[index]] = args[index + 1];
@@ -378,7 +378,7 @@ internal sealed record MonitorOptions(
         HashSet<string> known = new(StringComparer.OrdinalIgnoreCase)
             { "--pid", "--process", "--interval-seconds", "--duration-seconds", "--threshold", "--output" };
         string? unknown = values.Keys.FirstOrDefault(key => !known.Contains(key));
-        if (unknown is not null) { error = $"未知参数：{unknown}"; return false; }
+        if (unknown is not null) { error = $"Unknown argument: {unknown}"; return false; }
 
         if (!OptionalPositive(values, "--pid", out int? pid, out error) ||
             !Positive(values, "--interval-seconds", 2, out int interval, out error) ||
@@ -400,7 +400,7 @@ internal sealed record MonitorOptions(
         error = null;
         if (!values.TryGetValue(key, out string? text)) { value = fallback; return true; }
         if (int.TryParse(text, out value) && value > 0) return true;
-        error = $"{key} 必须是正整数。";
+        error = $"{key} must be a positive integer.";
         return false;
     }
 
@@ -410,7 +410,7 @@ internal sealed record MonitorOptions(
         error = null;
         if (!values.TryGetValue(key, out string? text)) return true;
         if (int.TryParse(text, out int parsed) && parsed > 0) { value = parsed; return true; }
-        error = $"{key} 必须是正整数。";
+        error = $"{key} must be a positive integer.";
         return false;
     }
 
@@ -419,7 +419,7 @@ internal sealed record MonitorOptions(
         error = null;
         if (!values.TryGetValue(key, out string? text)) { value = fallback; return true; }
         if (int.TryParse(text, out value) && value >= minimum && value <= maximum) return true;
-        error = $"{key} 必须在 {minimum} 到 {maximum} 之间。";
+        error = $"{key} must be between {minimum} and {maximum}.";
         return false;
     }
 }

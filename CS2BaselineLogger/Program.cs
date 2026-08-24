@@ -32,7 +32,7 @@ internal static class Program
         Process? process = await SelectProcessAsync(options);
         if (process is null)
         {
-            Console.Error.WriteLine($"未找到目标进程 {options.ProcessName}.exe。");
+            Console.Error.WriteLine($"Target process {options.ProcessName}.exe was not found.");
             return 1;
         }
 
@@ -61,10 +61,10 @@ internal static class Program
 
         Console.WriteLine("CS2 Baseline Logger");
         Console.WriteLine($"Run ID: {runId}");
-        Console.WriteLine($"目标: {process.ProcessName}.exe (PID {process.Id})");
-        Console.WriteLine($"采样间隔: {options.SampleIntervalMs} ms");
-        Console.WriteLine($"输出目录: {runDirectory}");
-        Console.WriteLine("按 Ctrl+C 停止记录。");
+        Console.WriteLine($"Target: {process.ProcessName}.exe (PID {process.Id})");
+        Console.WriteLine($"Sampling interval: {options.SampleIntervalMs} ms");
+        Console.WriteLine($"Output directory: {runDirectory}");
+        Console.WriteLine("Press Ctrl+C to stop recording.");
 
         using CancellationTokenSource stopSource = new();
         Console.CancelKeyPress += (_, eventArgs) =>
@@ -84,19 +84,19 @@ internal static class Program
         }
         catch (OperationCanceledException)
         {
-            // 用户停止或到达指定实验时长。
+            // Stopped by the user or after the configured experiment duration.
         }
         catch (Exception exception)
         {
-            Console.Error.WriteLine($"记录失败：{exception.Message}");
+            Console.Error.WriteLine($"Recording failed: {exception.Message}");
             return 1;
         }
 
         Console.WriteLine();
-        Console.WriteLine("记录已结束。");
-        Console.WriteLine($"指标: {metricsPath}");
-        Console.WriteLine($"模块: {modulesPath}");
-        Console.WriteLine($"元数据: {metadataPath}");
+        Console.WriteLine("Recording has ended.");
+        Console.WriteLine($"Metrics: {metricsPath}");
+        Console.WriteLine($"Modules: {modulesPath}");
+        Console.WriteLine($"Metadata: {metadataPath}");
         return 0;
     }
 
@@ -139,7 +139,7 @@ internal static class Program
             {
                 if (SafeRead(() => process.HasExited, true))
                 {
-                    Console.WriteLine("目标进程已退出，停止记录。");
+                    Console.WriteLine("The target process has exited; stopping recording.");
                     break;
                 }
 
@@ -171,7 +171,7 @@ internal static class Program
                 if (sampleNumber % Math.Max(1, 1000 / options.SampleIntervalMs) == 0)
                 {
                     await metricsWriter.FlushAsync(cancellationToken);
-                    Console.Write($"\r时间: {experimentTimer.Elapsed:mm\\:ss}  CPU: {cpuPercent:F1}%  内存: {process.WorkingSet64 / 1024.0 / 1024.0:F0} MB   ");
+                    Console.Write($"\rTime: {experimentTimer.Elapsed:mm\\:ss}  CPU: {cpuPercent:F1}%  Memory: {process.WorkingSet64 / 1024.0 / 1024.0:F0} MB   ");
                 }
 
                 if (!await sampleTimer.WaitForNextTickAsync(cancellationToken))
@@ -225,7 +225,7 @@ internal static class Program
         }
         catch (Exception exception)
         {
-            Console.Error.WriteLine($"\n模块快照失败：{exception.Message}");
+            Console.Error.WriteLine($"\nModule snapshot failed: {exception.Message}");
             return -1;
         }
 
@@ -260,7 +260,7 @@ internal static class Program
                 Process selected = Process.GetProcessById(processId);
                 if (!string.Equals(selected.ProcessName, options.ProcessName, StringComparison.OrdinalIgnoreCase))
                 {
-                    Console.Error.WriteLine($"PID {processId} 是 {selected.ProcessName}.exe，不是 {options.ProcessName}.exe。");
+                    Console.Error.WriteLine($"PID {processId} is {selected.ProcessName}.exe, not {options.ProcessName}.exe.");
                     return null;
                 }
 
@@ -272,7 +272,7 @@ internal static class Program
             }
         }
 
-        Console.WriteLine($"正在等待 {options.ProcessName}.exe……");
+        Console.WriteLine($"Waiting for {options.ProcessName}.exe...");
         while (true)
         {
             Process[] processes = Process.GetProcessesByName(options.ProcessName);
@@ -285,16 +285,16 @@ internal static class Program
             {
                 foreach (Process candidate in processes.OrderBy(process => process.Id))
                 {
-                    Console.WriteLine($"PID={candidate.Id}, 内存={SafeRead(() => candidate.WorkingSet64 / 1024.0 / 1024.0, 0):F0} MB, 窗口={SafeRead(() => candidate.MainWindowTitle, string.Empty)}");
+                    Console.WriteLine($"PID={candidate.Id}, Memory={SafeRead(() => candidate.WorkingSet64 / 1024.0 / 1024.0, 0):F0} MB, Window={SafeRead(() => candidate.MainWindowTitle, string.Empty)}");
                 }
 
-                Console.Write("请输入目标 PID：");
+                Console.Write("Enter the target PID: ");
                 if (int.TryParse(Console.ReadLine(), out int selectedId) && processes.Any(process => process.Id == selectedId))
                 {
                     return processes.First(process => process.Id == selectedId);
                 }
 
-                Console.WriteLine("PID 无效，请重新选择。");
+                Console.WriteLine("Invalid PID. Please select again.");
             }
 
             await Task.Delay(1000);
@@ -325,17 +325,17 @@ internal static class Program
 
     private static void PrintUsage()
     {
-        Console.WriteLine("用法: dotnet run --project CS2BaselineLogger -- [参数]");
-        Console.WriteLine("  --experiment <名称>             实验名称（必填）");
-        Console.WriteLine("  --cheat <true|false>            实验标签（必填）");
-        Console.WriteLine("  --pid <PID>                     指定目标进程，可选");
-        Console.WriteLine("  --process <名称>                目标进程，默认 cs2");
-        Console.WriteLine("  --interval-ms <毫秒>            采样间隔，默认 100");
-        Console.WriteLine("  --duration-seconds <秒>         自动停止时长，可选");
-        Console.WriteLine("  --module-snapshot-seconds <秒>  模块快照间隔，默认 10");
-        Console.WriteLine("  --output <目录>                 输出根目录，默认 ./data");
-        Console.WriteLine("  --map <地图> --mode <模式> --bots <数量> --notes <说明>");
-        Console.WriteLine("  --help                          显示帮助");
+        Console.WriteLine("Usage: dotnet run --project CS2BaselineLogger -- [options]");
+        Console.WriteLine("  --experiment <name>             Experiment name (required)");
+        Console.WriteLine("  --cheat <true|false>            Experiment label (required)");
+        Console.WriteLine("  --pid <PID>                     Target process ID (optional)");
+        Console.WriteLine("  --process <name>                Target process; default: cs2");
+        Console.WriteLine("  --interval-ms <milliseconds>    Sampling interval; default: 100");
+        Console.WriteLine("  --duration-seconds <seconds>    Automatic stop duration (optional)");
+        Console.WriteLine("  --module-snapshot-seconds <seconds>  Module snapshot interval; default: 10");
+        Console.WriteLine("  --output <directory>            Output root directory; default: ./data");
+        Console.WriteLine("  --map <map> --mode <mode> --bots <count> --notes <notes>");
+        Console.WriteLine("  --help                          Show help");
     }
 }
 
@@ -382,7 +382,7 @@ internal sealed record LoggerOptions(
         {
             if (!args[index].StartsWith("--", StringComparison.Ordinal) || index + 1 >= args.Length)
             {
-                error = $"参数格式错误：{args[index]}";
+                error = $"Invalid argument format: {args[index]}";
                 return false;
             }
 
@@ -391,13 +391,13 @@ internal sealed record LoggerOptions(
 
         if (!values.TryGetValue("--experiment", out string? experiment) || string.IsNullOrWhiteSpace(experiment))
         {
-            error = "缺少必填参数 --experiment。";
+            error = "Missing required argument: --experiment.";
             return false;
         }
 
         if (!values.TryGetValue("--cheat", out string? cheatText) || !bool.TryParse(cheatText, out bool cheat))
         {
-            error = "--cheat 必须是 true 或 false。";
+            error = "--cheat must be true or false.";
             return false;
         }
 
@@ -419,7 +419,7 @@ internal sealed record LoggerOptions(
         string? unknown = values.Keys.FirstOrDefault(key => !known.Contains(key));
         if (unknown is not null)
         {
-            error = $"未知参数：{unknown}";
+            error = $"Unknown argument: {unknown}";
             return false;
         }
 
@@ -439,7 +439,7 @@ internal sealed record LoggerOptions(
         error = null;
         if (!values.TryGetValue(key, out string? text)) { result = fallback; return true; }
         if (int.TryParse(text, out result) && result > 0) return true;
-        error = $"{key} 必须是正整数。";
+        error = $"{key} must be a positive integer.";
         return false;
     }
 
@@ -449,7 +449,7 @@ internal sealed record LoggerOptions(
         error = null;
         if (!values.TryGetValue(key, out string? text)) return true;
         if (int.TryParse(text, out int parsed) && parsed > 0) { result = parsed; return true; }
-        error = $"{key} 必须是正整数。";
+        error = $"{key} must be a positive integer.";
         return false;
     }
 
@@ -458,7 +458,7 @@ internal sealed record LoggerOptions(
         error = null;
         if (!values.TryGetValue(key, out string? text)) { result = fallback; return true; }
         if (int.TryParse(text, out result) && result >= 0) return true;
-        error = $"{key} 必须是非负整数。";
+        error = $"{key} must be a non-negative integer.";
         return false;
     }
 }
