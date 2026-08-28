@@ -1,0 +1,14 @@
+{
+  "trial_id": "cheat_cs2_webradar_04",
+  "condition": "cheat_software",
+  "application_name": "CS2 WebRadar",
+  "application_category": "cheat_sample",
+  "cheat_enabled": true,
+  "enabled_feature": "software_active",
+  "application_start_time_utc": null,
+  "feature_enable_time_utc": null,
+  "trial_start_time_utc": "2000-01-01T00:00:00Z",
+  "trial_end_time_utc": null,
+  "expected_label": "cheat",
+  "notes": "split=test; scope=user_mode_external; readiness=ready"
+}

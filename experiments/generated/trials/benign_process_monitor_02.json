@@ -1,0 +1,14 @@
+{
+  "trial_id": "benign_process_monitor_02",
+  "condition": "benign_application",
+  "application_name": "Microsoft Process Monitor",
+  "application_category": "diagnostic_monitor",
+  "cheat_enabled": false,
+  "enabled_feature": "none",
+  "application_start_time_utc": null,
+  "feature_enable_time_utc": null,
+  "trial_start_time_utc": "2000-01-01T00:00:00Z",
+  "trial_end_time_utc": null,
+  "expected_label": "benign",
+  "notes": "split=test; scope=user_mode; readiness=ready"
+}

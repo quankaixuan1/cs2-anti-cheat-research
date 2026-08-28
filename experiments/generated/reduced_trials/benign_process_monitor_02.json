@@ -1,0 +1,49 @@
+{
+  "trial_id": "benign_process_monitor_02",
+  "condition": "benign_application",
+  "application_name": "Microsoft Process Monitor",
+  "application_category": "diagnostic_monitor",
+  "cheat_enabled": false,
+  "enabled_feature": "none",
+  "application_start_time_utc": "2026-08-27T20:21:59.2359812Z",
+  "feature_enable_time_utc": "2026-08-27T20:21:59.2359812Z",
+  "trial_start_time_utc": "2026-08-27T20:20:31.1887258Z",
+  "trial_end_time_utc": "2026-08-27T20:25:32.1067772Z",
+  "expected_label": "benign",
+  "notes": "split=test; scope=user_mode; readiness=ready; design=balanced_reduced; monitor_elevated=true; application_elevated=true; application_started_at_elapsed=88.047s; active_window_seconds=212.871; terminated after monitor exit with Procmon /Terminate",
+  "detection_threshold": 45,
+  "policy_version": "calibration-v1",
+  "application_process": {
+    "pid": 31324,
+    "path": "D:\\Software\\Sysinternals\\ProcessMonitor\\Procmon64.exe",
+    "sha256": "78D7148EF5E1472BBCEC02CFD655F5AA789006B65D9990862DD8546ECF6C9AF1",
+    "signature_status": "Valid",
+    "signature_subject": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+    "version": "4.1",
+    "preexisting": false,
+    "launched_by_trial": true,
+    "elevated": true
+  },
+  "observed_results": {
+    "scan_count": 301,
+    "first_scan_time_utc": "2026-08-27T20:20:31.2660552Z",
+    "last_scan_time_utc": "2026-08-27T20:25:31.2728618Z",
+    "handle_rows": 1505,
+    "handle_event_rows": 5,
+    "detection_rows": 0,
+    "alert_handle_rows": 0,
+    "application_handle_rows": 0,
+    "application_max_adjusted_risk_score": null
+  },
+  "performance": {
+    "scan_duration_ms_mean": 616.1163089700996,
+    "scan_duration_ms_p95": 733.64,
+    "scan_duration_ms_max": 793.573,
+    "monitor_cpu_percent_mean": 2.94776411960133,
+    "monitor_cpu_percent_p95": 3.151,
+    "monitor_cpu_percent_max": 3.272,
+    "monitor_working_set_mb_mean": 93.56329235880398,
+    "monitor_working_set_mb_p95": 113.566,
+    "monitor_working_set_mb_max": 130.738
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "trial_id": "benign_obs_game_capture_03",
+  "condition": "benign_application",
+  "application_name": "OBS Studio (Game Capture)",
+  "application_category": "screen_capture",
+  "cheat_enabled": false,
+  "enabled_feature": "none",
+  "application_start_time_utc": null,
+  "feature_enable_time_utc": null,
+  "trial_start_time_utc": "2000-01-01T00:00:00Z",
+  "trial_end_time_utc": null,
+  "expected_label": "benign",
+  "notes": "split=test; scope=user_mode; readiness=ready"
+}

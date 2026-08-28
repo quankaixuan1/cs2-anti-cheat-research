@@ -1,0 +1,59 @@
+{
+  "trial_id": "benign_discord_overlay_03",
+  "condition": "benign_application",
+  "application_name": "Discord Overlay",
+  "application_category": "game_overlay",
+  "cheat_enabled": false,
+  "enabled_feature": "none",
+  "application_start_time_utc": "2026-08-27T20:36:59.4396830Z",
+  "feature_enable_time_utc": null,
+  "trial_start_time_utc": "2026-08-27T20:35:37.947971Z",
+  "trial_end_time_utc": "2026-08-27T20:40:38.0528371Z",
+  "expected_label": "benign",
+  "notes": "split=test; scope=user_mode; readiness=ready; design=balanced_reduced; application_preexisting=false; overlay_helpers_observed=true; overlay_ui_activation_not_independently_verified=true; application_started_at_elapsed=81.492s; active_window_seconds=218.613; normal close did not exit application; exact trial main PID tree was force-terminated after monitor exit",
+  "detection_threshold": 45,
+  "policy_version": "calibration-v1",
+  "application_process": {
+    "pids": [
+      29836,
+      2640,
+      51896,
+      1356,
+      27360,
+      15868,
+      16724,
+      7304
+    ],
+    "path": "C:\\Users\\30815\\AppData\\Local\\Discord\\app-1.0.9255\\Discord.exe",
+    "sha256": "3ED29E287D12C00F04D78B3167B3F0BFAAE4555C002A3960F065A9BE4850EC72",
+    "signature_status": "Valid",
+    "signature_subject": "CN=Discord Inc., O=Discord Inc., L=San Francisco, S=California, C=US, SERIALNUMBER=5128862, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.2=Delaware, OID.1.3.6.1.4.1.311.60.2.1.3=US",
+    "version": "1.0.9255",
+    "preexisting": false,
+    "launched_by_trial": true,
+    "overlay_helpers_observed": true,
+    "termination": "taskkill_exact_main_pid_tree_after_trial"
+  },
+  "observed_results": {
+    "scan_count": 300,
+    "first_scan_time_utc": "2026-08-27T20:35:38.0358917Z",
+    "last_scan_time_utc": "2026-08-27T20:40:37.0395469Z",
+    "handle_rows": 1500,
+    "handle_event_rows": 5,
+    "detection_rows": 0,
+    "alert_handle_rows": 0,
+    "application_handle_rows": 0,
+    "application_max_adjusted_risk_score": null
+  },
+  "performance": {
+    "scan_duration_ms_mean": 552.5441233333335,
+    "scan_duration_ms_p95": 659.847,
+    "scan_duration_ms_max": 892.164,
+    "monitor_cpu_percent_mean": 2.9552866666666655,
+    "monitor_cpu_percent_p95": 3.154,
+    "monitor_cpu_percent_max": 3.395,
+    "monitor_working_set_mb_mean": 92.70475333333337,
+    "monitor_working_set_mb_p95": 110.359,
+    "monitor_working_set_mb_max": 124.613
+  }
+}

@@ -1,0 +1,14 @@
+﻿trial_id,condition,application_name,expected_label,strict_handle_count,strict_max_score,subject_handle_count,subject_max_score
+benign_baseline_01,baseline,None,benign,1806,5,1806,5
+benign_discord_overlay_01,benign_application,Discord Overlay,benign,1806,5,0,0
+benign_nvidia_performance_overlay_01,benign_application,NVIDIA Performance Overlay,benign,1780,5,229,5
+benign_obs_game_capture_01,benign_application,OBS Studio (Game Capture),benign,1500,5,0,0
+benign_process_explorer_01,benign_application,Microsoft Process Explorer,benign,1806,5,0,0
+benign_process_monitor_01,benign_application,Microsoft Process Monitor,benign,1806,5,0,0
+benign_resource_monitor_01,benign_application,Windows Resource Monitor,benign,1806,5,0,0
+benign_steam_overlay_01,benign_application,Steam Overlay,benign,1806,5,152,5
+benign_task_manager_01,benign_application,Windows Task Manager,benign,1800,5,0,0
+cheat_cs2_external_cheat_01,cheat_software,CS2 External Cheat (C#),cheat,232,100,232,100
+cheat_cs2_external_esp_01,cheat_software,CS2 External ESP (C++),cheat,238,60,238,60
+cheat_cs2_webradar_01,cheat_software,CS2 WebRadar,cheat,194,45,194,45
+cheat_fully_external_cs2_01,cheat_software,FullyExternalCS2,cheat,207,100,207,100

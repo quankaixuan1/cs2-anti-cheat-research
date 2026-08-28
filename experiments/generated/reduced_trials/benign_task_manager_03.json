@@ -1,0 +1,52 @@
+{
+  "trial_id": "benign_task_manager_03",
+  "condition": "benign_application",
+  "application_name": "Windows Task Manager",
+  "application_category": "process_monitor",
+  "cheat_enabled": false,
+  "enabled_feature": "none",
+  "application_start_time_utc": "2026-08-27T22:58:58.5218034Z",
+  "feature_enable_time_utc": "2026-08-27T22:58:58.5218034Z",
+  "trial_start_time_utc": "2026-08-27T22:57:44.3424545Z",
+  "trial_end_time_utc": "2026-08-27T23:02:45.039625Z",
+  "expected_label": "benign",
+  "notes": "split=test; scope=user_mode; readiness=ready; design=balanced_reduced; stable_window_seconds=74.179; active_window_seconds=226.518; actual_application_pid=54296; launcher_pid=44860; application_specific_handle_count=0; application_specific_alert_count=0; elevated exact PID termination after monitor exit",
+  "detection_threshold": 45,
+  "policy_version": "calibration-v1",
+  "application_process": {
+    "pid": 54296,
+    "launcher_pid": 44860,
+    "path": "C:\\Windows\\system32\\Taskmgr.exe",
+    "sha256": "AFFB1E96BB51C4C96A4298AB100CD37F44E6B2B8A56D17BB4DE41547727D5827",
+    "signature_status": "Valid",
+    "signature_subject": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+    "file_version": "10.0.26100.8972 (WinBuild.160101.0800)",
+    "preexisting": false,
+    "launched_by_trial": true,
+    "termination": "elevated_taskkill_exact_pid_tree_after_trial"
+  },
+  "observed_results": {
+    "scan_count": 301,
+    "first_scan_time_utc": "2026-08-27T22:57:44.4433400Z",
+    "last_scan_time_utc": "2026-08-27T23:02:44.4482320Z",
+    "handle_rows": 1505,
+    "handle_event_rows": 5,
+    "detection_rows": 0,
+    "alert_handle_rows": 0,
+    "application_handle_rows": 0,
+    "application_max_adjusted_risk_score": null,
+    "first_detection_time_utc": null,
+    "detection_latency_ms": null
+  },
+  "performance": {
+    "scan_duration_ms_mean": 565.9910863787375,
+    "scan_duration_ms_p95": 624.894,
+    "scan_duration_ms_max": 828.985,
+    "monitor_cpu_percent_mean": 2.96460465116279,
+    "monitor_cpu_percent_p95": 3.167,
+    "monitor_cpu_percent_max": 3.331,
+    "monitor_working_set_mb_mean": 97.59533222591368,
+    "monitor_working_set_mb_p95": 114.645,
+    "monitor_working_set_mb_max": 137.059
+  }
+}

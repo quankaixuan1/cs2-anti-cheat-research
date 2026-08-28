@@ -1,0 +1,40 @@
+{
+  "trial_id": "benign_baseline_03",
+  "condition": "baseline",
+  "application_name": "None",
+  "application_category": "baseline",
+  "cheat_enabled": false,
+  "enabled_feature": "none",
+  "application_start_time_utc": null,
+  "feature_enable_time_utc": null,
+  "trial_start_time_utc": "2026-08-27T22:30:18.047299Z",
+  "trial_end_time_utc": "2026-08-27T22:35:18.4431727Z",
+  "expected_label": "benign",
+  "notes": "split=test; scope=user_mode; readiness=ready; design=balanced_reduced; baseline_no_application_started=true; full_300_second_window=true; no_trial_application_termination=true",
+  "detection_threshold": 45,
+  "policy_version": "calibration-v1",
+  "observed_results": {
+    "scan_count": 301,
+    "first_scan_time_utc": "2026-08-27T22:30:18.1060789Z",
+    "last_scan_time_utc": "2026-08-27T22:35:18.1093173Z",
+    "handle_rows": 1505,
+    "handle_event_rows": 5,
+    "detection_rows": 0,
+    "alert_handle_rows": 0,
+    "application_handle_rows": 0,
+    "application_max_adjusted_risk_score": null,
+    "first_detection_time_utc": null,
+    "detection_latency_ms": null
+  },
+  "performance": {
+    "scan_duration_ms_mean": 338.8697574750829,
+    "scan_duration_ms_p95": 399.501,
+    "scan_duration_ms_max": 449.446,
+    "monitor_cpu_percent_mean": 2.975880398671096,
+    "monitor_cpu_percent_p95": 3.244,
+    "monitor_cpu_percent_max": 3.412,
+    "monitor_working_set_mb_mean": 94.10766112956814,
+    "monitor_working_set_mb_p95": 112.535,
+    "monitor_working_set_mb_max": 124.195
+  }
+}

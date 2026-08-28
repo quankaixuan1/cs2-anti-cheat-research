@@ -1,0 +1,52 @@
+{
+  "trial_id": "benign_process_monitor_03",
+  "condition": "benign_application",
+  "application_name": "Microsoft Process Monitor",
+  "application_category": "diagnostic_monitor",
+  "cheat_enabled": false,
+  "enabled_feature": "none",
+  "application_start_time_utc": "2026-08-27T21:31:24.7622344Z",
+  "feature_enable_time_utc": "2026-08-27T21:31:24.7622344Z",
+  "trial_start_time_utc": "2026-08-27T21:30:04.293397Z",
+  "trial_end_time_utc": "2026-08-27T21:35:04.7592569Z",
+  "expected_label": "benign",
+  "notes": "split=test; scope=user_mode; readiness=ready; design=balanced_reduced; application_elevated=true; stable_window_seconds=80.469; active_window_seconds=219.997; application_specific_handle_count=0; application_specific_alert_count=0; terminated_with_procmon_terminate_after_monitor_exit",
+  "detection_threshold": 45,
+  "policy_version": "calibration-v1",
+  "application_process": {
+    "pid": 53432,
+    "path": "D:\\Software\\Sysinternals\\ProcessMonitor\\Procmon64.exe",
+    "sha256": "78D7148EF5E1472BBCEC02CFD655F5AA789006B65D9990862DD8546ECF6C9AF1",
+    "signature_status": "Valid",
+    "signature_subject": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+    "file_version": "4.1",
+    "preexisting": false,
+    "launched_by_trial": true,
+    "launch_context": "administrator",
+    "termination": "procmon_terminate_after_trial"
+  },
+  "observed_results": {
+    "scan_count": 301,
+    "first_scan_time_utc": "2026-08-27T21:30:04.3609818Z",
+    "last_scan_time_utc": "2026-08-27T21:35:04.3673221Z",
+    "handle_rows": 1505,
+    "handle_event_rows": 5,
+    "detection_rows": 0,
+    "alert_handle_rows": 0,
+    "application_handle_rows": 0,
+    "application_max_adjusted_risk_score": null,
+    "first_detection_time_utc": null,
+    "detection_latency_ms": null
+  },
+  "performance": {
+    "scan_duration_ms_mean": 414.3863887043189,
+    "scan_duration_ms_p95": 532.692,
+    "scan_duration_ms_max": 591.74,
+    "monitor_cpu_percent_mean": 2.9285215946843848,
+    "monitor_cpu_percent_p95": 3.186,
+    "monitor_cpu_percent_max": 3.43,
+    "monitor_working_set_mb_mean": 95.15337873754154,
+    "monitor_working_set_mb_p95": 115.02,
+    "monitor_working_set_mb_max": 133.914
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "trial_id": "benign_baseline_02",
+  "condition": "baseline",
+  "application_name": "None",
+  "application_category": "baseline",
+  "cheat_enabled": false,
+  "enabled_feature": "none",
+  "application_start_time_utc": null,
+  "feature_enable_time_utc": null,
+  "trial_start_time_utc": "2026-08-27T19:56:50.624778Z",
+  "trial_end_time_utc": "2026-08-27T20:01:51.0651082Z",
+  "expected_label": "benign",
+  "notes": "split=test; scope=user_mode; readiness=ready; design=balanced_reduced; no test application was launched during this baseline trial",
+  "detection_threshold": 45,
+  "policy_version": "calibration-v1",
+  "observed_results": {
+    "scan_count": 301,
+    "first_scan_time_utc": "2026-08-27T19:56:50.6931677Z",
+    "last_scan_time_utc": "2026-08-27T20:01:50.7019898Z",
+    "handle_rows": 1505,
+    "handle_event_rows": 5,
+    "detection_rows": 0,
+    "alert_handle_rows": 0,
+    "application_handle_rows": 0,
+    "application_max_adjusted_risk_score": null
+  },
+  "performance": {
+    "scan_duration_ms_mean": 391.6459202657804,
+    "scan_duration_ms_p95": 582.042,
+    "scan_duration_ms_max": 625.93,
+    "monitor_cpu_percent_mean": 3.0054916943521564,
+    "monitor_cpu_percent_p95": 3.233,
+    "monitor_cpu_percent_max": 3.423,
+    "monitor_working_set_mb_mean": 96.14705315614619,
+    "monitor_working_set_mb_p95": 113.617,
+    "monitor_working_set_mb_max": 133.289
+  }
+}

@@ -1,0 +1,1 @@
+﻿TrialId,TimestampUtc,ScanNumber,ElapsedMs,DetectionLatencyMs,TargetProcessId,TargetRole,SourceProcessId,SourceProcessName,SourceImagePath,ParentProcessId,SourceSha256,HasEmbeddedSignature,CertificateSubject,HandleValue,GrantedAccess,AccessRights,RawRiskScore,AdjustedRiskScore,Classification,RiskReasons,AlertStatus

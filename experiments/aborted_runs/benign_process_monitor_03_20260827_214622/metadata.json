@@ -1,0 +1,17 @@
+{
+  "trial_id": "benign_process_monitor_03",
+  "condition": "benign_application",
+  "application_name": "Microsoft Process Monitor",
+  "application_category": "diagnostic_monitor",
+  "cheat_enabled": false,
+  "enabled_feature": "none",
+  "application_start_time_utc": "2026-08-27T21:31:24.7622344Z",
+  "feature_enable_time_utc": "2026-08-27T21:31:24.7622344Z",
+  "trial_start_time_utc": "2026-08-27T21:46:22.4071698Z",
+  "trial_end_time_utc": "2026-08-27T21:51:22.4814728Z",
+  "expected_label": "benign",
+  "notes": "split=test; scope=user_mode; readiness=ready; design=balanced_reduced; application_elevated=true; stable_window_seconds=80.469; active_window_seconds=219.997; application_specific_handle_count=0; application_specific_alert_count=0; terminated_with_procmon_terminate_after_monitor_exit; invalid_delayed_duplicate_startup_from_round14_initial_uac_request; no Procmon application launched; overlapped cheat_fully_external_cs2_02 active window; excluded_from_held_out_analysis",
+  "detection_threshold": 45,
+  "policy_version": "calibration-v1",
+  "experiment_status": "invalid_delayed_duplicate_startup"
+}

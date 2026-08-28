@@ -1,0 +1,16 @@
+{
+  "trial_id": "benign_baseline_01",
+  "condition": "baseline",
+  "application_name": "None",
+  "application_category": "baseline",
+  "cheat_enabled": false,
+  "enabled_feature": "none",
+  "application_start_time_utc": null,
+  "feature_enable_time_utc": null,
+  "trial_start_time_utc": "2026-08-26T00:59:31.569492Z",
+  "trial_end_time_utc": "2026-08-26T01:04:31.6959654Z",
+  "expected_label": "benign",
+  "notes": "split=pilot; scope=user_mode; readiness=ready; exclusion_reason=monitor_not_administrator",
+  "experiment_status": "excluded_pilot",
+  "exclusion_reason": "monitor_not_administrator"
+}

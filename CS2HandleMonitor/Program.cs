@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using System.Globalization;
 using System.Text;
+using System.Text.Json;
 
 namespace CS2HandleMonitor;
 
@@ -24,9 +25,28 @@ internal static class Program
             return 1;
         }
 
-        string runId = $"handle_monitor_{DateTime.UtcNow:yyyyMMdd_HHmmss}";
+        DateTime trialStartUtc = DateTime.UtcNow;
+        TrialMetadata metadata;
+        try
+        {
+            metadata = TrialMetadata.LoadOrCreate(parsedOptions.TrialMetadataPath, trialStartUtc);
+            metadata = metadata with
+            {
+                DetectionThreshold = parsedOptions.DetectionThreshold,
+                PolicyVersion = DetectionPolicy.Version
+            };
+        }
+        catch (Exception exception) when (exception is IOException or JsonException)
+        {
+            Console.Error.WriteLine($"Invalid trial metadata: {exception.Message}");
+            return 2;
+        }
+
+        string runId = $"{SanitizePathComponent(metadata.TrialId)}_{trialStartUtc:yyyyMMdd_HHmmss}";
         string outputDirectory = Path.Combine(Path.GetFullPath(parsedOptions.OutputDirectory), runId);
         Directory.CreateDirectory(outputDirectory);
+        string metadataPath = Path.Combine(outputDirectory, "metadata.json");
+        await metadata.WriteAsync(metadataPath);
         string outputPath = Path.Combine(outputDirectory, "handles.csv");
         string summaryPath = Path.Combine(outputDirectory, "scan_summary.csv");
         string eventsPath = Path.Combine(outputDirectory, "handle_events.csv");
@@ -39,6 +59,9 @@ internal static class Program
         foreach (TargetIdentity target in initialTargets) PrintTarget(target);
         Console.WriteLine($"Interval: {parsedOptions.IntervalSeconds} seconds");
         Console.WriteLine($"Detection threshold: {parsedOptions.DetectionThreshold}");
+        Console.WriteLine($"Detection policy: {DetectionPolicy.Version}");
+        Console.WriteLine($"Trial ID: {metadata.TrialId}");
+        Console.WriteLine($"Expected label: {metadata.ExpectedLabel}");
         Console.WriteLine($"Output directory: {outputDirectory}");
         Console.WriteLine("Tip: Run as administrator to improve handle visibility. Press Ctrl+C to stop.");
 
@@ -53,7 +76,8 @@ internal static class Program
 
         try
         {
-            await MonitorAsync(parsedOptions, outputPath, summaryPath, eventsPath, detectionsPath, stopSource.Token);
+            await MonitorAsync(
+                parsedOptions, metadata, outputPath, summaryPath, eventsPath, detectionsPath, stopSource.Token);
         }
         catch (OperationCanceledException) { }
         catch (Exception exception)
@@ -62,43 +86,54 @@ internal static class Program
             return 1;
         }
 
+        metadata = metadata with { TrialEndTimeUtc = DateTime.UtcNow };
+        await metadata.WriteAsync(metadataPath);
+
         Console.WriteLine();
         Console.WriteLine($"Handle records: {outputPath}");
         Console.WriteLine($"Scan summary: {summaryPath}");
         Console.WriteLine($"Lifecycle events: {eventsPath}");
         Console.WriteLine($"Detection alerts: {detectionsPath}");
+        Console.WriteLine($"Trial metadata: {metadataPath}");
         return 0;
     }
 
     private static async Task MonitorAsync(
         MonitorOptions options,
+        TrialMetadata metadata,
         string outputPath,
         string summaryPath,
         string eventsPath,
         string detectionsPath,
         CancellationToken cancellationToken)
     {
+        string trialId = metadata.TrialId;
         await using StreamWriter writer = CreateWriter(outputPath);
         await writer.WriteLineAsync(
-            "TimestampUtc,ElapsedMs,TargetProcessId,TargetProcessName,TargetImagePath,TargetWindowTitle,TargetRole,SourceProcessId,SourceProcessName,SourceImagePath,ParentProcessId,SourceStartedUtc,SourceSha256,HasEmbeddedSignature,CertificateSubject,HandleValue,GrantedAccess,AccessRights,RawRiskScore,AdjustedRiskScore,Classification,RiskReasons,SystemHandleCount,SourceProcessesInspected,SourceProcessesDenied,DuplicateFailures");
+            "TrialId,TimestampUtc,ScanNumber,ElapsedMs,TargetProcessId,TargetProcessName,TargetImagePath,TargetWindowTitle,TargetRole,SourceProcessId,SourceProcessName,SourceImagePath,ParentProcessId,SourceStartedUtc,SourceSha256,HasEmbeddedSignature,CertificateSubject,HandleValue,GrantedAccess,AccessRights,RawRiskScore,AdjustedRiskScore,Classification,RiskReasons,AlertStatus,SystemHandleCount,SourceProcessesInspected,SourceProcessesDenied,DuplicateFailures");
 
         await using StreamWriter summaryWriter = CreateWriter(summaryPath);
         await summaryWriter.WriteLineAsync(
-            "TimestampUtc,ElapsedMs,TargetProcessId,TargetProcessName,TargetImagePath,TargetWindowTitle,TargetRole,MatchedExternalHandles,HighRiskHandles,SystemHandleCount,SourceProcessesInspected,SourceProcessesDenied,DuplicateFailures");
+            "TrialId,TimestampUtc,ScanNumber,ElapsedMs,TargetProcessId,TargetProcessName,TargetImagePath,TargetWindowTitle,TargetRole,MatchedExternalHandles,HighRiskHandles,SystemHandleCount,SourceProcessesInspected,SourceProcessesDenied,DuplicateFailures,ScanDurationMs,MonitorCpuPercent,MonitorWorkingSetMb,MonitorPrivateMemoryMb");
 
         await using StreamWriter eventsWriter = CreateWriter(eventsPath);
         await eventsWriter.WriteLineAsync(
-            "TimestampUtc,ElapsedMs,Event,DurationMs,TargetProcessId,TargetRole,SourceProcessId,SourceProcessName,SourceImagePath,ParentProcessId,SourceStartedUtc,SourceSha256,HasEmbeddedSignature,CertificateSubject,HandleValue,GrantedAccess,AccessRights,RawRiskScore,AdjustedRiskScore,Classification,RiskReasons");
+            "TrialId,TimestampUtc,ScanNumber,ElapsedMs,Event,DurationMs,TargetProcessId,TargetRole,SourceProcessId,SourceProcessName,SourceImagePath,ParentProcessId,SourceStartedUtc,SourceSha256,HasEmbeddedSignature,CertificateSubject,HandleValue,GrantedAccess,AccessRights,RawRiskScore,AdjustedRiskScore,Classification,RiskReasons,AlertStatus");
 
         await using StreamWriter detectionsWriter = CreateWriter(detectionsPath);
         await detectionsWriter.WriteLineAsync(
-            "TimestampUtc,ElapsedMs,TargetProcessId,TargetRole,SourceProcessId,SourceProcessName,SourceImagePath,ParentProcessId,SourceSha256,HasEmbeddedSignature,CertificateSubject,HandleValue,GrantedAccess,AccessRights,RawRiskScore,AdjustedRiskScore,Classification,RiskReasons");
+            "TrialId,TimestampUtc,ScanNumber,ElapsedMs,DetectionLatencyMs,TargetProcessId,TargetRole,SourceProcessId,SourceProcessName,SourceImagePath,ParentProcessId,SourceSha256,HasEmbeddedSignature,CertificateSubject,HandleValue,GrantedAccess,AccessRights,RawRiskScore,AdjustedRiskScore,Classification,RiskReasons,AlertStatus");
 
         Stopwatch timer = Stopwatch.StartNew();
+        using Process monitorProcess = Process.GetCurrentProcess();
         Dictionary<HandleKey, ActiveHandle> activeHandles = [];
         using PeriodicTimer scanTimer = new(TimeSpan.FromSeconds(options.IntervalSeconds));
+        int scanNumber = 0;
         do
         {
+            scanNumber++;
+            Stopwatch scanStopwatch = Stopwatch.StartNew();
+            TimeSpan scanStartCpu = monitorProcess.TotalProcessorTime;
             TargetIdentity[] targets = DiscoverTargets(options);
             string timestamp = DateTime.UtcNow.ToString("O", CultureInfo.InvariantCulture);
             long elapsedMs = timer.ElapsedMilliseconds;
@@ -122,7 +157,9 @@ internal static class Program
                     HandleKey key = new(target.ProcessId, handle.SourceProcessId, handle.HandleValue, handle.GrantedAccess);
                     currentHandles.Add(key);
                     await writer.WriteLineAsync(string.Join(',',
+                        EscapeCsv(trialId),
                         timestamp,
+                        scanNumber.ToString(CultureInfo.InvariantCulture),
                         elapsedMs.ToString(CultureInfo.InvariantCulture),
                         target.ProcessId.ToString(CultureInfo.InvariantCulture),
                         EscapeCsv(target.ProcessName),
@@ -144,6 +181,7 @@ internal static class Program
                         decision.AdjustedRiskScore.ToString(CultureInfo.InvariantCulture),
                         decision.Classification,
                         EscapeCsv(decision.RiskReasons),
+                        decision.IsDetection ? "true" : "false",
                         result.SystemHandleCount.ToString(CultureInfo.InvariantCulture),
                         result.SourceProcessesInspected.ToString(CultureInfo.InvariantCulture),
                         result.SourceProcessesDenied.ToString(CultureInfo.InvariantCulture),
@@ -153,10 +191,20 @@ internal static class Program
                     {
                         ActiveHandle opened = new(target, handle, decision, DateTime.UtcNow, elapsedMs);
                         activeHandles.Add(key, opened);
-                        await WriteHandleEventAsync(eventsWriter, "Opened", opened, DateTime.UtcNow, elapsedMs);
+                        await WriteHandleEventAsync(
+                            eventsWriter, trialId, scanNumber, "Opened", opened, DateTime.UtcNow, elapsedMs);
                         if (decision.IsDetection)
                         {
-                            await WriteDetectionAsync(detectionsWriter, target, handle, decision, DateTime.UtcNow, elapsedMs);
+                            await WriteDetectionAsync(
+                                detectionsWriter,
+                                trialId,
+                                scanNumber,
+                                metadata.FeatureEnableTimeUtc ?? metadata.ApplicationStartTimeUtc,
+                                target,
+                                handle,
+                                decision,
+                                DateTime.UtcNow,
+                                elapsedMs);
                             Console.WriteLine();
                             Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine($"[DETECTED] {handle.SourceProcessName}.exe PID={handle.SourceProcessId} -> {target.ProcessName}.exe PID={target.ProcessId}  Risk={decision.AdjustedRiskScore}");
@@ -165,8 +213,16 @@ internal static class Program
                     }
                 }
 
+                monitorProcess.Refresh();
+                double monitorCpuPercent = scanStopwatch.Elapsed.TotalMilliseconds <= 0
+                    ? 0
+                    : (monitorProcess.TotalProcessorTime - scanStartCpu).TotalMilliseconds /
+                      scanStopwatch.Elapsed.TotalMilliseconds / Environment.ProcessorCount * 100;
+
                 await summaryWriter.WriteLineAsync(string.Join(',',
+                    EscapeCsv(trialId),
                     timestamp,
+                    scanNumber.ToString(CultureInfo.InvariantCulture),
                     elapsedMs.ToString(CultureInfo.InvariantCulture),
                     target.ProcessId.ToString(CultureInfo.InvariantCulture),
                     EscapeCsv(target.ProcessName),
@@ -178,13 +234,18 @@ internal static class Program
                     result.SystemHandleCount.ToString(CultureInfo.InvariantCulture),
                     result.SourceProcessesInspected.ToString(CultureInfo.InvariantCulture),
                     result.SourceProcessesDenied.ToString(CultureInfo.InvariantCulture),
-                    result.DuplicateFailures.ToString(CultureInfo.InvariantCulture)));
+                    result.DuplicateFailures.ToString(CultureInfo.InvariantCulture),
+                    scanStopwatch.Elapsed.TotalMilliseconds.ToString("F3", CultureInfo.InvariantCulture),
+                    monitorCpuPercent.ToString("F3", CultureInfo.InvariantCulture),
+                    (monitorProcess.WorkingSet64 / 1048576d).ToString("F3", CultureInfo.InvariantCulture),
+                    (monitorProcess.PrivateMemorySize64 / 1048576d).ToString("F3", CultureInfo.InvariantCulture)));
             }
 
             foreach (HandleKey closedKey in activeHandles.Keys.Where(key => !currentHandles.Contains(key)).ToArray())
             {
                 ActiveHandle closed = activeHandles[closedKey];
-                await WriteHandleEventAsync(eventsWriter, "Closed", closed, DateTime.UtcNow, elapsedMs);
+                await WriteHandleEventAsync(
+                    eventsWriter, trialId, scanNumber, "Closed", closed, DateTime.UtcNow, elapsedMs);
                 activeHandles.Remove(closedKey);
             }
 
@@ -199,15 +260,24 @@ internal static class Program
 
     private static async Task WriteDetectionAsync(
         StreamWriter writer,
+        string trialId,
+        int scanNumber,
+        DateTime? referenceTimeUtc,
         TargetIdentity target,
         TargetHandle handle,
         DetectionDecision decision,
         DateTime observedUtc,
         long elapsedMs)
     {
+        string detectionLatencyMs = referenceTimeUtc is DateTime reference
+            ? Math.Max(0, (observedUtc - reference).TotalMilliseconds).ToString("F3", CultureInfo.InvariantCulture)
+            : string.Empty;
         await writer.WriteLineAsync(string.Join(',',
+            EscapeCsv(trialId),
             observedUtc.ToString("O", CultureInfo.InvariantCulture),
+            scanNumber.ToString(CultureInfo.InvariantCulture),
             elapsedMs.ToString(CultureInfo.InvariantCulture),
+            detectionLatencyMs,
             target.ProcessId.ToString(CultureInfo.InvariantCulture),
             target.Role,
             handle.SourceProcessId.ToString(CultureInfo.InvariantCulture),
@@ -223,11 +293,14 @@ internal static class Program
             decision.RawRiskScore.ToString(CultureInfo.InvariantCulture),
             decision.AdjustedRiskScore.ToString(CultureInfo.InvariantCulture),
             decision.Classification,
-            EscapeCsv(decision.RiskReasons)));
+            EscapeCsv(decision.RiskReasons),
+            "true"));
     }
 
     private static async Task WriteHandleEventAsync(
         StreamWriter writer,
+        string trialId,
+        int scanNumber,
         string eventName,
         ActiveHandle active,
         DateTime observedUtc,
@@ -236,7 +309,9 @@ internal static class Program
         TargetHandle handle = active.Handle;
         DetectionDecision decision = active.Decision;
         await writer.WriteLineAsync(string.Join(',',
+            EscapeCsv(trialId),
             observedUtc.ToString("O", CultureInfo.InvariantCulture),
+            scanNumber.ToString(CultureInfo.InvariantCulture),
             elapsedMs.ToString(CultureInfo.InvariantCulture),
             eventName,
             Math.Max(0, elapsedMs - active.FirstSeenElapsedMs).ToString(CultureInfo.InvariantCulture),
@@ -256,7 +331,8 @@ internal static class Program
             decision.RawRiskScore.ToString(CultureInfo.InvariantCulture),
             decision.AdjustedRiskScore.ToString(CultureInfo.InvariantCulture),
             decision.Classification,
-            EscapeCsv(decision.RiskReasons)));
+            EscapeCsv(decision.RiskReasons),
+            decision.IsDetection ? "true" : "false"));
     }
 
     private static TargetIdentity[] DiscoverTargets(MonitorOptions options)
@@ -317,6 +393,13 @@ internal static class Program
     private static string EscapeCsv(string value) =>
         value.IndexOfAny([',', '"', '\r', '\n']) < 0 ? value : $"\"{value.Replace("\"", "\"\"")}\"";
 
+    private static string SanitizePathComponent(string value)
+    {
+        char[] invalid = Path.GetInvalidFileNameChars();
+        string sanitized = new(value.Select(c => invalid.Contains(c) ? '_' : c).ToArray());
+        return string.IsNullOrWhiteSpace(sanitized) ? "trial" : sanitized;
+    }
+
     private static void PrintUsage()
     {
         Console.WriteLine("Usage: dotnet run --project CS2HandleMonitor -- [options]");
@@ -324,7 +407,8 @@ internal static class Program
         Console.WriteLine("  --process <name>            Target process name; default: cs2");
         Console.WriteLine("  --interval-seconds <seconds>  Scan interval; default: 2");
         Console.WriteLine("  --duration-seconds <seconds>  Automatic stop duration (optional)");
-        Console.WriteLine("  --threshold <0-100>         Real-time detection threshold; default: 60");
+        Console.WriteLine($"  --threshold <0-100>         Real-time detection threshold; default: {DetectionPolicy.DefaultThreshold}");
+        Console.WriteLine("  --trial-metadata <json>     Ground-truth trial metadata JSON");
         Console.WriteLine("  --output <directory>        Output root directory; default: ./data");
         Console.WriteLine("  --help                      Show help");
     }
@@ -356,7 +440,8 @@ internal sealed record MonitorOptions(
     int IntervalSeconds,
     int? DurationSeconds,
     int DetectionThreshold,
-    string OutputDirectory)
+    string OutputDirectory,
+    string? TrialMetadataPath)
 {
     internal static bool TryParse(string[] args, out MonitorOptions? options, out string? error)
     {
@@ -376,14 +461,14 @@ internal sealed record MonitorOptions(
         }
 
         HashSet<string> known = new(StringComparer.OrdinalIgnoreCase)
-            { "--pid", "--process", "--interval-seconds", "--duration-seconds", "--threshold", "--output" };
+            { "--pid", "--process", "--interval-seconds", "--duration-seconds", "--threshold", "--output", "--trial-metadata" };
         string? unknown = values.Keys.FirstOrDefault(key => !known.Contains(key));
         if (unknown is not null) { error = $"Unknown argument: {unknown}"; return false; }
 
         if (!OptionalPositive(values, "--pid", out int? pid, out error) ||
             !Positive(values, "--interval-seconds", 2, out int interval, out error) ||
             !OptionalPositive(values, "--duration-seconds", out int? duration, out error) ||
-            !Range(values, "--threshold", 60, 0, 100, out int threshold, out error)) return false;
+            !Range(values, "--threshold", DetectionPolicy.DefaultThreshold, 0, 100, out int threshold, out error)) return false;
 
         options = new MonitorOptions(
             pid,
@@ -391,7 +476,8 @@ internal sealed record MonitorOptions(
             interval,
             duration,
             threshold,
-            values.GetValueOrDefault("--output", "data"));
+            values.GetValueOrDefault("--output", "data"),
+            values.GetValueOrDefault("--trial-metadata"));
         return true;
     }
 

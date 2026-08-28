@@ -1,0 +1,50 @@
+{
+  "trial_id": "benign_obs_game_capture_03",
+  "condition": "benign_application",
+  "application_name": "OBS Studio (Game Capture)",
+  "application_category": "screen_capture",
+  "cheat_enabled": false,
+  "enabled_feature": "game_capture_recording",
+  "application_start_time_utc": "2026-08-27T20:44:08.8634785Z",
+  "feature_enable_time_utc": "2026-08-27T20:44:12.775Z",
+  "trial_start_time_utc": "2026-08-27T20:42:50.6490223Z",
+  "trial_end_time_utc": "2026-08-27T20:47:51.0360944Z",
+  "expected_label": "benign",
+  "notes": "split=test; scope=user_mode; readiness=ready; design=balanced_reduced; OBS launched with --startrecording --minimize-to-tray; recording confirmed by OBS log; recording activation at elapsed 82.126s; monitored recording window 218.261s; process tree force-terminated after monitor exit; Hybrid MP4 retained",
+  "detection_threshold": 45,
+  "policy_version": "calibration-v1",
+  "application_process": {
+    "pid": 23572,
+    "path": "C:\\Program Files\\obs-studio\\bin\\64bit\\obs64.exe",
+    "sha256": "E79066670CD8E8B95662F4CD417C4FA6F5B0C77E856A7B41C7DE0E00059BA6F2",
+    "signature_status": "Valid",
+    "signature_subject": "CN=\"OBS Project, LLC\", O=\"OBS Project, LLC\", L=Sheridan, S=Wyoming, C=US",
+    "preexisting": false,
+    "launched_by_trial": true,
+    "recording_output": "C:\\Users\\30815\\OneDrive\\Videos\\2026-08-27 21-44-12.mp4",
+    "recording_output_bytes": 183050280,
+    "termination": "taskkill_exact_pid_tree_after_trial"
+  },
+  "observed_results": {
+    "scan_count": 301,
+    "first_scan_time_utc": "2026-08-27T20:42:50.7372915Z",
+    "last_scan_time_utc": "2026-08-27T20:47:50.7421234Z",
+    "handle_rows": 1505,
+    "handle_event_rows": 5,
+    "detection_rows": 0,
+    "alert_handle_rows": 0,
+    "application_handle_rows": 0,
+    "application_max_adjusted_risk_score": null
+  },
+  "performance": {
+    "scan_duration_ms_mean": 348.90234551495,
+    "scan_duration_ms_p95": 557.539,
+    "scan_duration_ms_max": 639.56,
+    "monitor_cpu_percent_mean": 2.9916411960132883,
+    "monitor_cpu_percent_p95": 3.211,
+    "monitor_cpu_percent_max": 3.441,
+    "monitor_working_set_mb_mean": 95.4395581395349,
+    "monitor_working_set_mb_p95": 115.824,
+    "monitor_working_set_mb_max": 134.48
+  }
+}

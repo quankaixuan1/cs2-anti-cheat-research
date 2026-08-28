@@ -1,0 +1,17 @@
+{
+  "trial_id": "cheat_fully_external_cs2_02",
+  "condition": "cheat_software",
+  "application_name": "FullyExternalCS2",
+  "application_category": "cheat_sample",
+  "cheat_enabled": true,
+  "enabled_feature": "software_active",
+  "application_start_time_utc": null,
+  "feature_enable_time_utc": null,
+  "trial_start_time_utc": "2026-08-27T21:45:28.4407143Z",
+  "trial_end_time_utc": null,
+  "expected_label": "cheat",
+  "notes": "split=test; scope=user_mode_external; readiness=ready; design=balanced_reduced; invalid_duplicate_startup_due_uac_delayed_double_launch; monitor_pid=29472; terminated_after_approximately_25_scans; excluded_from_held_out_analysis",
+  "detection_threshold": 45,
+  "policy_version": "calibration-v1",
+  "experiment_status": "invalid_duplicate_startup"
+}

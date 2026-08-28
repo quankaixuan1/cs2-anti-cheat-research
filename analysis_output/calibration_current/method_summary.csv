@@ -1,0 +1,5 @@
+﻿method,tp,fp,tn,fn,tpr,fnr,fpr,precision,f1,tpr_ci95_low,tpr_ci95_high,fpr_ci95_low,fpr_ci95_high
+baseline_a_any_handle,0,2,0,0,,,1.0,0.0,,,,0.34238022750665303,1
+baseline_b_vm_read,0,2,0,0,,,1.0,0.0,,,,0.34238022750665303,1
+baseline_c_memory_access,0,2,0,0,,,1.0,0.0,,,,0.34238022750665303,1
+proposed,0,2,0,0,,,1.0,0.0,,,,0.34238022750665303,1

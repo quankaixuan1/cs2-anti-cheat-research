@@ -1,0 +1,62 @@
+{
+  "trial_id": "benign_discord_overlay_02",
+  "condition": "benign_application",
+  "application_name": "Discord Overlay",
+  "application_category": "game_overlay",
+  "cheat_enabled": false,
+  "enabled_feature": "none",
+  "application_start_time_utc": "2026-08-27T22:15:39.4618387Z",
+  "feature_enable_time_utc": null,
+  "trial_start_time_utc": "2026-08-27T22:14:15.075325Z",
+  "trial_end_time_utc": "2026-08-27T22:19:15.4479727Z",
+  "expected_label": "benign",
+  "notes": "split=test; scope=user_mode; readiness=ready; design=balanced_reduced; application_preexisting=false; overlay_helpers_observed=true; overlay_ui_activation_not_independently_verified=true; stable_window_seconds=84.387; active_window_seconds=215.986; application_specific_handle_count=0; application_specific_alert_count=0; exact main PID tree terminated after monitor exit",
+  "detection_threshold": 45,
+  "policy_version": "calibration-v1",
+  "application_process": {
+    "pid": 40260,
+    "pids": [
+      40260,
+      49768,
+      38008,
+      26248,
+      17580,
+      53448,
+      54752
+    ],
+    "path": "C:\\Users\\30815\\AppData\\Local\\Discord\\app-1.0.9255\\Discord.exe",
+    "sha256": "3ED29E287D12C00F04D78B3167B3F0BFAAE4555C002A3960F065A9BE4850EC72",
+    "signature_status": "Valid",
+    "signature_subject": "CN=Discord Inc., O=Discord Inc., L=San Francisco, S=California, C=US, SERIALNUMBER=5128862, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.2=Delaware, OID.1.3.6.1.4.1.311.60.2.1.3=US",
+    "file_version": "1.0.9255",
+    "preexisting": false,
+    "launched_by_trial": true,
+    "termination": "taskkill_exact_main_pid_tree_after_trial"
+  },
+  "observed_results": {
+    "scan_count": 301,
+    "first_scan_time_utc": "2026-08-27T22:14:15.1355048Z",
+    "last_scan_time_utc": "2026-08-27T22:19:15.1400488Z",
+    "handle_rows": 1505,
+    "handle_event_rows": 5,
+    "detection_rows": 0,
+    "alert_handle_rows": 0,
+    "application_handle_rows": 0,
+    "application_max_adjusted_risk_score": null,
+    "overlay_helpers_observed": true,
+    "overlay_ui_activation_independently_verified": false,
+    "first_detection_time_utc": null,
+    "detection_latency_ms": null
+  },
+  "performance": {
+    "scan_duration_ms_mean": 301.1935083056478,
+    "scan_duration_ms_p95": 350.609,
+    "scan_duration_ms_max": 685.058,
+    "monitor_cpu_percent_mean": 2.8375116279069776,
+    "monitor_cpu_percent_p95": 3.176,
+    "monitor_cpu_percent_max": 3.427,
+    "monitor_working_set_mb_mean": 104.71466112956804,
+    "monitor_working_set_mb_p95": 135.992,
+    "monitor_working_set_mb_max": 142.453
+  }
+}

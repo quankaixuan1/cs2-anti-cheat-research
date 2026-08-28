@@ -31,7 +31,13 @@ internal static class DetectionEngine
             reasons.Add("PARENT_IS_TARGET");
             reasons.Add("SYSTEM_CONHOST_PATH");
         }
-        else if (handle.RiskScore < threshold)
+        else if (DetectionPolicy.IsCalibrationAllowlisted(handle))
+        {
+            adjustedRisk = DetectionPolicy.AllowlistedRiskScore;
+            classification = "CalibrationAllowlistedSignedProcess";
+            reasons.Add("CALIBRATION_SHA256_ALLOWLIST");
+        }
+        else if (adjustedRisk < threshold)
         {
             classification = "LowRiskObserver";
         }

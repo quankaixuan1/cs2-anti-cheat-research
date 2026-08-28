@@ -1,0 +1,82 @@
+{
+  "inventory_date": "2026-08-26",
+  "execution_policy": "Build reviewed source only; never execute outside an isolated local CS2 -insecure environment.",
+  "samples": [
+    {
+      "sample_id": "fully_external_cs2",
+      "name": "FullyExternalCS2",
+      "architecture": "user_mode_external",
+      "core_evaluation": true,
+      "readiness": "ready",
+      "main_executable": "CS2Cheat.exe",
+      "executable_path": "D:\\Software\\cheating program\\FullyExternalCS2-main\\bin\\Release\\net8.0-windows\\CS2Cheat.exe",
+      "signature_status": "NotSigned",
+      "sha256_executable": "839687893FD90B3595F68671683C537CEFD3EBB97B357660EF16725D171BE553",
+      "sha256_managed_payload": "0F5D10D125D7A9ACB6BBBB2251B97BCFDFF2F11C154AA576B276002FBC0BA9A4",
+      "expected_handle_visibility": "visible"
+    },
+    {
+      "sample_id": "cs2_webradar",
+      "name": "CS2 WebRadar",
+      "architecture": "user_mode_external",
+      "core_evaluation": true,
+      "readiness": "ready",
+      "declared_access": "PROCESS_VM_READ | PROCESS_QUERY_INFORMATION",
+      "expected_handle_visibility": "visible",
+      "hypothesis": "Baseline B should alert; the proposed threshold of 60 may miss this approximately 45-point access combination.",
+      "executable_path": "D:\\Software\\cheating program\\cs2_webradar-main\\usermode\\release\\usermode.exe",
+      "executable_sha256": "8A2A2FD6C55B32CFB3B3182C75ADCF2F986ADA4C9E4FCC23AD73F7B85C6CC32D",
+      "signature_status": "NotSigned",
+      "network_scope": "localhost_only",
+      "build_record": "experiments/build-records/cs2_webradar.json"
+    },
+    {
+      "sample_id": "cs2_external_cheat",
+      "name": "CS2 External Cheat (C#)",
+      "architecture": "user_mode_external",
+      "core_evaluation": true,
+      "readiness": "dependencies_required",
+      "blocking_requirements": [
+        "GameOverlay.Net 4.3.1",
+        "InputSimulator 1.0.4",
+        "System.Drawing.Common 9.0.1"
+      ],
+      "declared_operations": [
+        "ReadProcessMemory",
+        "WriteProcessMemory"
+      ],
+      "expected_handle_visibility": "visible; granted access mask must be measured at runtime"
+    },
+    {
+      "sample_id": "cs2_external_esp",
+      "name": "CS2 External ESP (C++)",
+      "architecture": "user_mode_external",
+      "core_evaluation": true,
+      "readiness": "dependencies_required",
+      "blocking_requirements": [
+        "Visual C++ toolset",
+        "imgui submodule",
+        "json submodule",
+        "AsyncLogger submodule",
+        "curl submodule"
+      ],
+      "declared_access": "PROCESS_QUERY_INFORMATION | PROCESS_VM_OPERATION | PROCESS_VM_READ",
+      "expected_handle_visibility": "visible"
+    },
+    {
+      "sample_id": "valthrun_cs2",
+      "name": "Valthrun CS2",
+      "architecture": "kernel_external",
+      "core_evaluation": false,
+      "readiness": "driver_required",
+      "blocking_requirements": [
+        "Rust toolchain",
+        "vtd-libum dependency",
+        "kernel driver",
+        "dedicated isolated test host"
+      ],
+      "expected_handle_visibility": "not expected through ordinary user-mode Win32 handle access",
+      "interpretation": "Optional coverage-boundary extension; report separately from in-scope TPR."
+    }
+  ]
+}

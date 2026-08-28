@@ -1,0 +1,51 @@
+{
+  "trial_id": "benign_resource_monitor_02",
+  "condition": "benign_application",
+  "application_name": "Windows Resource Monitor",
+  "application_category": "process_monitor",
+  "cheat_enabled": false,
+  "enabled_feature": "none",
+  "application_start_time_utc": "2026-08-27T22:45:36.5207833Z",
+  "feature_enable_time_utc": "2026-08-27T22:45:36.5207833Z",
+  "trial_start_time_utc": "2026-08-27T22:44:18.878514Z",
+  "trial_end_time_utc": "2026-08-27T22:49:19.2424699Z",
+  "expected_label": "benign",
+  "notes": "split=test; scope=user_mode; readiness=ready; design=balanced_reduced; stable_window_seconds=77.642; active_window_seconds=222.722; actual_application_pid=53172; application_specific_handle_count=0; application_specific_alert_count=0; elevated exact PID termination after monitor exit",
+  "detection_threshold": 45,
+  "policy_version": "calibration-v1",
+  "application_process": {
+    "pid": 53172,
+    "path": "C:\\Windows\\System32\\perfmon.exe",
+    "sha256": "C344051462AAF9C85F18F6FE3A9B0A980E4A5666910FE5D0D7F2E878A6CD70C9",
+    "signature_status": "Valid",
+    "signature_subject": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+    "file_version": "10.00",
+    "preexisting": false,
+    "launched_by_trial": true,
+    "termination": "elevated_taskkill_exact_pid_tree_after_trial"
+  },
+  "observed_results": {
+    "scan_count": 301,
+    "first_scan_time_utc": "2026-08-27T22:44:18.9363981Z",
+    "last_scan_time_utc": "2026-08-27T22:49:18.9390940Z",
+    "handle_rows": 1505,
+    "handle_event_rows": 5,
+    "detection_rows": 0,
+    "alert_handle_rows": 0,
+    "application_handle_rows": 0,
+    "application_max_adjusted_risk_score": null,
+    "first_detection_time_utc": null,
+    "detection_latency_ms": null
+  },
+  "performance": {
+    "scan_duration_ms_mean": 317.9754950166112,
+    "scan_duration_ms_p95": 357.928,
+    "scan_duration_ms_max": 486.155,
+    "monitor_cpu_percent_mean": 2.950647840531561,
+    "monitor_cpu_percent_p95": 3.207,
+    "monitor_cpu_percent_max": 3.302,
+    "monitor_working_set_mb_mean": 96.04151162790689,
+    "monitor_working_set_mb_p95": 113.969,
+    "monitor_working_set_mb_max": 136.961
+  }
+}

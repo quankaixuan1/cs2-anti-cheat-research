@@ -1,0 +1,10 @@
+{
+  "trial_id": "cheat_cs2_webradar_01",
+  "websocket_pid": 5388,
+  "websocket_path": "D:\\Software\\nodejs\\node.exe",
+  "application_pid": 42564,
+  "application_path": "D:\\Software\\cheating program\\cs2_webradar-main\\usermode\\release\\usermode.exe",
+  "application_start_time_utc": "2026-08-26T02:13:40.7018392Z",
+  "websocket_listener": "127.0.0.1:22006",
+  "frontend_started": false
+}

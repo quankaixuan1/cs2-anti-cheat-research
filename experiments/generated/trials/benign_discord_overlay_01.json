@@ -1,0 +1,14 @@
+{
+  "trial_id": "benign_discord_overlay_01",
+  "condition": "benign_application",
+  "application_name": "Discord Overlay",
+  "application_category": "game_overlay",
+  "cheat_enabled": false,
+  "enabled_feature": "none",
+  "application_start_time_utc": null,
+  "feature_enable_time_utc": null,
+  "trial_start_time_utc": "2000-01-01T00:00:00Z",
+  "trial_end_time_utc": null,
+  "expected_label": "benign",
+  "notes": "split=calibration; scope=user_mode; readiness=ready"
+}

@@ -1,0 +1,52 @@
+{
+  "trial_id": "cheat_cs2_external_esp_03",
+  "condition": "cheat_software",
+  "application_name": "CS2 External ESP (C++)",
+  "application_category": "cheat_sample",
+  "cheat_enabled": true,
+  "enabled_feature": "software_active",
+  "application_start_time_utc": "2026-08-27T22:09:05.9132812Z",
+  "feature_enable_time_utc": "2026-08-27T22:09:05.9132812Z",
+  "trial_start_time_utc": "2026-08-27T22:07:12.3206578Z",
+  "trial_end_time_utc": "2026-08-27T22:12:13.0264467Z",
+  "expected_label": "cheat",
+  "notes": "split=test; scope=user_mode_external; readiness=dependencies_required; design=balanced_reduced; readiness=built_and_executed; launch_context=administrator; stable_window_seconds=113.593; active_window_seconds=187.113; application_specific_handle_snapshots=187; application_specific_alert_count=186; exact sample PID tree terminated after monitor exit",
+  "detection_threshold": 45,
+  "policy_version": "calibration-v1",
+  "application_process": {
+    "pid": 50944,
+    "path": "D:\\Software\\cheating program\\cs2-external-esp\\x64\\Release\\cs2-external-esp.exe",
+    "sha256": "497CE22B05954FB13460E6CE82CBC31E2B8BD5DEED1801731399FEA6CA8499F4",
+    "signature_status": "NotSigned",
+    "signature_subject": null,
+    "file_version": null,
+    "preexisting": false,
+    "launched_by_trial": true,
+    "launch_context": "administrator",
+    "termination": "taskkill_exact_pid_tree_after_trial"
+  },
+  "observed_results": {
+    "scan_count": 301,
+    "first_scan_time_utc": "2026-08-27T22:07:12.3831292Z",
+    "last_scan_time_utc": "2026-08-27T22:12:12.3919805Z",
+    "handle_rows": 1692,
+    "handle_event_rows": 8,
+    "detection_rows": 1,
+    "alert_handle_rows": 186,
+    "application_handle_rows": 187,
+    "application_max_adjusted_risk_score": 60.0,
+    "first_detection_time_utc": "2026-08-27T22:09:07.8157273Z",
+    "detection_latency_ms": 1902.4461
+  },
+  "performance": {
+    "scan_duration_ms_mean": 436.06992691029916,
+    "scan_duration_ms_p95": 584.165,
+    "scan_duration_ms_max": 638.243,
+    "monitor_cpu_percent_mean": 2.976215946843854,
+    "monitor_cpu_percent_p95": 3.193,
+    "monitor_cpu_percent_max": 3.429,
+    "monitor_working_set_mb_mean": 92.23093355481728,
+    "monitor_working_set_mb_p95": 107.852,
+    "monitor_working_set_mb_max": 120.938
+  }
+}

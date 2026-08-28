@@ -1,0 +1,1253 @@
+{
+  "sample_id": "cs2_webradar",
+  "build_time_utc": "2026-08-26T02:05:25.6315085Z",
+  "source_root": "D:\\Software\\cheating program\\cs2_webradar-main",
+  "build_status": "success",
+  "sample_executed": false,
+  "configuration": "release",
+  "platform": "x64",
+  "project_requested_toolset": "v145",
+  "build_override_toolset": "v143",
+  "visual_studio": "17.14.37111.16",
+  "msvc": "14.44.35207",
+  "windows_sdk": "10.0.26100",
+  "dependencies": [
+    {
+      "name": "ixwebsocket",
+      "version": "11.4.6"
+    },
+    {
+      "name": "mbedtls",
+      "version": "3.6.4"
+    },
+    {
+      "name": "nlohmann-json",
+      "version": "3.12.0#1"
+    },
+    {
+      "name": "zlib",
+      "version": "1.3.1"
+    },
+    {
+      "name": "vcpkg-cmake",
+      "version": "2024-04-23"
+    },
+    {
+      "name": "vcpkg-cmake-config",
+      "version": "2024-05-23"
+    }
+  ],
+  "executable": {
+    "path": "D:\\Software\\cheating program\\cs2_webradar-main\\usermode\\release\\usermode.exe",
+    "process_name": "usermode.exe",
+    "size_bytes": 1462784,
+    "sha256": "8A2A2FD6C55B32CFB3B3182C75ADCF2F986ADA4C9E4FCC23AD73F7B85C6CC32D",
+    "signature_status": "NotSigned",
+    "imports": [
+      "OpenProcess",
+      "ReadProcessMemory"
+    ],
+    "system_dll_dependencies": [
+      "KERNEL32.dll",
+      "WS2_32.dll",
+      "CRYPT32.dll",
+      "bcrypt.dll"
+    ]
+  },
+  "network_hardening": [
+    {
+      "file": "webapp/src/app.jsx",
+      "change": "USE_LOCALHOST=1"
+    },
+    {
+      "file": "webapp/ws/app.js",
+      "change": "listen on 127.0.0.1:22006"
+    },
+    {
+      "file": "webapp/vite.config.js",
+      "change": "host 127.0.0.1:5173"
+    }
+  ],
+  "ports_listening_after_build": [],
+  "frontend_outputs": [
+    {
+      "relative_path": "index.html",
+      "size_bytes": 452,
+      "sha256": "1B59D47BC1A95B4D061FFFE6831A38586EA026DFCCAFD9116547CB4EE95479C9"
+    },
+    {
+      "relative_path": "vite.svg",
+      "size_bytes": 1497,
+      "sha256": "4A748AFD443918BB16591C834C401DAE33E87861AB5DBAD0811C3A3B4A9214FB"
+    },
+    {
+      "relative_path": "assets\\index-6d0f2d90.js",
+      "size_bytes": 154356,
+      "sha256": "FEF66945EEECF7DC9230DC629A04D5E1DF8C169A2045C22DC6871BBF0F36FBDD"
+    },
+    {
+      "relative_path": "assets\\index-9bd4c700.css",
+      "size_bytes": 10964,
+      "sha256": "9BD4C700B6406D8E57D3B5D24FF098D850F1931965C6D3BBD7266296A900E7A9"
+    },
+    {
+      "relative_path": "assets\\characters\\ctm_diver_varianta.png",
+      "size_bytes": 217891,
+      "sha256": "21AF71C3E4160F3DE341A9FE7CE629F3907A4BD40F23B8BC22716DEB25B83408"
+    },
+    {
+      "relative_path": "assets\\characters\\ctm_diver_variantb.png",
+      "size_bytes": 240831,
+      "sha256": "C9B4E3FCFBA710BBC2CF269D980DB29E49EA81A992F0C64807AD93082BCF52C8"
+    },
+    {
+      "relative_path": "assets\\characters\\ctm_diver_variantc.png",
+      "size_bytes": 173314,
+      "sha256": "FB968D1AEA9E6EF8C12FB4421D22472598AD8ADA11D99A2B1E3A418B112B58B1"
+    },
+    {
+      "relative_path": "assets\\characters\\ctm_fbi_varianta.png",
+      "size_bytes": 148176,
+      "sha256": "7D8200AA16CB71CA8213928F1123197272BC472B45551D3A093C5E37D10E5759"
+    },
+    {
+      "relative_path": "assets\\characters\\ctm_fbi_variantb.png",
+      "size_bytes": 168529,
+      "sha256": "407F53CCB8E3B15E775ADFC16AE3E828EFC79C13C5B67EECAE06A2353A046852"
+    },
+    {
+      "relative_path": "assets\\characters\\ctm_fbi_variantc.png",
+      "size_bytes": 146029,
+      "sha256": "CD8C602E6DDA3B0CEC9F5B44F55537F3BBE0FD08E88CF1D851231E5BD9732899"
+    },
+    {
+      "relative_path": "assets\\characters\\ctm_fbi_variantd.png",
+      "size_bytes": 148147,
+      "sha256": "3E4F4BD2879EFF0F3A307F88D8BE1E6EB11A0336DF6206C41338EEFB676095F5"
+    },
+    {
+      "relative_path": "assets\\characters\\ctm_fbi_variante.png",
+      "size_bytes": 145771,
+      "sha256": "1B1717BF250C937C8D3717ADABD7AA78A20F3C17C018796ADFBB0CE85B362C96"
+    },
+    {
+      "relative_path": "assets\\characters\\ctm_fbi_variantf.png",
+      "size_bytes": 147424,
+      "sha256": "699A373C0D3B9BBEE060BFAC6EDF708803155D9481284ED2DA1718E34E17F957"
+    },
+    {
+      "relative_path": "assets\\characters\\ctm_fbi_variantg.png",
+      "size_bytes": 144616,
+      "sha256": "5B57A8A7DA1AE0FA6F95BAA3F2883FCE5BE251F4ADF576950DD222E6077D6895"
+    },
+    {
+      "relative_path": "assets\\characters\\ctm_fbi_varianth.png",
+      "size_bytes": 172799,
+      "sha256": "983B51E86AB191F59BD3A19548E1AF5AFBEABB0B29E5D6E5762BA757DF4A0FA1"
+    },
+    {
+      "relative_path": "assets\\characters\\ctm_fbi.png",
+      "size_bytes": 150519,
+      "sha256": "37C005DDE9B02EC38CD44801915B48F5BDE87FAB49E9EFC1ADDA7C1F0F6BAC69"
+    },
+    {
+      "relative_path": "assets\\characters\\ctm_gendarmerie_varianta.png",
+      "size_bytes": 162378,
+      "sha256": "ECB9974F8B81D20FF5284F45528B0E41713382D3503AA453A1904300328CC505"
+    },
+    {
+      "relative_path": "assets\\characters\\ctm_gendarmerie_variantb.png",
+      "size_bytes": 167062,
+      "sha256": "05EF26F96F61EB8F94F88FAE278E5466732172EB1B0B73D6CD826B1CB43796BB"
+    },
+    {
+      "relative_path": "assets\\characters\\ctm_gendarmerie_variantc.png",
+      "size_bytes": 169827,
+      "sha256": "DE143E4C11FB676C8578AD132810411DC8D55418592E1092C5513AF7F59C966D"
+    },
+    {
+      "relative_path": "assets\\characters\\ctm_gendarmerie_variantd.png",
+      "size_bytes": 185240,
+      "sha256": "95AC887B6232C44A725DCA5D91E9F5E04F4766D8A9DC33B871F9CCC09651B89F"
+    },
+    {
+      "relative_path": "assets\\characters\\ctm_gendarmerie_variante.png",
+      "size_bytes": 169789,
+      "sha256": "7DFEDB1E0999CBA15CEDABE500819FF7455187A064515E31862DF7ED317C9B68"
+    },
+    {
+      "relative_path": "assets\\characters\\ctm_heavy.png",
+      "size_bytes": 165973,
+      "sha256": "7E04BB24199640937B62F839AE94AAEBF5C87006C1A5E6717B7E4B69096D3618"
+    },
+    {
+      "relative_path": "assets\\characters\\ctm_sas_variantf.png",
+      "size_bytes": 159303,
+      "sha256": "D028500AA1B9EEEE44E123FD8287858620FECEB4E0D11673733D77F72C884A5A"
+    },
+    {
+      "relative_path": "assets\\characters\\ctm_sas_variantg.png",
+      "size_bytes": 154022,
+      "sha256": "A6F4037144FEA91ED1626177348AE4369460D5A1E68CE9F39BC2DCA8C8754FF0"
+    },
+    {
+      "relative_path": "assets\\characters\\ctm_sas.png",
+      "size_bytes": 161730,
+      "sha256": "B75AE865827E04FE5C322EBD9176EF23C1EBF892A6746EEA9374B009E4AAE77E"
+    },
+    {
+      "relative_path": "assets\\characters\\ctm_st6_varianta.png",
+      "size_bytes": 154693,
+      "sha256": "5520B170A71FB749D59FECCF51FD32C2FC648ADDD5CD76B1A14F60B81429CBA7"
+    },
+    {
+      "relative_path": "assets\\characters\\ctm_st6_variantb.png",
+      "size_bytes": 153579,
+      "sha256": "7AE3F7988B930055426D0BB1F2F1706679A0C9AF43512167D5F1317F64FB9F53"
+    },
+    {
+      "relative_path": "assets\\characters\\ctm_st6_variantc.png",
+      "size_bytes": 156525,
+      "sha256": "A54A762EC78FA2D20747484578F231EE86A8D9FD552B9D792731F735EF08BA75"
+    },
+    {
+      "relative_path": "assets\\characters\\ctm_st6_variantd.png",
+      "size_bytes": 150341,
+      "sha256": "8D735BD8A4E4598AA5128D7A093ADE4D93718F270665F8334F8D427FE40BA5CC"
+    },
+    {
+      "relative_path": "assets\\characters\\ctm_st6_variante.png",
+      "size_bytes": 172744,
+      "sha256": "94C29C1C576BBDD74CF50F14F9586201BCBA80920B6EB9E3607C672F097F1253"
+    },
+    {
+      "relative_path": "assets\\characters\\ctm_st6_variantf.png",
+      "size_bytes": 216418,
+      "sha256": "EB608202888D06F7CCFC664657A1B63FE17D4BBD6EEE7A680BF95B4F4B5A3F52"
+    },
+    {
+      "relative_path": "assets\\characters\\ctm_st6_variantg.png",
+      "size_bytes": 201843,
+      "sha256": "06D5E703F440F563CB5EB4725AD31B817B41ECCDD7D3A6BDC0E79DCCC2E92D22"
+    },
+    {
+      "relative_path": "assets\\characters\\ctm_st6_varianth.png",
+      "size_bytes": 232255,
+      "sha256": "0DEEE72257712B4C148C89CB1C61C74133BF2EF0635A42AAC5F857A662DE7669"
+    },
+    {
+      "relative_path": "assets\\characters\\ctm_st6_varianti.png",
+      "size_bytes": 194928,
+      "sha256": "36F7D307782FDFA7B9119E8FC386B04B8FF5E740E235EB7809D2774D87CA35A5"
+    },
+    {
+      "relative_path": "assets\\characters\\ctm_st6_variantj.png",
+      "size_bytes": 200531,
+      "sha256": "C90609FF46354D16D1A3244C1CB538E95BB508FF8525433EED3ED04EF0FAAE8F"
+    },
+    {
+      "relative_path": "assets\\characters\\ctm_st6_variantk.png",
+      "size_bytes": 176838,
+      "sha256": "50184C339AAB8056922866FAA10EA9D50FC483C8FA78B610889534627084E8A4"
+    },
+    {
+      "relative_path": "assets\\characters\\ctm_st6_variantl.png",
+      "size_bytes": 215012,
+      "sha256": "47A7F891E1DE7D842D794A570E38615A94FF3AFF2A7E69696DC246A64BFBE484"
+    },
+    {
+      "relative_path": "assets\\characters\\ctm_st6_variantm.png",
+      "size_bytes": 212735,
+      "sha256": "5F713B0F64D3C7CCCE4FC5B8B6F646D3840FEDAB3CF85E52F5EF5EBA4C9D0A12"
+    },
+    {
+      "relative_path": "assets\\characters\\ctm_st6_variantn.png",
+      "size_bytes": 158754,
+      "sha256": "657A81BE1FB120F62D6989540B056DCE6053DB7F777C3AC3EE46ACE7A6D32748"
+    },
+    {
+      "relative_path": "assets\\characters\\ctm_st6.png",
+      "size_bytes": 151083,
+      "sha256": "6C3E6DDD387F1EBBFC889B4AF8916C84A0F0CE52A8A8CBD0BF450A53218A822F"
+    },
+    {
+      "relative_path": "assets\\characters\\ctm_swat_variante.png",
+      "size_bytes": 186280,
+      "sha256": "026B5A51F083FDA584F58C99F3EBBB6169E981F0F4577FBE5C31804C9C88B692"
+    },
+    {
+      "relative_path": "assets\\characters\\ctm_swat_variantf.png",
+      "size_bytes": 182761,
+      "sha256": "D45AD20FA5AB5ABA2EF28B5988B856868D5CB0319D34DAA7F1E0DC3625CF5445"
+    },
+    {
+      "relative_path": "assets\\characters\\ctm_swat_variantg.png",
+      "size_bytes": 170417,
+      "sha256": "81D43C3B58694F18B01AC311F37B99D84B8426B89AC10AC0305BE9ACE123A63B"
+    },
+    {
+      "relative_path": "assets\\characters\\ctm_swat_varianth.png",
+      "size_bytes": 180149,
+      "sha256": "F181AF67E787C4BDEBA681722EC4559290A20249FF557A1E10D357BDB11C105C"
+    },
+    {
+      "relative_path": "assets\\characters\\ctm_swat_varianti.png",
+      "size_bytes": 191627,
+      "sha256": "9393A39A7D673EE768BBC013ABFF6BFB9839C803CDD443A5E133D0AE68359BA4"
+    },
+    {
+      "relative_path": "assets\\characters\\ctm_swat_variantj.png",
+      "size_bytes": 190597,
+      "sha256": "000711B851B6E34EBFCE6D07C7B2A0B41BEE4AAAD54F5D705E7FE74E7DE95BC0"
+    },
+    {
+      "relative_path": "assets\\characters\\ctm_swat_variantk.png",
+      "size_bytes": 217886,
+      "sha256": "8DAA8E9EFB1BDFD592D202BC4678CD7AC98CA2FAF07406716BC3FEAC0B093F2C"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_anarchist_varianta.png",
+      "size_bytes": 119662,
+      "sha256": "29EF41525D0B915869F2C06494A5D3153CF859EC2BCB07056B2C0D26A0F39453"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_anarchist_variantb.png",
+      "size_bytes": 112513,
+      "sha256": "DBF6E3B67C7CAA9915088A5FDDFA061FC4909353E3642E22BB71FEA26FDD588D"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_anarchist_variantc.png",
+      "size_bytes": 118827,
+      "sha256": "61960F8C687F5B052570C749185C6DD9EF26AD91407FEB8D496D74EDF827FC02"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_anarchist_variantd.png",
+      "size_bytes": 121250,
+      "sha256": "4EEF24678414A0509A917FEA2B576AFBFAD9D0C956293FB042A5A950B8D5EFD9"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_anarchist.png",
+      "size_bytes": 118725,
+      "sha256": "93468289993D447693D63457F3949A6D6799A0A030EB4732C9E48D3B71F19D73"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_balkan_varianta.png",
+      "size_bytes": 158867,
+      "sha256": "9461FC7A1D41D93DED8AAD3A5F7AA9E6DABC363537051AEDA6D6EA7F3E71558F"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_balkan_variantb.png",
+      "size_bytes": 150130,
+      "sha256": "D8CDF6B8BD8B4425CEAAC6BDAAB060D0BAB601F013795ABE6EF0B5EA7271D301"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_balkan_variantc.png",
+      "size_bytes": 150663,
+      "sha256": "12BA6832B10B37C38DACBE63836AD65485A0D2C96759DA2EBFD9B8637564F1C0"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_balkan_variantd.png",
+      "size_bytes": 151571,
+      "sha256": "0377898D552B75837151DA4738D6185869580328D7D5F865E0DED27BD1BAEBDD"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_balkan_variante.png",
+      "size_bytes": 152623,
+      "sha256": "E119D8CDA1FEF53ADE60B771FEA583ADB245A8EC289561DD057B0FAABF388876"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_balkan_variantf.png",
+      "size_bytes": 191461,
+      "sha256": "E6B08430193BD5E9542964BB74CC7B388530BEA2A6931D91427791F56B623069"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_balkan_variantg.png",
+      "size_bytes": 192963,
+      "sha256": "D5FBDF9D914A9CF59C5BD7BB80F079640358510FB1B0985CCABF9C94FD9718CC"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_balkan_varianth.png",
+      "size_bytes": 175116,
+      "sha256": "26334B7B8DA790BA80796AF2611D400040F75EF067D7AC8FA8CE5894DEE84C4C"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_balkan_varianti.png",
+      "size_bytes": 183306,
+      "sha256": "C0684219D61EF87EE1640244361E9ADD41F008B361A3DF4D14FB31E7C42D60AC"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_balkan_variantj.png",
+      "size_bytes": 175016,
+      "sha256": "78F515FE1AF359305592B7C8DE64FCD4D69ACB4C06AF542AB0D4468DA6E3C077"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_balkan_variantk.png",
+      "size_bytes": 184609,
+      "sha256": "B806EBB2F8390B90F599500B5EC89D5072F55B07D5BCCF3D9BBCECA5477F175B"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_balkan_variantl.png",
+      "size_bytes": 184027,
+      "sha256": "98BC94D25EEA6B45E6B84C55EBAD2848131B946E335C76794400CFD48A63AEE6"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_jumpsuit_varianta.png",
+      "size_bytes": 138744,
+      "sha256": "02B20326A7F78872495DF4820F10C08442F54447C2B235A621779CF92DD0D6A4"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_jumpsuit_variantb.png",
+      "size_bytes": 136329,
+      "sha256": "D0240C92B8E116531FEA0FD5DE3479541EA2639A9014326B8A8B9A983AD461A5"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_jumpsuit_variantc.png",
+      "size_bytes": 132358,
+      "sha256": "B7FD765D82BB9CBBEA6652008E05846C9832640B80384531A66DDEEDC1DD21E6"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_jungle_raider_varianta.png",
+      "size_bytes": 178672,
+      "sha256": "0AB6D709F800004A57E2A291D5924065E4454824DD4BB8FDB2E465FF387366F4"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_jungle_raider_variantb.png",
+      "size_bytes": 193433,
+      "sha256": "E81F0455F5A417F0E4D78570F95C2D32D028F90D18C8B6F4AB81242E20BD51DA"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_jungle_raider_variantb2.png",
+      "size_bytes": 187427,
+      "sha256": "D1552094AE0D4F93F2664E4383A143C4A5D1CDB8D9FCE63DF41FB4A2BF0FC03D"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_jungle_raider_variantc.png",
+      "size_bytes": 175595,
+      "sha256": "CF441D48E245C2D968B6CF1931740194CB21D7CEDA6E2FEEBE4A523FF4FFA8C1"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_jungle_raider_variantd.png",
+      "size_bytes": 167782,
+      "sha256": "9522387DEAD327F8A4DFD63EA554EF04A74FCC9B33A251976AF76D3012357656"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_jungle_raider_variante.png",
+      "size_bytes": 163841,
+      "sha256": "3982B0410811D1496CD6DD8D15120015739ABF99A2BC0C503CBCD867E33908A4"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_jungle_raider_variantf.png",
+      "size_bytes": 173412,
+      "sha256": "9A16FAC85AE9F7516B7C012EAA0FF9857FC84A885F5F54D48179910E8E94FCCA"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_jungle_raider_variantf2.png",
+      "size_bytes": 170784,
+      "sha256": "FB4F0DC43D2CCE26EF87197800C27C79E38590660238654481128DD13B2FA91B"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_leet_variantf.png",
+      "size_bytes": 180919,
+      "sha256": "5BB8F82B2D82D62C1422515565E5F0E83304031C79CC6E90A12CC2DB3480B26F"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_leet_variantg.png",
+      "size_bytes": 202502,
+      "sha256": "8A7E8B6AA597FD6BB4528F0738AF290E21A85BFE59D7FD5696116F01CDE52F30"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_leet_varianth.png",
+      "size_bytes": 170885,
+      "sha256": "3A7759E73ABB6F4DA9BC27FF76C56DC1E43547CD660E57E8853830E9BB24CD67"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_leet_varianti.png",
+      "size_bytes": 182471,
+      "sha256": "1F941B5022FDADC07562333C9AFA5719176C90E08E295BBB7C418078A3DA4773"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_leet_variantj.png",
+      "size_bytes": 169221,
+      "sha256": "FD8FA9DE301AA1C9DA46F7D0860E2078251F35B7441151C5EF529A0BCD1E2169"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_phoenix_heavy.png",
+      "size_bytes": 166558,
+      "sha256": "4821FA52C87A92583CAFB9AF5E13B9301C3489444FF84B6F1B217567646CB51A"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_phoenix_varianta.png",
+      "size_bytes": 141359,
+      "sha256": "3EE4229D0D7320C2F36A038FFBDEDC63ABB011CBE45F9BC7EF221EB91DB628A6"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_phoenix_variantb.png",
+      "size_bytes": 137580,
+      "sha256": "AC000F540B145645DABDE221F5DDA4CD7A6ED81AA37160D000436FDCBEAFC7D5"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_phoenix_variantc.png",
+      "size_bytes": 140748,
+      "sha256": "D982971F6E3869EAFC0495367A95BFFD8BF18425AD1AA7D8047B78C9716387A0"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_phoenix_variantd.png",
+      "size_bytes": 139017,
+      "sha256": "666096E17E9140A52F874237FF594D5840B52FABCF34B27746344114AB065644"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_phoenix_variantf.png",
+      "size_bytes": 162326,
+      "sha256": "4DE11742536307B5CD53794C63D3A7DDA029832E0F17B484D954F9DA9F9F5091"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_phoenix_variantg.png",
+      "size_bytes": 162313,
+      "sha256": "1688D6BA8614430535E0FBBD8DBDDAA0127AA22944B3729C7325BF94C0CB5669"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_phoenix_varianth.png",
+      "size_bytes": 170403,
+      "sha256": "05D4A6C438722B4C688E9242E8072AADCB3624BFE936DBEB236C376BAC242E16"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_phoenix_varianti.png",
+      "size_bytes": 169563,
+      "sha256": "E4A5219E715810A08CB2D29035C34F728584862B9AFA508E89679C65C9BA936D"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_phoenix.png",
+      "size_bytes": 182220,
+      "sha256": "38FF01381D9D718D2E34435E41466FFFB4A02169AB4A32E9E84E2039D2FA2BCF"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_professional_varf.png",
+      "size_bytes": 180210,
+      "sha256": "FF0F6CCFA8A7A20A4F42DD383AE2C26AFB70D1FCD9D8B3E3F4A4F2F34343BF67"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_professional_varf1.png",
+      "size_bytes": 162758,
+      "sha256": "A41EB112AECEAA9078EBAB512EEDD0E9B64059F1003D73F822CEBF53AF7782E9"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_professional_varf2.png",
+      "size_bytes": 175027,
+      "sha256": "726F4C87B3325A73A0B9458616BB6DFAEFA2F6D5482729DDC6ED41ACD3293CD1"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_professional_varf3.png",
+      "size_bytes": 175291,
+      "sha256": "A1FAD1845CA3A3F4CAFDC9FFB7278E6E81393EDA829047EFD8E58A0B0E86D8C6"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_professional_varf4.png",
+      "size_bytes": 164468,
+      "sha256": "E16AF8309545F9444496CBF326E9945E2753F07997A2A07DFA00BF5C8ACD2504"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_professional_varf5.png",
+      "size_bytes": 183010,
+      "sha256": "D2CE374BE9F492FB0F83C6468F02A216CDA82934B68B4678EE66C86B1A6FC513"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_professional_varg.png",
+      "size_bytes": 157885,
+      "sha256": "38A3B16C83B75D4360340A813434183989AB0B448D32D6A214A85B6CB73D8C0D"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_professional_varh.png",
+      "size_bytes": 184810,
+      "sha256": "2DCDB7C6292143F2CBCC9B1DB2818FAFEB6E87EA69CAF52826A0A7549BDE965D"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_professional_vari.png",
+      "size_bytes": 177767,
+      "sha256": "35241140731BBFD6FB51A7D2C24A32E5188F6B0F36E7EFA708DAC68DC9E2BDAC"
+    },
+    {
+      "relative_path": "assets\\characters\\tm_professional_varj.png",
+      "size_bytes": 160683,
+      "sha256": "5D3623FE2F818B3AEBCB1D226BB89C7DB4BD4B0E4BD5EE6629EC7D9DAED3C3C1"
+    },
+    {
+      "relative_path": "assets\\icons\\ak47.svg",
+      "size_bytes": 3637,
+      "sha256": "ED7E033B11132605A7C2AE31D0A8DF49C9993703ECBC0642155C3192142CADE0"
+    },
+    {
+      "relative_path": "assets\\icons\\aug.svg",
+      "size_bytes": 5169,
+      "sha256": "145AA54E61B616544E86EC895BA303C7A6480A197C6176A07265F5F234B5BC52"
+    },
+    {
+      "relative_path": "assets\\icons\\awp.svg",
+      "size_bytes": 4893,
+      "sha256": "21E1C6CCBEF3A93BC5E984587FA97A0DE64417646A48A789864D0E5731A625D6"
+    },
+    {
+      "relative_path": "assets\\icons\\axe.svg",
+      "size_bytes": 1254,
+      "sha256": "4BC723F9EDEF4F12B785F5A612ADA3466E473928EC6DC85F1F83F8F68F32C612"
+    },
+    {
+      "relative_path": "assets\\icons\\bayonet.svg",
+      "size_bytes": 2964,
+      "sha256": "2DFDB1D3E1E2F9F3374D49CD7589B4FC450CFC91111E0670D5739327E82D2A86"
+    },
+    {
+      "relative_path": "assets\\icons\\bizon.svg",
+      "size_bytes": 54273,
+      "sha256": "AE6259BA48323E132D37A2DF13D162101898C35B3A1873E1B8913C8C193F9905"
+    },
+    {
+      "relative_path": "assets\\icons\\c4_sml.png",
+      "size_bytes": 468,
+      "sha256": "33DB21B1401C299586A4079E2A998E23807121E49D96E50D882AA72C43909EC0"
+    },
+    {
+      "relative_path": "assets\\icons\\c4.svg",
+      "size_bytes": 6534,
+      "sha256": "4CCFA5C0B98F54E3815F92779814D5EF3DDB6F01D2F3CCEBD049372EFB2EE310"
+    },
+    {
+      "relative_path": "assets\\icons\\cog.svg",
+      "size_bytes": 1735,
+      "sha256": "EEEA2A5D047B5EBBE8A10BFA597F09D9549E3D4CF44126242AC9BF394E3988B7"
+    },
+    {
+      "relative_path": "assets\\icons\\cz75a.svg",
+      "size_bytes": 4960,
+      "sha256": "BC0FDAF5D7806ADCA94A9D4224D73D4819A6966EC989570682FFA62FEBCFF89B"
+    },
+    {
+      "relative_path": "assets\\icons\\deagle.svg",
+      "size_bytes": 3982,
+      "sha256": "5AB139D7151CEAA530DEB352A08146CE625CE5A9F0FCF1B8554C57C42999B950"
+    },
+    {
+      "relative_path": "assets\\icons\\decoy.svg",
+      "size_bytes": 1988,
+      "sha256": "2D49015E12F7AD1217D89509FEDD5801E0103C646A22D144509004147A3B67B0"
+    },
+    {
+      "relative_path": "assets\\icons\\defuser.svg",
+      "size_bytes": 4912,
+      "sha256": "9810A89C92279B7EEEB1837D16A0A9A7A782114FB8E23AEB5D48872146BDF3BE"
+    },
+    {
+      "relative_path": "assets\\icons\\elite.svg",
+      "size_bytes": 9169,
+      "sha256": "F8E43A50D1B21BC30843C61B543BD965D108010D5F4998E6FFA44A9F96B3630F"
+    },
+    {
+      "relative_path": "assets\\icons\\famas.svg",
+      "size_bytes": 5408,
+      "sha256": "BA5D5BED81D8EFD6FCD049D8400C5A78A587A9F62F0585910B4CFF593D8030EC"
+    },
+    {
+      "relative_path": "assets\\icons\\fiveseven.svg",
+      "size_bytes": 3356,
+      "sha256": "7B9AA3B6FDB84329A43E537DFF69275B224D548CBD73E7EB1272FA973322DCDA"
+    },
+    {
+      "relative_path": "assets\\icons\\flashbang.svg",
+      "size_bytes": 1422,
+      "sha256": "BCCB65A3452C6695A342654566510E6F20352D4449740AD477C2A4EEEA3D3645"
+    },
+    {
+      "relative_path": "assets\\icons\\g3sg1.svg",
+      "size_bytes": 8549,
+      "sha256": "A4806843E5010F9CDF6349B58998A976703EC65D44B0862DDAF78673609D583A"
+    },
+    {
+      "relative_path": "assets\\icons\\galilar.svg",
+      "size_bytes": 6185,
+      "sha256": "935B679077B5A6EA4264E66541260FB905A058F5B999E82191B79E1D94452C56"
+    },
+    {
+      "relative_path": "assets\\icons\\gauge.svg",
+      "size_bytes": 1913,
+      "sha256": "9DB5DECE05FF966113DAAD3C92355AD932F31113BC5E84E6547F47D368114FA7"
+    },
+    {
+      "relative_path": "assets\\icons\\glock.svg",
+      "size_bytes": 3280,
+      "sha256": "0CA4C81B4888D84E54E699CC4831A69992005E246DC24FFB9AA52CADE6133692"
+    },
+    {
+      "relative_path": "assets\\icons\\health.svg",
+      "size_bytes": 217,
+      "sha256": "DC9F660B81202BDA98EAD1B1DAA55C86C503F33AF75E7650496D60DA0C06B880"
+    },
+    {
+      "relative_path": "assets\\icons\\hegrenade.svg",
+      "size_bytes": 51280,
+      "sha256": "8C33330EA8DB7626D62FD6CD60139E2242BE9E4B5ADDE54A5D43A967C462E479"
+    },
+    {
+      "relative_path": "assets\\icons\\hkp2000.svg",
+      "size_bytes": 3037,
+      "sha256": "66FE96C04579615F3491D662770511785D57557C2BCC21AC81DDDFC0BA65238A"
+    },
+    {
+      "relative_path": "assets\\icons\\icon-enemy-death_png.png",
+      "size_bytes": 631,
+      "sha256": "9CE0C7E673025BB45A03FD5F29B302C007F50671F676CDD88C56CE6BEB86328E"
+    },
+    {
+      "relative_path": "assets\\icons\\incgrenade.svg",
+      "size_bytes": 13524,
+      "sha256": "7C87DEC72D1C0C622BA248FA88A6CD75F91671086A995E6A72201C9404A205D2"
+    },
+    {
+      "relative_path": "assets\\icons\\inferno.svg",
+      "size_bytes": 2771,
+      "sha256": "80D8A8D339B5FD2560705C0410F7C74101279A4FBA9186E86712ADCFCB3CD229"
+    },
+    {
+      "relative_path": "assets\\icons\\kevlar_helmet.svg",
+      "size_bytes": 5222,
+      "sha256": "BD10D6837EE1F23AB505C68AACF93E0D6DBD4B6C6021CCBD9325AC740B4881D0"
+    },
+    {
+      "relative_path": "assets\\icons\\kevlar.svg",
+      "size_bytes": 3137,
+      "sha256": "77A0CBFEA4FDD74BF0CF2785F4F373291C2A67DE2D775326CF9087C0EC8C377E"
+    },
+    {
+      "relative_path": "assets\\icons\\knife_bowie.svg",
+      "size_bytes": 3578,
+      "sha256": "4045C643EE98ED91A02EC90780E35CE38045C9AACB4CFA294A6D80588CB02E5C"
+    },
+    {
+      "relative_path": "assets\\icons\\knife_butterfly.svg",
+      "size_bytes": 8034,
+      "sha256": "EFE285CDFD79B518544CCF6FC0203B8C25517C4AE36F27D640CAFF37C1DB34FC"
+    },
+    {
+      "relative_path": "assets\\icons\\knife_canis.svg",
+      "size_bytes": 5601,
+      "sha256": "E67136C2BF4FE95C637FA5EF897EC22852419F7326A7A4B9A77D488B1FAF675A"
+    },
+    {
+      "relative_path": "assets\\icons\\knife_cord.svg",
+      "size_bytes": 8906,
+      "sha256": "1CA8F25A7272C9AC68938409A23EB5E5CD6667D8C46167E1217EF7F34FF892AC"
+    },
+    {
+      "relative_path": "assets\\icons\\knife_css.svg",
+      "size_bytes": 1866,
+      "sha256": "A5A8AE19F0D669524F63697B3364E3405DC0E233343B62FA3ED8EAED2A64DCD9"
+    },
+    {
+      "relative_path": "assets\\icons\\knife_falchion.svg",
+      "size_bytes": 3716,
+      "sha256": "AE2F359BED8616C1D84E02C39211888A2AD2CA403E0FD6A9702A11D06E0223CC"
+    },
+    {
+      "relative_path": "assets\\icons\\knife_flip.svg",
+      "size_bytes": 3840,
+      "sha256": "60D0C80A50A1C0BC868022A66B0DCF04F1581A15374F44BF7FB9E60B13A276DE"
+    },
+    {
+      "relative_path": "assets\\icons\\knife_gut.svg",
+      "size_bytes": 3793,
+      "sha256": "FD99F93A3F13CE2EA0707ECEC0782B64DF15800DDCDC48923F021450886E7B17"
+    },
+    {
+      "relative_path": "assets\\icons\\knife_gypsy_jackknife.svg",
+      "size_bytes": 1667,
+      "sha256": "79FD9C5895ECD945A98F90C6DA25D07BF564BE0D1B0C75BBF92C8675C152161F"
+    },
+    {
+      "relative_path": "assets\\icons\\knife_karambit.svg",
+      "size_bytes": 4350,
+      "sha256": "6331908A5DD5B8133619910A8435BD4F466A9332D82971EB8CACC005637D00E2"
+    },
+    {
+      "relative_path": "assets\\icons\\knife_kukri.svg",
+      "size_bytes": 3671,
+      "sha256": "6DA3005441CF3B8070C191CF0C65249DAE59DD7B7D6BA91043F621467C889BB3"
+    },
+    {
+      "relative_path": "assets\\icons\\knife_m9_bayonet.svg",
+      "size_bytes": 4433,
+      "sha256": "24F15D95965434CD9335868EDE8C0DCAE120E7FCEA028179E5039DAEAAC81AC8"
+    },
+    {
+      "relative_path": "assets\\icons\\knife_outdoor.svg",
+      "size_bytes": 2817,
+      "sha256": "408F30849B86D7BF5A8AC190BF3588943B660DF88D9DC8C4AD8BBB57A66FE395"
+    },
+    {
+      "relative_path": "assets\\icons\\knife_push.svg",
+      "size_bytes": 14238,
+      "sha256": "673892DF666DF0E5D1CBC470E00A19B123E9D05539EE10D063483D2C1CBE1645"
+    },
+    {
+      "relative_path": "assets\\icons\\knife_skeleton.svg",
+      "size_bytes": 3397,
+      "sha256": "E9D657FA897D5976D9CEFF048687E73A2097D76F96B12556C17D353703E31847"
+    },
+    {
+      "relative_path": "assets\\icons\\knife_stiletto.svg",
+      "size_bytes": 1367,
+      "sha256": "10F28D76011B29FA9BAE8E539DF3C6C8448BF6FC8F6E2F3F820471412E2F95F5"
+    },
+    {
+      "relative_path": "assets\\icons\\knife_survival_bowie.svg",
+      "size_bytes": 3557,
+      "sha256": "7A6373010CB3E0F7426BE334E01AE19BEB684399B48CA2C5196BE6AE72C38222"
+    },
+    {
+      "relative_path": "assets\\icons\\knife_t.svg",
+      "size_bytes": 2760,
+      "sha256": "0EECCD8864C3398A05FA09817A86D93BB359D7F63B97155945DA9F8C1CF9EAE7"
+    },
+    {
+      "relative_path": "assets\\icons\\knife_tactical.svg",
+      "size_bytes": 7688,
+      "sha256": "2B115D5911C397C20FB3C7130C392EC27498C3B6B00FD59015BCD74AE40F6D02"
+    },
+    {
+      "relative_path": "assets\\icons\\knife_twinblade.svg",
+      "size_bytes": 3308,
+      "sha256": "AC5AE164DD93119FCB8A5BFAD7CEA06F5C7A9D61710EEFEF0991AF3E9D86E9C6"
+    },
+    {
+      "relative_path": "assets\\icons\\knife_ursus.svg",
+      "size_bytes": 7385,
+      "sha256": "9ADBC60D84E303FF08C159330DB3E31AE8C350292B9C261289E34B14BEC7DB63"
+    },
+    {
+      "relative_path": "assets\\icons\\knife_widowmaker.svg",
+      "size_bytes": 3036,
+      "sha256": "5C6D3A1A62F0CF2321CD6243CCF27E8512935D86154D91CDB6AE5E78CEB8F0C7"
+    },
+    {
+      "relative_path": "assets\\icons\\knife.svg",
+      "size_bytes": 3574,
+      "sha256": "865EDD79E600F5812DBAF910438AF1F4CA2FB74A75FA815CC00D95802DE25185"
+    },
+    {
+      "relative_path": "assets\\icons\\knifegg.svg",
+      "size_bytes": 3497,
+      "sha256": "E06DB25069DCD0373C83CC919B367AEEC5C236AD82EBF6CD17BDBC8261E6B012"
+    },
+    {
+      "relative_path": "assets\\icons\\m249.svg",
+      "size_bytes": 7542,
+      "sha256": "7C1B49390F87BDF8CE3F4B1FA0F54EF058B42B52ECE09C6E4DA92B5CD5F49787"
+    },
+    {
+      "relative_path": "assets\\icons\\m4a1_silencer_off.svg",
+      "size_bytes": 5312,
+      "sha256": "CCC44D5F7C5B33704B24ADA16F17420FBE471416454A0AC1E2E471E85F8BC341"
+    },
+    {
+      "relative_path": "assets\\icons\\m4a1_silencer.svg",
+      "size_bytes": 5427,
+      "sha256": "3565857C155B80C0D2289454C1F63C231994229B3E4B347AB594E67203F65035"
+    },
+    {
+      "relative_path": "assets\\icons\\m4a1.svg",
+      "size_bytes": 4866,
+      "sha256": "4E80E247608B65016E4606C00F49D55492A0F1DC34E71A6B7C7CA88D27CDC650"
+    },
+    {
+      "relative_path": "assets\\icons\\mac10.svg",
+      "size_bytes": 4613,
+      "sha256": "2AAFAC43011B01BF92F05729BACD09DC939ED492B06E3B6F0A4C33B200D37362"
+    },
+    {
+      "relative_path": "assets\\icons\\mag7.svg",
+      "size_bytes": 31103,
+      "sha256": "6C6324B36F5BA9512EA32334222F4A84E4C8F00EFE3E7BD0BCD32AEACD5EA272"
+    },
+    {
+      "relative_path": "assets\\icons\\molotov.svg",
+      "size_bytes": 3013,
+      "sha256": "BB4B5A04EEFA1F4CBE7312969A09D2DC70DD2C2CC02B9938FA8E48C0EA4A2A4D"
+    },
+    {
+      "relative_path": "assets\\icons\\mp5sd.svg",
+      "size_bytes": 3442,
+      "sha256": "293459424FA4F707E2633DB6E25897F34A12795BEE702FC6CAAF5E83902593D2"
+    },
+    {
+      "relative_path": "assets\\icons\\mp7.svg",
+      "size_bytes": 37144,
+      "sha256": "21D90992AFA8A726542E861A4DFB07A154A36A06C875D3096709944A85768813"
+    },
+    {
+      "relative_path": "assets\\icons\\mp9.svg",
+      "size_bytes": 23824,
+      "sha256": "6E62964B1EBE9E50C2584A771E24EAA4C6F63FC5204648C3D178FB81A938C799"
+    },
+    {
+      "relative_path": "assets\\icons\\negev.svg",
+      "size_bytes": 45244,
+      "sha256": "743ECCC4DACE49146E82A68C1DCD333A9B5BE30AA08ABA3C86DB7FCA9A360DC0"
+    },
+    {
+      "relative_path": "assets\\icons\\nova.svg",
+      "size_bytes": 30902,
+      "sha256": "9A2D5E7DB9DCF0211A588D73F6DBBFBFF22D79D0A858BB8CC34B6DE5302C6467"
+    },
+    {
+      "relative_path": "assets\\icons\\p2000.svg",
+      "size_bytes": 3066,
+      "sha256": "53F73F1453039E9B2F39D566A27DF3A9151A2DA6416E46305F2F4BD090A782DF"
+    },
+    {
+      "relative_path": "assets\\icons\\p250.svg",
+      "size_bytes": 20482,
+      "sha256": "DF86B3B3A4F2168610DFCDE2796577F9AAA4049AD23F9B7CCA60B8D78C4EE0EA"
+    },
+    {
+      "relative_path": "assets\\icons\\p90.svg",
+      "size_bytes": 4631,
+      "sha256": "13D3A3FA692B16C280F08CCEBA7BAD8BF89225526A70E9BE10A00CD0C64C4057"
+    },
+    {
+      "relative_path": "assets\\icons\\revolver.svg",
+      "size_bytes": 5642,
+      "sha256": "E0C5BA5BA7B0CDAD3B775DD345EC7CB34243346FB84645E2E17EA8A39194A855"
+    },
+    {
+      "relative_path": "assets\\icons\\sawedoff.svg",
+      "size_bytes": 25783,
+      "sha256": "45A3F55FA526D6948033D99A50CD965B7ECFA6C3EB810785F3D74FFB5556B061"
+    },
+    {
+      "relative_path": "assets\\icons\\scar20.svg",
+      "size_bytes": 38689,
+      "sha256": "177B6A4490BE9A2D456F9CC933AE7AA14B7FF6D7FB858473FB7CAE019A790B0E"
+    },
+    {
+      "relative_path": "assets\\icons\\sg556.svg",
+      "size_bytes": 29311,
+      "sha256": "6C0105235017802611D302D11BAC4BDF9E83E9EDEB6B5D91BBF449052128D3F3"
+    },
+    {
+      "relative_path": "assets\\icons\\smokegrenade.svg",
+      "size_bytes": 1052,
+      "sha256": "FDF505BEFAA9D3DBF04D27204088B93E5941BA62ED8744E9675C907AA69056F9"
+    },
+    {
+      "relative_path": "assets\\icons\\snowball.svg",
+      "size_bytes": 2164,
+      "sha256": "B8DA6C372965D2BEDB109189E17A53E85CF1D8F35C9C58B24EE5C96BC317D0BA"
+    },
+    {
+      "relative_path": "assets\\icons\\spray0.svg",
+      "size_bytes": 2200,
+      "sha256": "F8EB49FF4533A8952A14FF536C1CB522358AEF32621493E9CAAB99D633A23CF3"
+    },
+    {
+      "relative_path": "assets\\icons\\ssg08.svg",
+      "size_bytes": 35995,
+      "sha256": "82BBB1B093F405A26F87C2E85D07909267814F117CE7A9035EF4EE3E23FD2CED"
+    },
+    {
+      "relative_path": "assets\\icons\\taser.svg",
+      "size_bytes": 3241,
+      "sha256": "A3E119853A03EBBB0267FF7721246C5AE5132DD6B325EC21D74638DC72A7B7EC"
+    },
+    {
+      "relative_path": "assets\\icons\\tec9.svg",
+      "size_bytes": 27681,
+      "sha256": "DCE734F0A08B42AA6EBB7946D1C3653823C4C70DA99D05F2B23AFA6BA80B27A6"
+    },
+    {
+      "relative_path": "assets\\icons\\ump45.svg",
+      "size_bytes": 8739,
+      "sha256": "DB234C16C85E5F7AA81821CDD41303857783673CA96792072C9BA51205108124"
+    },
+    {
+      "relative_path": "assets\\icons\\usp_silencer_off.svg",
+      "size_bytes": 2768,
+      "sha256": "6EA28119E8C9FEDFE46D354389810200E2F9803EECC3C4E9C6A21AD290A2567D"
+    },
+    {
+      "relative_path": "assets\\icons\\usp_silencer.svg",
+      "size_bytes": 3179,
+      "sha256": "6F2693049050B883CBABEAC89437FBCB8504520EC779156D4F7877E077EC3D7C"
+    },
+    {
+      "relative_path": "assets\\icons\\xm1014.svg",
+      "size_bytes": 5837,
+      "sha256": "EC202A1CCDDA27830262F764AC741EBA5349211EB72776E4F8E65E78EC0CCEA5"
+    },
+    {
+      "relative_path": "assets\\typefaces\\TASAOrbiterVF.woff2",
+      "size_bytes": 33684,
+      "sha256": "41BAC255D6BDB856095CD0FA65E7B55A0B67EDFD03B05C7E03955941AAEFADB8"
+    },
+    {
+      "relative_path": "data\\cs_agency\\background.png",
+      "size_bytes": 3393773,
+      "sha256": "81CFCA9C488B2E30821A918ED79DD0D507C1F531186BC99C0FE8C1EFBADB53B7"
+    },
+    {
+      "relative_path": "data\\cs_agency\\data.json",
+      "size_bytes": 59,
+      "sha256": "03EDEFC663855F5924DCA8E4941E0BA9E3467088287A52ED1C5CC3497752AE36"
+    },
+    {
+      "relative_path": "data\\cs_agency\\radar.png",
+      "size_bytes": 191790,
+      "sha256": "F80B8F4030249163841BD91068AD9B2490C7FCB3C0DEEFDDA87FD027354BDE98"
+    },
+    {
+      "relative_path": "data\\cs_italy\\background.png",
+      "size_bytes": 3393773,
+      "sha256": "81CFCA9C488B2E30821A918ED79DD0D507C1F531186BC99C0FE8C1EFBADB53B7"
+    },
+    {
+      "relative_path": "data\\cs_italy\\data.json",
+      "size_bytes": 43,
+      "sha256": "D22926C471738276A325D4136EA10493033EA7AD796135286ACBCB03097FF1F8"
+    },
+    {
+      "relative_path": "data\\cs_italy\\radar.png",
+      "size_bytes": 106720,
+      "sha256": "09B373A13DF847D6486C0F326D4258FEA977D4CE4064BEBD2712BB2E4EF61FBA"
+    },
+    {
+      "relative_path": "data\\cs_office\\background.png",
+      "size_bytes": 2913471,
+      "sha256": "A5D3374B149B140E18B72BBE998F054E4DF105C12B1B70C0A2584D91264A79D8"
+    },
+    {
+      "relative_path": "data\\cs_office\\data.json",
+      "size_bytes": 43,
+      "sha256": "C152B0DF6B78EF20E4D6BF2859238C0136A8A99CE5C6ECDE76F2655D36A191AD"
+    },
+    {
+      "relative_path": "data\\cs_office\\radar.png",
+      "size_bytes": 190533,
+      "sha256": "5BFF719CDD754AADA5377792BB25338142E5AC5E9A77B7D7EEB9EA3B2EFBBE50"
+    },
+    {
+      "relative_path": "data\\de_ancient\\background.png",
+      "size_bytes": 4140067,
+      "sha256": "43F0C02FA0A0C00BF377B1CE8DAF4314FF360352A113BB763B0CA3A97648FF26"
+    },
+    {
+      "relative_path": "data\\de_ancient\\data.json",
+      "size_bytes": 42,
+      "sha256": "3EE143BA373A740AE322A5A2679A306F21891A606A10D5287A429FEFCADF2B73"
+    },
+    {
+      "relative_path": "data\\de_ancient\\radar.png",
+      "size_bytes": 90274,
+      "sha256": "CB2105652A05C12DCDAAC26D4FA03A3124BFD212835E91791B5AAD35D1FF426C"
+    },
+    {
+      "relative_path": "data\\de_anubis\\background.png",
+      "size_bytes": 3232367,
+      "sha256": "F2E96A744EA602DA0126BE3E158A6D2379FBFE01093C880381C0EB4DE73BC363"
+    },
+    {
+      "relative_path": "data\\de_anubis\\data.json",
+      "size_bytes": 45,
+      "sha256": "33958D4CFA5BB28E3667F7DDDFE137E465ABEA29BA2C14750147082DA50C1C36"
+    },
+    {
+      "relative_path": "data\\de_anubis\\radar.png",
+      "size_bytes": 106254,
+      "sha256": "5D8CC88AB13769344BFC358C3CCE5A5D77F73BE453EC34EDCB767F5B30EB77EC"
+    },
+    {
+      "relative_path": "data\\de_cache\\background.png",
+      "size_bytes": 2690423,
+      "sha256": "3D40CC35A1367B97A7CFD9537980BC029AA1A6313259C66FED05A07A0588DE89"
+    },
+    {
+      "relative_path": "data\\de_cache\\data.json",
+      "size_bytes": 46,
+      "sha256": "872FD962C73B56D4414C1B5345F09329D24E1FAEDE540E33C37C1D61FC2451F4"
+    },
+    {
+      "relative_path": "data\\de_cache\\radar.png",
+      "size_bytes": 228843,
+      "sha256": "C25F210C0BBF0FA4029AD5483FABB6441D67DB77ED9BBCF4244F94D25DA18964"
+    },
+    {
+      "relative_path": "data\\de_dust2\\background.png",
+      "size_bytes": 3732335,
+      "sha256": "CF4E3A052990293A187604A47114FC600557851196E429698DD16B596B32C303"
+    },
+    {
+      "relative_path": "data\\de_dust2\\data.json",
+      "size_bytes": 42,
+      "sha256": "16EF4B1010C016622031D1822F73BB605067CEDA343B28A983152425DFD4ED80"
+    },
+    {
+      "relative_path": "data\\de_dust2\\radar.png",
+      "size_bytes": 159250,
+      "sha256": "101B34B6A853C5042E69635C669B6F29FEC8BA38FA642F5BEEA9EADEAA174EB1"
+    },
+    {
+      "relative_path": "data\\de_golden\\background.png",
+      "size_bytes": 2994319,
+      "sha256": "D67943003531EE6920F018E09AFA397408356CD8E3A37C77BA2D1B55CB1912BF"
+    },
+    {
+      "relative_path": "data\\de_golden\\data.json",
+      "size_bytes": 57,
+      "sha256": "408DAEBE14AB35B5315568AC238317BB1F340D5C062A6783DD74523DF509350B"
+    },
+    {
+      "relative_path": "data\\de_golden\\radar.png",
+      "size_bytes": 182561,
+      "sha256": "7B4D6B966B8E8166D86EA8FD8D0E9EC30BED801CD7F494AADCA9AE445F7EFC10"
+    },
+    {
+      "relative_path": "data\\de_grail\\background.png",
+      "size_bytes": 3393773,
+      "sha256": "81CFCA9C488B2E30821A918ED79DD0D507C1F531186BC99C0FE8C1EFBADB53B7"
+    },
+    {
+      "relative_path": "data\\de_grail\\data.json",
+      "size_bytes": 57,
+      "sha256": "977EFCC9C840B4E1D49A11609A25D5E43693009267B2B86770A7F27513F607BF"
+    },
+    {
+      "relative_path": "data\\de_grail\\radar.png",
+      "size_bytes": 453319,
+      "sha256": "42F9C09AACC083B0D6DF1EC445CF2214ABBC1C8F7A8642D8A6698895E0B33B78"
+    },
+    {
+      "relative_path": "data\\de_inferno\\background.png",
+      "size_bytes": 3469494,
+      "sha256": "B82B35339DE0F3EE9C017C8B790F979E9FC01D9C3441DA36E367516EA705A220"
+    },
+    {
+      "relative_path": "data\\de_inferno\\data.json",
+      "size_bytes": 43,
+      "sha256": "B7F101608B3CFE71ED4C6C2CE10A96C5F4A2796CB616EB324CBB208630281FBF"
+    },
+    {
+      "relative_path": "data\\de_inferno\\radar.png",
+      "size_bytes": 128928,
+      "sha256": "003DAF59BC7514FBEF8D72FE946858DD214ACC9D1342AB298F953C58D4959025"
+    },
+    {
+      "relative_path": "data\\de_mirage\\background.png",
+      "size_bytes": 2835621,
+      "sha256": "BE7DD5D20D65C84F2EFF0044BD5685B52D9900662A71384E8534C90C0AA2FBC8"
+    },
+    {
+      "relative_path": "data\\de_mirage\\data.json",
+      "size_bytes": 44,
+      "sha256": "1B1AE2D4A5BFE41FC9D8FD60771D337958A020E3BB18CAC5E7C0B1FEF969BEFC"
+    },
+    {
+      "relative_path": "data\\de_mirage\\de_mirage_radar_psd.psd",
+      "size_bytes": 1872487,
+      "sha256": "AB584B3872CDF13BBA9CBAB3C1862C0CB417DFB9D77B2D728DF6D3CB83204FC3"
+    },
+    {
+      "relative_path": "data\\de_mirage\\radar.png",
+      "size_bytes": 140607,
+      "sha256": "77FF8C4D75B3F63E72090F49D5755B406CA0DADC72A2CF2217A12A0E378DB869"
+    },
+    {
+      "relative_path": "data\\de_nuke\\background.png",
+      "size_bytes": 3593920,
+      "sha256": "197AECCF3E945C8105D55313DA8F6FE30E9BA7B7832EE293E48593B56AE3B807"
+    },
+    {
+      "relative_path": "data\\de_nuke\\data.json",
+      "size_bytes": 41,
+      "sha256": "B0A9BAE27BC045198B91CA90A69728828EA76D7AB290A725B7A4D63277D1E2A3"
+    },
+    {
+      "relative_path": "data\\de_nuke\\radar.png",
+      "size_bytes": 77524,
+      "sha256": "B0EF2F2F91CE38942531CFD3E62CF9FEA450294A272580788F551FAAA96CBB2B"
+    },
+    {
+      "relative_path": "data\\de_overpass\\background.png",
+      "size_bytes": 3387069,
+      "sha256": "5E9211CE22BD9669BC36FCC247D7A4642DC733B2C40F96B1F386DF12E7886562"
+    },
+    {
+      "relative_path": "data\\de_overpass\\data.json",
+      "size_bytes": 43,
+      "sha256": "186FB002903D538995DD10B7B1CC963172E0860874404A64D6463D59F8869D1B"
+    },
+    {
+      "relative_path": "data\\de_overpass\\radar.png",
+      "size_bytes": 200808,
+      "sha256": "78ADF7A325CF1F16C20C35A201459DBB37F00460E8D4F36C9925CB2E237B302F"
+    },
+    {
+      "relative_path": "data\\de_palacio\\background.png",
+      "size_bytes": 3620221,
+      "sha256": "05413B6BA07F7D1D6CD3CEF66CE1B8AB1DE7124F4C3D89B1476E9B14F970C143"
+    },
+    {
+      "relative_path": "data\\de_palacio\\data.json",
+      "size_bytes": 58,
+      "sha256": "104B2D0C58E3E9183DB155F46B26FE0E9104C742F6A36B053C9F8480ECD4039D"
+    },
+    {
+      "relative_path": "data\\de_palacio\\radar.png",
+      "size_bytes": 552064,
+      "sha256": "5EF54765B9A3439E110252C6A8007F3122EE12F5BA4AE7F1CC6A643D81A8A446"
+    },
+    {
+      "relative_path": "data\\de_thera\\background.png",
+      "size_bytes": 1271130,
+      "sha256": "0B376C1C9599586DA9EB0DF736D54A540355396B9B59C4E9894191101E7C1EB5"
+    },
+    {
+      "relative_path": "data\\de_thera\\data.json",
+      "size_bytes": 58,
+      "sha256": "E285C229A58C63C026EADEDD92CE7A115BDB41A9876FF6EC6F6ACE1AEA567B72"
+    },
+    {
+      "relative_path": "data\\de_thera\\radar.png",
+      "size_bytes": 208102,
+      "sha256": "ADE2948D3E030F319C7BE8FA07A179AF26923C615D84FABB3E1CC1FA5012DF70"
+    },
+    {
+      "relative_path": "data\\de_train\\background.png",
+      "size_bytes": 3705863,
+      "sha256": "484D1C0B1A3DE0AAACE2AB2126594E2E1B84F1A1D4208683A16E1D5C27BFFBEC"
+    },
+    {
+      "relative_path": "data\\de_train\\data.json",
+      "size_bytes": 48,
+      "sha256": "38188A8AB3BE7FF67A564E9D90EB2DFE0AA930B46B070C32EC8ECED5B39A3595"
+    },
+    {
+      "relative_path": "data\\de_train\\radar.png",
+      "size_bytes": 146822,
+      "sha256": "735E104C007D2CD500309F6FD49A999E4F1B389EF85BE7BD58CB25ACA69F383D"
+    },
+    {
+      "relative_path": "data\\de_vertigo\\background.png",
+      "size_bytes": 2950590,
+      "sha256": "86346A11CF3D75CB3313B56AB53F69B5B025BC581347578C5095FF94468351BF"
+    },
+    {
+      "relative_path": "data\\de_vertigo\\data.json",
+      "size_bytes": 60,
+      "sha256": "3E673DDD4DC26CCCE74B2DEC35AAE3EBA869750D2D3E79F2E51A94F28EE2C6A8"
+    },
+    {
+      "relative_path": "data\\de_vertigo\\radar.png",
+      "size_bytes": 77792,
+      "sha256": "D795FAC38A04F9488495D1BC822B55FDFD585E11633D39E2BCA8467D4D29E90B"
+    }
+  ],
+  "warnings": [
+    "Browserslist caniuse-lite data is 12 months old",
+    "TASAOrbiterVF.woff2 unresolved at build time"
+  ]
+}

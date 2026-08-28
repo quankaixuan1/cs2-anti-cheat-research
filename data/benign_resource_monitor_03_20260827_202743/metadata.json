@@ -1,0 +1,50 @@
+{
+  "trial_id": "benign_resource_monitor_03",
+  "condition": "benign_application",
+  "application_name": "Windows Resource Monitor",
+  "application_category": "process_monitor",
+  "cheat_enabled": false,
+  "enabled_feature": "none",
+  "application_start_time_utc": "2026-08-27T20:28:58.4288040Z",
+  "feature_enable_time_utc": null,
+  "trial_start_time_utc": "2026-08-27T20:27:43.9017045Z",
+  "trial_end_time_utc": "2026-08-27T20:32:44.0134375Z",
+  "expected_label": "benign",
+  "notes": "split=test; scope=user_mode; readiness=ready; design=balanced_reduced; monitor_elevated=true; application_elevated=true; application_started_at_elapsed=74.527s; active_window_seconds=225.585; normal window close did not exit application; exact PID was force-terminated after monitor exit",
+  "detection_threshold": 45,
+  "policy_version": "calibration-v1",
+  "application_process": {
+    "pid": 35196,
+    "process_name": "perfmon.exe",
+    "path": "C:\\Windows\\System32\\perfmon.exe",
+    "sha256": "C344051462AAF9C85F18F6FE3A9B0A980E4A5666910FE5D0D7F2E878A6CD70C9",
+    "signature_status": "Valid",
+    "signature_subject": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+    "preexisting": false,
+    "launched_by_trial": true,
+    "elevated": true,
+    "termination": "taskkill_exact_pid_after_trial"
+  },
+  "observed_results": {
+    "scan_count": 300,
+    "first_scan_time_utc": "2026-08-27T20:27:43.9632698Z",
+    "last_scan_time_utc": "2026-08-27T20:32:42.9676424Z",
+    "handle_rows": 1500,
+    "handle_event_rows": 5,
+    "detection_rows": 0,
+    "alert_handle_rows": 0,
+    "application_handle_rows": 0,
+    "application_max_adjusted_risk_score": null
+  },
+  "performance": {
+    "scan_duration_ms_mean": 715.6810833333337,
+    "scan_duration_ms_p95": 813.433,
+    "scan_duration_ms_max": 948.322,
+    "monitor_cpu_percent_mean": 2.8357900000000016,
+    "monitor_cpu_percent_p95": 3.125,
+    "monitor_cpu_percent_max": 3.358,
+    "monitor_working_set_mb_mean": 96.03630999999994,
+    "monitor_working_set_mb_p95": 112.008,
+    "monitor_working_set_mb_max": 133.992
+  }
+}

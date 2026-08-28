@@ -1,0 +1,9 @@
+{
+  "seed": 20260826,
+  "total_trials": 65,
+  "evaluation_trials": 65,
+  "calibration_trials": 13,
+  "test_trials": 52,
+  "extension_trials": 0,
+  "expected_scans": 19500
+}

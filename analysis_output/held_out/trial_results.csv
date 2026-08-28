@@ -1,0 +1,27 @@
+﻿trial_id,condition,application_name,enabled_feature,expected_label,evaluation_split,scan_count,attribution_mode,subject_handle_count,baseline_a_any_handle,baseline_a_any_handle_latency_ms,background_baseline_a_any_handle,subject_baseline_a_any_handle,subject_baseline_a_any_handle_latency_ms,baseline_b_vm_read,baseline_b_vm_read_latency_ms,background_baseline_b_vm_read,subject_baseline_b_vm_read,subject_baseline_b_vm_read_latency_ms,baseline_c_memory_access,baseline_c_memory_access_latency_ms,background_baseline_c_memory_access,subject_baseline_c_memory_access,subject_baseline_c_memory_access_latency_ms,proposed,proposed_latency_ms,background_proposed,subject_proposed,subject_proposed_latency_ms
+benign_baseline_02,baseline,None,none,benign,test,301,activation_window,1505,1,68.389,,1,68.389,1,68.389,,1,68.389,1,68.389,,1,68.389,0,,,0,
+benign_baseline_03,baseline,None,none,benign,test,301,activation_window,1505,1,58.779,,1,58.779,1,58.779,,1,58.779,1,58.779,,1,58.779,0,,,0,
+benign_discord_overlay_02,benign_application,Discord Overlay,none,benign,test,301,activation_window,1080,1,60.179,,1,682.43,1,60.179,,1,682.43,1,60.179,,1,682.43,0,,,0,
+benign_discord_overlay_03,benign_application,Discord Overlay,none,benign,test,300,activation_window,1090,1,87.92,,1,598.55,1,87.92,,1,598.55,1,87.92,,1,598.55,0,,,0,
+benign_nvidia_performance_overlay_02,benign_application,NVIDIA Performance Overlay,none,benign,test,301,activation_window,1140,1,56.223,,1,714.657,1,56.223,,1,714.657,1,56.223,,1,714.657,0,,,0,
+benign_nvidia_performance_overlay_03,benign_application,NVIDIA Performance Overlay,none,benign,test,300,activation_window,888,1,47.297,,1,780.034,1,47.297,,1,780.034,1,47.297,,1,780.034,0,,,0,
+benign_obs_game_capture_02,benign_application,OBS Studio (Game Capture),game_capture_recording,benign,test,301,activation_window,1000,1,67.42,,1,382.879,1,67.42,,1,382.879,1,67.42,,1,382.879,0,,,0,
+benign_obs_game_capture_03,benign_application,OBS Studio (Game Capture),game_capture_recording,benign,test,301,activation_window,1090,1,88.269,,1,974.652,1,88.269,,1,974.652,1,88.269,,1,974.652,0,,,0,
+benign_process_explorer_02,benign_application,Microsoft Process Explorer,none,benign,test,300,activation_window,1095,1,71.179,,1,824.521,1,71.179,,1,824.521,1,71.179,,1,824.521,0,,,0,
+benign_process_explorer_03,benign_application,Microsoft Process Explorer,none,benign,test,300,activation_window,1120,1,66.99,,1,36.754,1,66.99,,1,36.754,1,66.99,,1,36.754,0,,,0,
+benign_process_monitor_02,benign_application,Microsoft Process Monitor,none,benign,test,301,activation_window,1065,1,77.33,,1,40.766,1,77.33,,1,40.766,1,77.33,,1,40.766,0,,,0,
+benign_process_monitor_03,benign_application,Microsoft Process Monitor,none,benign,test,301,activation_window,1100,1,67.584,,1,601.897,1,67.584,,1,601.897,1,67.584,,1,601.897,0,,,0,
+benign_resource_monitor_02,benign_application,Windows Resource Monitor,none,benign,test,301,activation_window,1115,1,57.884,,1,417.542,1,57.884,,1,417.542,1,57.884,,1,417.542,0,,,0,
+benign_resource_monitor_03,benign_application,Windows Resource Monitor,none,benign,test,300,activation_window,1125,1,61.565,,1,541.0,1,61.565,,1,541.0,1,61.565,,1,541.0,0,,,0,
+benign_steam_overlay_02,benign_application,Steam Overlay,none,benign,test,301,activation_window,960,1,72.837,,1,978.622,1,72.837,,1,978.622,1,72.837,,1,978.622,0,,,0,
+benign_steam_overlay_03,benign_application,Steam Overlay,none,benign,test,300,activation_window,540,1,63.472,,1,949.236,1,63.472,,1,949.236,1,63.472,,1,949.236,0,,,0,
+benign_task_manager_02,benign_application,Windows Task Manager,none,benign,test,301,activation_window,1110,1,62.862,,1,378.174,1,62.862,,1,378.174,1,62.862,,1,378.174,0,,,0,
+benign_task_manager_03,benign_application,Windows Task Manager,none,benign,test,301,activation_window,1130,1,100.886,,1,931.925,1,100.886,,1,931.925,1,100.886,,1,931.925,0,,,0,
+cheat_cs2_external_cheat_02,cheat_software,CS2 External Cheat (C#),software_active,cheat,test,301,activation_window,1277,1,346.256,1,1,346.256,1,346.256,1,1,346.256,1,346.256,1,1,346.256,1,1350.316,0,1,1350.316
+cheat_cs2_external_cheat_03,cheat_software,CS2 External Cheat (C#),software_active,cheat,test,300,activation_window,1278,1,963.479,1,1,963.479,1,963.479,1,1,963.479,1,963.479,1,1,963.479,1,963.479,0,1,963.479
+cheat_cs2_external_esp_02,cheat_software,CS2 External ESP (C++),software_active,cheat,test,301,activation_window,1169,1,170.808,1,1,170.808,1,170.808,1,1,170.808,1,170.808,1,1,170.808,1,1172.295,0,1,1172.295
+cheat_cs2_external_esp_03,cheat_software,CS2 External ESP (C++),software_active,cheat,test,301,activation_window,1122,1,470.372,1,1,470.372,1,470.372,1,1,470.372,1,470.372,1,1,470.372,1,1474.593,0,1,1474.593
+cheat_cs2_webradar_02,cheat_software,CS2 WebRadar,software_active,cheat,test,301,activation_window,918,1,631.513,1,1,631.513,1,631.513,1,1,631.513,1,631.513,1,1,631.513,1,631.513,0,1,631.513
+cheat_cs2_webradar_03,cheat_software,CS2 WebRadar,software_active,cheat,test,301,activation_window,1224,1,417.109,1,1,417.109,1,417.109,1,1,417.109,1,417.109,1,1,417.109,1,417.109,0,1,417.109
+cheat_fully_external_cs2_02,cheat_software,FullyExternalCS2,software_active,cheat,test,300,activation_window,1203,1,724.596,1,1,724.596,1,724.596,1,1,724.596,1,724.596,1,1,724.596,1,3728.722,0,1,3728.722
+cheat_fully_external_cs2_03,cheat_software,FullyExternalCS2,software_active,cheat,test,301,activation_window,1315,1,138.507,1,1,138.507,1,138.507,1,1,138.507,1,138.507,1,1,138.507,1,5133.16,0,1,5133.16

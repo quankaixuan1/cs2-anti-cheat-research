@@ -1,0 +1,41 @@
+{
+  "policy_version": "calibration-v1",
+  "calibration_trials": 13,
+  "selected_threshold": 45,
+  "selection_rule": "highest threshold among candidates with maximum strict trial-level F1, then minimum FPR and maximum TPR",
+  "strict_metrics": {
+    "threshold": 45,
+    "scope": "strict",
+    "tp": 4,
+    "fp": 0,
+    "tn": 9,
+    "fn": 0,
+    "tpr": 1.0,
+    "fnr": 0.0,
+    "fpr": 0.0,
+    "precision": 1.0,
+    "f1": 1.0,
+    "tpr_ci95_low": 0.5101091635454027,
+    "tpr_ci95_high": 1,
+    "fpr_ci95_low": 0,
+    "fpr_ci95_high": 0.2991450484195441
+  },
+  "subject_metrics": {
+    "threshold": 45,
+    "scope": "subject",
+    "tp": 4,
+    "fp": 0,
+    "tn": 9,
+    "fn": 0,
+    "tpr": 1.0,
+    "fnr": 0.0,
+    "fpr": 0.0,
+    "precision": 1.0,
+    "f1": 1.0,
+    "tpr_ci95_low": 0.5101091635454027,
+    "tpr_ci95_high": 1,
+    "fpr_ci95_low": 0,
+    "fpr_ci95_high": 0.2991450484195441
+  },
+  "held_out_data_used": false
+}

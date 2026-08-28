@@ -1,0 +1,53 @@
+{
+  "trial_id": "benign_nvidia_performance_overlay_03",
+  "condition": "benign_application",
+  "application_name": "NVIDIA Performance Overlay",
+  "application_category": "performance_overlay",
+  "cheat_enabled": false,
+  "enabled_feature": "none",
+  "application_start_time_utc": "2026-08-27T21:00:34.1679230Z",
+  "feature_enable_time_utc": null,
+  "trial_start_time_utc": "2026-08-27T20:58:02.9000025Z",
+  "trial_end_time_utc": "2026-08-27T21:03:02.958713Z",
+  "expected_label": "benign",
+  "notes": "split=test; scope=user_mode; readiness=ready; design=balanced_reduced; NVIDIA background processes pre-existed; performance HUD activation confirmed by user near scan 151; application activation at elapsed 151.268s; active_window_seconds=148.791; timing deviation caused by waiting for user confirmation and reported without adjustment",
+  "detection_threshold": 45,
+  "policy_version": "calibration-v1",
+  "application_process": {
+    "pids": [
+      2688,
+      38908,
+      10420,
+      20972,
+      16656
+    ],
+    "path": "C:\\Program Files\\NVIDIA Corporation\\NVIDIA App\\CEF\\NVIDIA Overlay.exe",
+    "sha256": "9B77A23FB0ECB92E3E5CF05AFD7A9B9CB46CAD094ECF75430C9CD630F40A590A",
+    "signature_status": "Valid",
+    "signature_subject": "CN=NVIDIA Corporation, OU=2008B9F, O=NVIDIA Corporation, L=Santa Clara, S=California, C=US",
+    "preexisting": true,
+    "hud_user_confirmed": true
+  },
+  "observed_results": {
+    "scan_count": 300,
+    "first_scan_time_utc": "2026-08-27T20:58:02.9472999Z",
+    "last_scan_time_utc": "2026-08-27T21:03:01.9643242Z",
+    "handle_rows": 1666,
+    "handle_event_rows": 6,
+    "detection_rows": 0,
+    "alert_handle_rows": 0,
+    "application_handle_rows": 0,
+    "application_max_adjusted_risk_score": null
+  },
+  "performance": {
+    "scan_duration_ms_mean": 362.8124466666667,
+    "scan_duration_ms_p95": 474.918,
+    "scan_duration_ms_max": 529.322,
+    "monitor_cpu_percent_mean": 2.9194433333333327,
+    "monitor_cpu_percent_p95": 3.178,
+    "monitor_cpu_percent_max": 3.405,
+    "monitor_working_set_mb_mean": 95.2567833333333,
+    "monitor_working_set_mb_p95": 111.789,
+    "monitor_working_set_mb_max": 128.07
+  }
+}

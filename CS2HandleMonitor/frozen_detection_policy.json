@@ -1,0 +1,30 @@
+{
+  "version": "calibration-v1",
+  "threshold": 45,
+  "allowlisted_risk_score": 5,
+  "selection_split": "calibration",
+  "selection_rule": "highest threshold among candidates with maximum strict trial-level F1, then minimum FPR and maximum TPR",
+  "trusted_process_sha256": [
+    "008D334EABD65A62A01FC05DF8105FBA56D9E9B0A7779D4328D8016559EE4A23",
+    "1222A44A5FDB4EFDE4DFCB41093648627950E7EC02D8667F1C26CCAE31D922E2"
+  ],
+  "trusted_process_evidence": [
+    {
+      "name": "Razer GameManagerService",
+      "sha256": "008D334EABD65A62A01FC05DF8105FBA56D9E9B0A7779D4328D8016559EE4A23",
+      "embedded_signature_subject": "Razer USA Ltd.",
+      "reason": "Persistent calibration false-positive source; exact hash frozen before held-out testing."
+    },
+    {
+      "name": "Windows svchost",
+      "sha256": "1222A44A5FDB4EFDE4DFCB41093648627950E7EC02D8667F1C26CCAE31D922E2",
+      "embedded_signature_subject": "Microsoft Windows Publisher",
+      "reason": "Persistent calibration false-positive source; exact hash frozen before held-out testing."
+    }
+  ],
+  "limitations": [
+    "The allowlist is version-specific and must not be expanded using held-out test results.",
+    "An embedded signature is required in addition to an exact SHA-256 match.",
+    "Updated legitimate binaries may no longer match and will be evaluated at their raw access-risk score."
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "trial_id": "benign_baseline_01",
+  "condition": "baseline",
+  "application_name": "None",
+  "application_category": "baseline",
+  "cheat_enabled": false,
+  "enabled_feature": "none",
+  "application_start_time_utc": null,
+  "feature_enable_time_utc": null,
+  "trial_start_time_utc": "2026-08-26T01:10:36.0794434Z",
+  "trial_end_time_utc": "2026-08-26T01:15:36.6839522Z",
+  "expected_label": "benign",
+  "notes": "split=calibration; scope=user_mode; readiness=ready; monitor_elevated=true; ambient_services=Razer Game Manager Service,Windows Themes",
+  "monitor_elevated": true,
+  "ambient_services": [
+    "Razer Game Manager Service",
+    "Windows Themes"
+  ]
+}

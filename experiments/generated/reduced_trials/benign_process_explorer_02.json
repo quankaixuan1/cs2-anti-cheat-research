@@ -1,0 +1,52 @@
+{
+  "trial_id": "benign_process_explorer_02",
+  "condition": "benign_application",
+  "application_name": "Microsoft Process Explorer",
+  "application_category": "process_monitor",
+  "cheat_enabled": false,
+  "enabled_feature": "none",
+  "application_start_time_utc": "2026-08-27T21:23:12.5821947Z",
+  "feature_enable_time_utc": "2026-08-27T21:23:12.5821947Z",
+  "trial_start_time_utc": "2026-08-27T21:21:52.3302193Z",
+  "trial_end_time_utc": "2026-08-27T21:26:52.4011228Z",
+  "expected_label": "benign",
+  "notes": "split=test; scope=user_mode; readiness=ready; design=balanced_reduced; application_elevated=true; stable_window_seconds=80.252; active_window_seconds=219.819; application_specific_handle_count=0; application_specific_alert_count=0; exact application PID terminated after monitor exit",
+  "detection_threshold": 45,
+  "policy_version": "calibration-v1",
+  "application_process": {
+    "pid": 14800,
+    "path": "D:\\Software\\Sysinternals\\ProcessExplorer\\procexp64.exe",
+    "sha256": "917B5D71F732BF5B5423CD212C004B2433A63E9DFE02A2A27EA421252C815690",
+    "signature_status": "Valid",
+    "signature_subject": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+    "file_version": "17.13",
+    "preexisting": false,
+    "launched_by_trial": true,
+    "launch_context": "administrator",
+    "termination": "taskkill_exact_pid_after_trial"
+  },
+  "observed_results": {
+    "scan_count": 300,
+    "first_scan_time_utc": "2026-08-27T21:21:52.4013980Z",
+    "last_scan_time_utc": "2026-08-27T21:26:51.4050968Z",
+    "handle_rows": 1500,
+    "handle_event_rows": 5,
+    "detection_rows": 0,
+    "alert_handle_rows": 0,
+    "application_handle_rows": 0,
+    "application_max_adjusted_risk_score": null,
+    "first_detection_time_utc": null,
+    "detection_latency_ms": null
+  },
+  "performance": {
+    "scan_duration_ms_mean": 374.4631600000002,
+    "scan_duration_ms_p95": 581.583,
+    "scan_duration_ms_max": 659.584,
+    "monitor_cpu_percent_mean": 2.947003333333334,
+    "monitor_cpu_percent_p95": 3.185,
+    "monitor_cpu_percent_max": 3.253,
+    "monitor_working_set_mb_mean": 90.26556333333333,
+    "monitor_working_set_mb_p95": 110.355,
+    "monitor_working_set_mb_max": 121.102
+  }
+}

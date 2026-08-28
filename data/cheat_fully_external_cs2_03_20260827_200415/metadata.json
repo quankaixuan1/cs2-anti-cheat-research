@@ -1,0 +1,49 @@
+{
+  "trial_id": "cheat_fully_external_cs2_03",
+  "condition": "cheat_software",
+  "application_name": "FullyExternalCS2",
+  "application_category": "cheat_sample",
+  "cheat_enabled": true,
+  "enabled_feature": "software_active",
+  "application_start_time_utc": "2026-08-27T20:05:36.6477228Z",
+  "feature_enable_time_utc": "2026-08-27T20:05:36.6477228Z",
+  "trial_start_time_utc": "2026-08-27T20:04:15.6955047Z",
+  "trial_end_time_utc": "2026-08-27T20:09:16.449765Z",
+  "expected_label": "cheat",
+  "notes": "split=test; scope=user_mode_external; readiness=ready; design=balanced_reduced; monitor_elevated=true; application_elevated=false; application_started_at_elapsed=80.952s; active_window_seconds=219.802",
+  "detection_threshold": 45,
+  "policy_version": "calibration-v1",
+  "application_process": {
+    "pid": 30668,
+    "path": "D:\\Software\\cheating program\\FullyExternalCS2-main\\bin\\Release\\net8.0-windows\\CS2Cheat.exe",
+    "sha256": "839687893FD90B3595F68671683C537CEFD3EBB97B357660EF16725D171BE553",
+    "signature_status": "NotSigned",
+    "signature_subject": null,
+    "preexisting": false,
+    "launched_by_trial": true
+  },
+  "observed_results": {
+    "scan_count": 301,
+    "first_scan_time_utc": "2026-08-27T20:04:15.7753674Z",
+    "last_scan_time_utc": "2026-08-27T20:09:15.7812943Z",
+    "handle_rows": 1720,
+    "handle_event_rows": 6,
+    "detection_rows": 1,
+    "alert_handle_rows": 215,
+    "application_handle_rows": 215,
+    "application_max_adjusted_risk_score": 100.0,
+    "first_detection_time_utc": "2026-08-27T20:05:42.1123031Z",
+    "detection_latency_ms": 5464.5803
+  },
+  "performance": {
+    "scan_duration_ms_mean": 581.2542923588043,
+    "scan_duration_ms_p95": 732.851,
+    "scan_duration_ms_max": 777.425,
+    "monitor_cpu_percent_mean": 2.9810132890365453,
+    "monitor_cpu_percent_p95": 3.167,
+    "monitor_cpu_percent_max": 3.334,
+    "monitor_working_set_mb_mean": 96.12998006644513,
+    "monitor_working_set_mb_p95": 115.469,
+    "monitor_working_set_mb_max": 135.398
+  }
+}

@@ -1,0 +1,3 @@
+﻿trial_id,condition,application_name,enabled_feature,expected_label,evaluation_split,scan_count,baseline_a_any_handle,baseline_a_any_handle_latency_ms,baseline_b_vm_read,baseline_b_vm_read_latency_ms,baseline_c_memory_access,baseline_c_memory_access_latency_ms,proposed,proposed_latency_ms
+benign_baseline_01,baseline,None,none,benign,calibration,301,1,50.245,1,50.245,1,50.245,1,338.007
+benign_resource_monitor_01,benign_application,Windows Resource Monitor,none,benign,calibration,301,1,-59426.644,1,-59426.644,1,-59426.644,1,-59164.766

@@ -1,0 +1,73 @@
+{
+  "trial_id": "cheat_cs2_webradar_02",
+  "condition": "cheat_software",
+  "application_name": "CS2 WebRadar",
+  "application_category": "cheat_sample",
+  "cheat_enabled": true,
+  "enabled_feature": "software_active",
+  "application_start_time_utc": "2026-08-27T20:52:58.6778715Z",
+  "feature_enable_time_utc": "2026-08-27T20:52:58.6778715Z",
+  "trial_start_time_utc": "2026-08-27T20:50:31.254062Z",
+  "trial_end_time_utc": "2026-08-27T20:55:31.7041213Z",
+  "expected_label": "cheat",
+  "notes": "split=test; scope=user_mode_external; readiness=ready; design=balanced_reduced; user_requested_frontend=true; frontend_started=true; frontend_opened=true; websocket_scope=127.0.0.1:22006; vite_scope=127.0.0.1:5173; frontend cold start delayed application activation to elapsed 147.424s; active_window_seconds=153.026; all trial web and usermode processes terminated after monitor exit",
+  "detection_threshold": 45,
+  "policy_version": "calibration-v1",
+  "application_process": {
+    "pid": 44528,
+    "path": "D:\\Software\\cheating program\\cs2_webradar-main\\usermode\\release\\usermode.exe",
+    "sha256": "8A2A2FD6C55B32CFB3B3182C75ADCF2F986ADA4C9E4FCC23AD73F7B85C6CC32D",
+    "signature_status": "NotSigned",
+    "signature_subject": null,
+    "preexisting": false,
+    "launched_by_trial": true,
+    "termination": "taskkill_exact_pid_tree_after_trial"
+  },
+  "frontend": {
+    "requested_start_time_utc": "2026-08-27T20:51:59Z",
+    "npm_runner_pid": 54692,
+    "process_pids": [
+      54692,
+      53860,
+      16436,
+      50124,
+      29588,
+      31456,
+      11948,
+      47980,
+      54936
+    ],
+    "websocket_listener": "127.0.0.1:22006",
+    "websocket_pid": 11948,
+    "vite_listener": "127.0.0.1:5173",
+    "vite_pid": 47980,
+    "url": "http://127.0.0.1:5173",
+    "frontend_started": true,
+    "frontend_opened": true,
+    "termination": "taskkill_exact_npm_pid_tree_after_trial"
+  },
+  "observed_results": {
+    "scan_count": 301,
+    "first_scan_time_utc": "2026-08-27T20:50:31.3018041Z",
+    "last_scan_time_utc": "2026-08-27T20:55:31.3077779Z",
+    "handle_rows": 1658,
+    "handle_event_rows": 6,
+    "detection_rows": 1,
+    "alert_handle_rows": 153,
+    "application_handle_rows": 153,
+    "application_max_adjusted_risk_score": 45.0,
+    "first_detection_time_utc": "2026-08-27T20:52:59.6597951Z",
+    "detection_latency_ms": 981.9236
+  },
+  "performance": {
+    "scan_duration_ms_mean": 286.886581395349,
+    "scan_duration_ms_p95": 346.286,
+    "scan_duration_ms_max": 553.042,
+    "monitor_cpu_percent_mean": 3.0044784053156164,
+    "monitor_cpu_percent_p95": 3.225,
+    "monitor_cpu_percent_max": 3.512,
+    "monitor_working_set_mb_mean": 93.9122657807309,
+    "monitor_working_set_mb_p95": 111.098,
+    "monitor_working_set_mb_max": 120.484
+  }
+}

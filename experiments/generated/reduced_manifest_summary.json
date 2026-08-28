@@ -1,0 +1,31 @@
+{
+  "design": "balanced_reduced",
+  "policy_version": "calibration-v1",
+  "frozen_threshold": 45,
+  "completed_calibration_trials": 13,
+  "remaining_test_trials": 26,
+  "final_independent_trials": 39,
+  "remaining_expected_scans": 7800,
+  "final_expected_scans": 11700,
+  "repetitions_per_condition": 3,
+  "selected_test_repetitions": [
+    2,
+    3
+  ],
+  "condition_count": 13,
+  "conditions": [
+    "CS2 External Cheat (C#)",
+    "CS2 External ESP (C++)",
+    "CS2 WebRadar",
+    "Discord Overlay",
+    "FullyExternalCS2",
+    "Microsoft Process Explorer",
+    "Microsoft Process Monitor",
+    "NVIDIA Performance Overlay",
+    "None",
+    "OBS Studio (Game Capture)",
+    "Steam Overlay",
+    "Windows Resource Monitor",
+    "Windows Task Manager"
+  ]
+}

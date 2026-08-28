@@ -1,0 +1,14 @@
+﻿{
+  "trial_id": "cheat_cs2_external_esp_01",
+  "condition": "cheat_software",
+  "application_name": "CS2 External ESP (C\u002B\u002B)",
+  "application_category": "cheat_sample",
+  "cheat_enabled": true,
+  "enabled_feature": "software_active",
+  "application_start_time_utc": null,
+  "feature_enable_time_utc": null,
+  "trial_start_time_utc": "2026-08-27T12:31:24.1636573Z",
+  "trial_end_time_utc": "2026-08-27T12:36:24.4537625Z",
+  "expected_label": "cheat",
+  "notes": "split=calibration; scope=user_mode_external; readiness=dependencies_required"
+}
